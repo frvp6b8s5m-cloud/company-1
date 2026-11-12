@@ -254,3 +254,13 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 ## Visual direction refinement
 - [ ] Align the visual system with the approved industrial/brutalist, cinematic direction: charcoal/black surfaces, electric-orange signal accents, oversized typography, technical labels, real photography, restrained signal/frequency motion and reduced-motion support.
 - [ ] Review the new direction at mobile/tablet/desktop and rerun the strict axe-core audit before accepting the visual update.
+
+
+## GitHub preview deployment follow-up — 2026-11-12
+
+- The existing GitHub Pages workflow was updated to publish pushes from both `main` and `feat/bzaudio-company-site`. This provides a live preview using the repository's single Pages site address; it is not a separate Pages environment and will replace whatever that repository currently serves at that address.
+- The workflow change is committed on the feature branch. The deployment itself is not marked successful until the GitHub Pages Actions run reports a completed deployment and the published URL is opened for a live smoke test.
+- The full quality workflow's run #63 completed successfully before the deployment/documentation-only updates. Its steps all passed: JavaScript syntax, static verification, Chromium browser smoke, strict axe-core accessibility, performance/CDN checks and screenshot artifact upload.
+- The feature branch remains separate from `main`; no merge to `main` has occurred.
+- Release gates still open: actual published-site smoke test; manual VoiceOver/NVDA and physical-device testing; measured Lighthouse/Core Web Vitals; final photography/logo/person rights review; inquiry recipient configuration; and verified Allen & Heath hardware/protocol tests before any live mixer-control claim.
+- Do not describe the site as production-ready or claim all real-world tests passed until those gates have evidence.
