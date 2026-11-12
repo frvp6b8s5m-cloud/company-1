@@ -32,7 +32,7 @@ jobs:
           node --check site-config.js
           node --check scripts/verify-site.mjs
           node --check scripts/accessibility-smoke.mjs
-          node --check scripts/performance-smoke.mjs
+          node --check scripts/performance-smoke.mjs\n          node --check scripts/verify-ecosystem.mjs
       - name: Verify site structure and requirements
         run: node scripts/verify-site.mjs
       - name: Test universal SystemOS core
