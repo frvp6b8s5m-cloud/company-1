@@ -210,7 +210,7 @@ This status snapshot supersedes stale planning checkboxes where implementation h
 
 ### In progress / not yet release-ready
 - [x] Responsive image migration with srcset, high-priority hero loading and lazy loading below the fold; browser verifies all seven photo elements load. Run #82 passed.
-- [ ] Inspect final image content at full resolution for visible brand/person/property rights concerns and decide whether to retain remote CDN or publish optimized local copies.
+- [ ] Complete final visual rights review for visible brand/person/property concerns. Initial launch decision is to retain responsive Pexels CDN delivery; representative CDN and all seven browser image loads are tested.
 - [ ] Manual keyboard and screen-reader review with VoiceOver/NVDA and real-device testing.
 - [ ] Run Lighthouse in a real browser environment and capture measured LCP/CLS/INP; CI timing diagnostics are not field metrics.
 - [ ] Confirm BZaudio inquiry recipient and set site-config.js; until then, the email draft has no prefilled recipient.
