@@ -149,6 +149,10 @@ try {
   await page.locator("#sm-items-recommended .sm-item-qty").fill("3");
   await page.locator("#sm-items-recommended .sm-item-qty").dispatchEvent("change");
   assert.ok((await page.locator("#sm-brief").innerText()).includes("3 × Mixing console — Digital mixing console"), "SoundMatch allows component quantity edits");
+  assert.ok((await page.locator("#sm-items-recommended li").innerText()).includes("3 × Mixing console — Digital mixing console"), "Edited quantity is reflected in the comparison list");
+  await page.locator("#sm-items-recommended .sm-item-qty").fill("");
+  await page.locator("#sm-items-recommended .sm-item-qty").dispatchEvent("change");
+  assert.equal(await page.locator("#sm-items-recommended .sm-item-qty").inputValue(), "3", "Invalid empty quantity reverts to the last valid value");
   await page.locator("#sm-design-name").fill("Auditorium system");
   await page.locator("#sm-save").click();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "SoundMatch saves multiple local designs");
