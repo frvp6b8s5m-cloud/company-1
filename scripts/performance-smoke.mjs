@@ -69,8 +69,8 @@ try {
       await reviewPage.waitForTimeout(120);
     }
     await reviewPage.waitForTimeout(1300);
-    await reviewPage.evaluate(() => window.scrollTo(0, 0));
-    await reviewPage.waitForTimeout(450);
+    await reviewPage.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; window.scrollTo(0, 0); });
+    await reviewPage.waitForTimeout(150);
     await reviewPage.screenshot({ path: resolve(root, `artifacts/visual-review/${viewport.name}.png`), fullPage: true });
     await reviewPage.close();
   }
