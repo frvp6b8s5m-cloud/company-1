@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
@@ -58,6 +58,14 @@ try {
 
   await new Promise((resolveListen) => server.listen(0, "127.0.0.1", resolveListen));
   const address = server.address();
+  await mkdir(resolve(root, "artifacts/visual-review"), { recursive: true });
+  for (const viewport of [{ width: 390, height: 844, name: "mobile-390" }, { width: 768, height: 1024, name: "tablet-768" }, { width: 1440, height: 900, name: "desktop-1440" }]) {
+    const reviewPage = await browser.newPage({ viewport });
+    await reviewPage.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "load" });
+    await reviewPage.waitForTimeout(900);
+    await reviewPage.screenshot({ path: resolve(root, `artifacts/visual-review/${viewport.name}.png`), fullPage: true });
+    await reviewPage.close();
+  }
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   const response = await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "load" });
   assert.equal(response.status(), 200, "Homepage must load");
