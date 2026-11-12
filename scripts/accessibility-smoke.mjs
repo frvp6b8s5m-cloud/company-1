@@ -35,7 +35,7 @@ try {
     const results = await page.evaluate(async () => window.axe.run(document, {
       runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] }
     }));
-    const failures = results.violations.filter((item) => ["critical", "serious"].includes(item.impact));
+    const failures = results.violations;
     if (results.violations.length) {
       console.log(JSON.stringify({
         viewport,
@@ -45,7 +45,7 @@ try {
         }))
       }, null, 2));
     }
-    assert.deepEqual(failures.map((item) => item.id), [], `Serious or critical WCAG violations at ${viewport.width}px`);
+    assert.deepEqual(failures.map((item) => item.id), [], `WCAG violations at ${viewport.width}px`);
     await page.close();
   }
   console.log("BZaudio WCAG 2.2 AA automated accessibility checks passed at 390px, 768px and 1440px.");
