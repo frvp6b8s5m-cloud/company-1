@@ -160,7 +160,13 @@
   const readSaved = () => {
     try {
       const parsed = JSON.parse(localStorage.getItem(storageKey) || "[]");
-      return Array.isArray(parsed) ? parsed.filter((draft) => draft && typeof draft.id === "string" && typeof draft.name === "string" && draft.values && Array.isArray(draft.items)) : [];
+      return Array.isArray(parsed) ? parsed.filter((draft) =>
+        draft &&
+        typeof draft.id === "string" && draft.id.length <= 64 &&
+        typeof draft.name === "string" && draft.name.length <= 60 &&
+        draft.values && typeof draft.values === "object" && !Array.isArray(draft.values) &&
+        Array.isArray(draft.items) && draft.items.length <= 50
+      ).slice(0, 10) : [];
     } catch {
       return [];
     }
@@ -275,7 +281,7 @@
       return;
     }
     items.push({
-      id: String(Date.now()) + "-" + String(items.length),
+      id: window.crypto?.randomUUID?.() || String(Date.now()) + "-" + String(items.length),
       tier: document.querySelector("#sm-tier").value,
       category: document.querySelector("#sm-category").value,
       name: name.slice(0, 100),
@@ -300,7 +306,7 @@
       status.textContent = "You can keep up to 10 saved designs in this browser. Delete one to make room.";
       return;
     }
-    const id = String(Date.now());
+    const id = window.crypto?.randomUUID?.() || String(Date.now()) + "-" + String(drafts.length);
     drafts.push({ id, name: name.slice(0, 60), values: values(), items: items.map((item) => ({ ...item })) });
     if (writeSaved(drafts)) {
       renderSaved();
@@ -316,14 +322,15 @@
       status.textContent = "Choose a saved design to load.";
       return;
     }
-    for (const [name, value] of Object.entries(draft.values)) {
+    for (const [name, value] of Object.entries(draft.values).slice(0, 40)) {
+      if (!/^sm-[a-z0-9-]+$/.test(name) || typeof value !== "string") continue;
       const field = form.elements.namedItem(name);
-      if (field) field.value = value;
+      if (field) field.value = value.slice(0, 2000);
     }
-    items = draft.items.filter((item) => item && Object.hasOwn(tierNames, item.tier) && typeof item.name === "string").map((item, index) => ({
-      id: String(Date.now()) + "-" + index,
+    items = draft.items.slice(0, 50).filter((item) => item && Object.hasOwn(tierNames, item.tier) && typeof item.name === "string").map((item, index) => ({
+      id: window.crypto?.randomUUID?.() || String(Date.now()) + "-" + index,
       tier: item.tier,
-      category: String(item.category || "Other"),
+      category: String(item.category || "Other").slice(0, 60),
       name: item.name.slice(0, 100),
       quantity: Math.min(100, Math.max(1, Number(item.quantity) || 1))
     }));
