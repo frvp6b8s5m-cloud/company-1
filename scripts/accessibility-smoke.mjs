@@ -32,7 +32,6 @@ try {
     const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
     assert.equal(horizontalOverflow, false, `No horizontal page overflow at ${viewport.width}px`);
     await page.addScriptTag({ content: axe.source });
-    await page.addScriptTag({ content: axe.source });
     const results = await page.evaluate(async () => window.axe.run(document, {
       runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] }
     }));
