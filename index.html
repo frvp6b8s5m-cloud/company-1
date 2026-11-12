@@ -130,7 +130,7 @@
               <label>Coverage priority<select name="sm-coverage" required><option value="">Choose a priority</option><option>Even coverage throughout</option><option>Speech intelligibility</option><option>High-impact music</option><option>Multiple zones</option><option>Fast portable setup</option></select></label>
               <label>Number of zones<input name="sm-zones" type="number" min="1" max="100" value="1" required></label>
               <label>Subwoofer requirement<select name="sm-sub-goal" required><option value="">Choose one</option><option>Not required</option><option>Helpful for music</option><option>Important / high output</option><option>Not sure</option></select></label>
-              <label class="sm-wide">Sources and signal needs<textarea name="sm-sources" rows="3" placeholder="Microphones, instruments, playback, streaming, recording, remote feeds..."></textarea></label>
+              <label class="sm-wide">Sources and signal needs<textarea name="sm-sources" rows="3" maxlength="2000" placeholder="Microphones, instruments, playback, streaming, recording, remote feeds..."></textarea></label>
             </div>
           </fieldset>
           <fieldset class="sm-step" data-step="2" hidden>
@@ -140,7 +140,7 @@
               <label>Required input channels<input name="sm-inputCount" type="number" min="1" max="512" placeholder="e.g. 32" required></label>
               <label>Stage I/O<select name="sm-stageIO" required><option value="">Choose one</option><option>Local inputs only</option><option>Digital stagebox</option><option>Analog stagebox / split</option><option>Multiple stage locations</option><option>Not sure</option></select></label>
               <label>Recording / streaming<select name="sm-recording" required><option value="">Choose one</option><option>Not needed</option><option>Stereo recording</option><option>Multitrack recording</option><option>Live streaming</option><option>Recording and streaming</option></select></label>
-              <label class="sm-wide">Console brands or models already owned<textarea name="sm-console-owned" rows="2" placeholder="Optional — exact model names help us verify fit later."></textarea></label>
+              <label class="sm-wide">Console brands or models already owned<textarea name="sm-console-owned" rows="2" maxlength="1000" placeholder="Optional — exact model names help us verify fit later."></textarea></label>
             </div>
           </fieldset>
           <fieldset class="sm-step" data-step="3" hidden>
@@ -161,7 +161,7 @@
               <label>Mounting / rigging<select name="sm-mounting" required><option value="">Choose one</option><option>Floor / stand mounted</option><option>Wall / ceiling mounted</option><option>Flown / rigged</option><option>Not sure</option></select></label>
               <label>Networking needs<select name="sm-network" required><option value="">Choose one</option><option>Basic control network</option><option>Audio over IP</option><option>Remote control / monitoring</option><option>No network required</option><option>Not sure</option></select></label>
               <label>Expansion plans<select name="sm-expansion" required><option value="">Choose one</option><option>No planned expansion</option><option>More zones / rooms</option><option>More inputs / stage positions</option><option>More output / coverage</option><option>Future flexibility is important</option></select></label>
-              <label class="sm-wide">Power, cabling, access or room constraints<textarea name="sm-infra-notes" rows="3" placeholder="Describe available power, cable paths, mounting limits, network access or other constraints."></textarea></label>
+              <label class="sm-wide">Power, cabling, access or room constraints<textarea name="sm-infra-notes" rows="3" maxlength="2000" placeholder="Describe available power, cable paths, mounting limits, network access or other constraints."></textarea></label>
             </div>
           </fieldset>
           <fieldset class="sm-step" data-step="5" hidden>
@@ -171,7 +171,7 @@
               <label>Project scope<select name="sm-scope" required><option value="">Choose one</option><option>Design and specification</option><option>Equipment supply</option><option>Design, supply and installation</option><option>Upgrade / expansion</option><option>Consultation / troubleshooting</option></select></label>
               <label>Budget range<select name="sm-budget" required><option value="">Choose a range</option><option>Under $5,000</option><option>$5,000–$15,000</option><option>$15,000–$35,000</option><option>$35,000–$75,000</option><option>$75,000+</option><option>Need help establishing a budget</option></select></label>
               <label>Timeline<select name="sm-timeline" required><option value="">Choose a timeline</option><option>As soon as possible</option><option>1–3 months</option><option>3–6 months</option><option>Planning for later</option></select></label>
-              <label class="sm-wide">Existing gear, preferred brands and project notes<textarea name="sm-notes" rows="4" placeholder="List exact model numbers where possible. Unverified compatibility will be flagged for review."></textarea></label>
+              <label class="sm-wide">Existing gear, preferred brands and project notes<textarea name="sm-notes" rows="4" maxlength="2000" placeholder="List exact model numbers where possible. Unverified compatibility will be flagged for review."></textarea></label>
             </div>
           </fieldset>
           <div class="sm-controls"><button class="sm-back" id="sm-back" type="button" disabled>← Back</button><button class="button button-dark" id="sm-next" type="button">Continue <span aria-hidden="true">→</span></button></div>
