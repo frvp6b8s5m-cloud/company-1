@@ -19,10 +19,19 @@
     document.body.classList.toggle("menu-open", open);
   };
   menuButton?.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
-  nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+  nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", (event) => {
     const restoreFocus = isMobileNav() && menuButton?.getAttribute("aria-expanded") === "true";
+    if (restoreFocus) {
+      const href = link.getAttribute("href");
+      const target = href?.startsWith("#") ? document.querySelector(href) : null;
+      event.preventDefault();
+      setMenu(false);
+      if (href?.startsWith("#")) history.pushState(null, "", href);
+      target?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
+      menuButton.focus({ preventScroll: true });
+      return;
+    }
     setMenu(false);
-    if (restoreFocus) menuButton.focus();
   }));
   window.addEventListener("resize", () => {
     if (!isMobileNav()) setMenu(false);
