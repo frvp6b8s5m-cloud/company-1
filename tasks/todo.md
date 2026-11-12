@@ -186,3 +186,9 @@
 - [ ] Product/asset/compatibility facts are sourced.
 - [ ] Rollback path is verified.
 - [ ] Human approves production cutover separately.
+
+
+## QA follow-up (2026-11-12)
+- GitHub Actions run #60 passed on the feature branch (commit `1470dd01c1a622d22250111c83182cdadf27dd78`): static verification, Chromium browser smoke, strict axe-core WCAG audit (all reported violations fail the gate), performance/CDN checks and responsive screenshot capture all succeeded. Run: https://github.com/frvp6b8s5m-cloud/company-1/actions/runs/43303645289
+- Added breakpoint-specific hero image preloads so mobile devices preload the 1200px image used by the mobile CSS rather than also fetching the 2200px desktop hero. A regression assertion now checks both preload URLs and their CSS background counterparts; this change is awaiting its own CI run.
+- Remaining release blockers are unchanged: physical-device testing, manual screen-reader review, real-world Lighthouse/Core Web Vitals measurement, final image-rights review, and configuration of the actual inquiry email. No production deployment or merge has been authorized.
