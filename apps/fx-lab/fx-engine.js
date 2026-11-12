@@ -28,7 +28,8 @@ function create(context,destination){
   if(name==="compressor"){comp.threshold.setTargetAtTime(enabled?0:-18,now,tc);comp.ratio.setTargetAtTime(enabled?1:4,now,tc);}
   if(name==="drive")pair(driveWet,driveDry);if(name==="chorus")pair(chorusWet,chorusDry);if(name==="delay")pair(delayWet,delayDry);if(name==="reverb")pair(reverbWet,reverbDry);
  }
- function readGainReduction(){return Number.isFinite(comp.reduction)?comp.reduction:0;}\n function readLevel(){const data=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(data);let peak=0;for(const n of data)peak=Math.max(peak,Math.abs(n));return peak;}
+ function readGainReduction(){return Number.isFinite(comp.reduction)?comp.reduction:0;}
+ function readLevel(){const data=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(data);let peak=0;for(const n of data)peak=Math.max(peak,Math.abs(n));return peak;}
  return{input,connectSource,set,setBypass,readLevel,readGainReduction,dispose(){try{lfo.stop();}catch{};input.disconnect();}};
 }
 root.BZAudioFxEngine={create};
