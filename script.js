@@ -186,7 +186,7 @@
     if (!contactForm.reportValidity()) return;
     const data = new FormData(contactForm);
     const recipient = typeof config.inquiryEmail === "string" ? config.inquiryEmail.trim() : "";
-    const mailtoRecipient = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(recipient) ? recipient : "";
+    const mailtoRecipient = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient) ? recipient : "";
     const subject = encodeURIComponent("BZaudio project inquiry — " + data.get("service"));
     const body = encodeURIComponent([
       "Name: " + data.get("name"),
