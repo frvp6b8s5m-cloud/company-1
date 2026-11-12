@@ -25,8 +25,8 @@ Build order: brand-experience → verified equipment data → equipment-marketpl
 ## Visual and interaction requirements
 - Real-world photography of actual audio equipment, venues, studios, installations and architecture; only assets with confirmed usage rights.
 - No AI-looking imagery, robot imagery, synthetic neural-network motifs, or generic sci-fi graphics.
-- Premium architectural/editorial composition, strong typography, deliberate whitespace and restrained material palette.
-- Cinematic but purposeful transitions, layered photography and scroll choreography; animations must not impair navigation, readability, battery life or accessibility.
+- High-end industrial/brutalist editorial composition: oversized typography, black/charcoal materials, electric-orange signal accents, technical labels, asymmetric layouts and immersive photographic depth. The palette may evolve, but the overall effect must remain premium, cinematic and unmistakably human-made.
+- Cinematic but purposeful transitions, layered photography, depth/parallax and scroll choreography; use authentic equipment/venue imagery, live-signal motifs and restrained animated frequency bars rather than AI-looking sci-fi effects. Animations must not impair navigation, readability, battery life or accessibility.
 - Realistic 3D equipment only when authentic models/assets and performance budgets are available.
 - Mobile-first responsive behavior, keyboard operation, visible focus, semantic structure and reduced-motion support.
 
