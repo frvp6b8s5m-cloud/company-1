@@ -122,6 +122,7 @@
         detail.textContent = item.quantity + " × " + item.category + " — " + item.name;
         const quantity = document.createElement("input");
         quantity.type = "number";
+        quantity.required = true;
         quantity.min = "1";
         quantity.max = "100";
         quantity.value = String(item.quantity);
@@ -135,6 +136,7 @@
             return;
           }
           item.quantity = nextQuantity;
+          detail.textContent = item.quantity + " × " + item.category + " — " + item.name;
           briefOutput.textContent = buildBrief();
           status.textContent = "Component quantity updated.";
         });
