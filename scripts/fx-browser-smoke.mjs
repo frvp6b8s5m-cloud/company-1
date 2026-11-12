@@ -22,7 +22,10 @@ try{
  await page.waitForFunction(()=>document.querySelector("#peak-value")?.textContent!=="−∞ dB",null,{timeout:4000});
  assert.ok((await page.locator("#source-status").innerText()).includes("test tone"),"FX Lab starts a real oscillator source");
  await page.locator('[data-param="threshold"]').evaluate(el=>{el.value="-24";el.dispatchEvent(new Event("input",{bubbles:true}));});
- assert.equal(await page.locator("#threshold-value").innerText(),"-24 dB","Compressor threshold updates");\n await page.locator('[data-param="makeup"]').evaluate(el=>{el.value="3";el.dispatchEvent(new Event("input",{bubbles:true}));});\n assert.equal(await page.locator("#makeup-value").innerText(),"+3 dB","Compressor makeup gain updates");\n await page.waitForFunction(()=>document.querySelector("#gr-value")?.textContent!=="0.0 dB",null,{timeout:3000});
+ assert.equal(await page.locator("#threshold-value").innerText(),"-24 dB","Compressor threshold updates");
+ await page.locator('[data-param="makeup"]').evaluate(el=>{el.value="3";el.dispatchEvent(new Event("input",{bubbles:true}));});
+ assert.equal(await page.locator("#makeup-value").innerText(),"+3 dB","Compressor makeup gain updates");
+ await page.waitForFunction(()=>document.querySelector("#gr-value")?.textContent!=="0.0 dB",null,{timeout:3000});
  await page.locator('[data-param="delayTime"]').evaluate(el=>{el.value="480";el.dispatchEvent(new Event("input",{bubbles:true}));});
  assert.equal(await page.locator("#delay-time-value").innerText(),"480 ms","Delay time updates");
  await page.locator('[data-bypass="compressor"]').click();
