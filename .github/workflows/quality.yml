@@ -1,0 +1,32 @@
+name: BZaudio site quality checks
+
+on:
+  push:
+    branches:
+      - feat/bzaudio-company-site
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Static site verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check JavaScript syntax
+        run: |
+          node --check script.js
+          node --check site-config.js
+          node --check scripts/verify-site.mjs
+      - name: Verify site structure and requirements
+        run: node scripts/verify-site.mjs
