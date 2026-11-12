@@ -70,3 +70,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .designer-panel .form-grid input::placeholder,.designer-panel .form-grid textarea::placeholder{color:#656c61}
 .designer-panel .button-outline{color:#171916;border-color:#646b60}
 .designer-panel .wizard-back{color:#4e544b}
+
+/* Contrast fixes for the Connection Lab's light compatibility matrix on the dark section. */
+.connection-section .dark-eyebrow{color:#c1c6bd}
+.connection-card .status-pill{color:#e5e8e1}
+.connection-card .status-pill i{background:#ff6a2a}
+.family-grid strong{color:#171916}
+.family-grid small{color:#4e544b}
