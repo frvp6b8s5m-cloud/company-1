@@ -6,6 +6,7 @@ const html = read("../index.html");
 const css = read("../styles.css");
 const js = read("../script.js");
 const soundmatch = read("../soundmatch.js");
+const experience = read("../experience.css");
 const config = read("../site-config.js");
 const assets = read("../docs/assets.md");
 const favicon = read("../favicon.svg");
@@ -48,6 +49,9 @@ for (const field of ["venue", "audience", "environment", "application", "coverag
 }
 assert.ok(soundmatch.includes("bzaudio.soundmatch.drafts.v1"), "SoundMatch drafts must use a versioned local storage key");
 assert.ok(soundmatch.includes("textContent"), "SoundMatch user content must be rendered as text");
+assert.ok(html.includes('href="experience.css"'), "The industrial BZaudio visual system must be loaded");
+assert.ok(experience.includes("--signal:#ff6a2a") && experience.includes("#111412"), "The visual system must use charcoal and electric-orange signal accents");
+assert.ok(experience.includes("prefers-reduced-motion:reduce"), "New motion must respect reduced-motion preferences");
 
 assert.ok(js.includes("const mailtoRecipient = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(recipient) ? recipient : \"\";"), "Configured inquiry recipient must be validated without encoding the @ separator");
 assert.ok(js.includes('"mailto:" + mailtoRecipient'), "Mailto recipient must remain a valid address component");
