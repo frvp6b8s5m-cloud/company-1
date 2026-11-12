@@ -326,3 +326,34 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - [ ] Keep live monitoring/control disabled until real hardware protocols, browser/bridge architecture, safety permissions and physical test procedures are validated.
 
 **Acceptance rule:** universal architecture is the goal; actual compatibility is always an explicit, tested matrix. Never report a simulated connection, fabricated meter value, unsupported export, or lossy conversion as successful.
+
+
+## Phase 8 — Connected BZaudio application ecosystem (approved 2026-11-12)
+- [x] **Task 8.1: Define subdomain product boundaries and monorepo strategy**
+  - Acceptance: company website remains at root; SystemOS, System Builder, Compatibility Center and Show Workspace each have a documented application boundary and proposed hostname.
+  - Result: `docs/bzaudio-ecosystem-architecture.md`, `apps/README.md` and per-app READMEs added on the feature branch.
+  - Scope: S.
+- [x] **Task 8.2: Document shared platform, data and deployment boundaries**
+  - Acceptance: shared identity is marked future work, compatibility requires evidence, GitHub Pages limitations and DNS/hosting prerequisites are explicit, and production cutover remains gated.
+  - Result: architecture document records connected user journeys, shared data concepts, security principles and phased release plan.
+  - Scope: S.
+- [x] **Task 8.3: Add automated ecosystem scaffold verification**
+  - Acceptance: CI checks that all four app boundaries, shared package index and domain map exist.
+  - Result: `scripts/verify-ecosystem.mjs` added to the quality workflow.
+  - Scope: S.
+- [ ] **Task 8.4: Add shared contracts and design-system foundations**
+  - Acceptance: versioned equipment, compatibility, system-design and show-project contracts have validators and fixtures; shared tokens meet accessibility checks.
+  - Dependencies: 8.1–8.3.
+  - Scope: M.
+- [ ] **Task 8.5: Implement System Builder, Compatibility Center and Show Workspace**
+  - Acceptance: each app has a tested primary user journey, persistence/export behavior and documented privacy model.
+  - Dependencies: 8.4.
+  - Scope: L; split into app-specific milestones.
+- [ ] **Task 8.6: Configure independent hosting, DNS and HTTPS**
+  - Acceptance: each hostname resolves to its own verified app, all apps pass production smoke tests and rollback is documented.
+  - Dependencies: working app builds and approved hosting/domain access.
+  - Scope: M.
+- [ ] **Task 8.7: Implement shared account and project synchronization**
+  - Acceptance: real authentication, authorization, consent, recovery and cross-app data access are tested; no simulated login or false sync status.
+  - Dependencies: 8.4, security review and selected identity/backend provider.
+  - Scope: L.
