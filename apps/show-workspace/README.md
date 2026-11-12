@@ -1,15 +1,17 @@
 # BZaudio Show Workspace
 
-**Hostname:** `shows.bzaudio.com`  
-**Status:** scaffold only; not yet a working project-management application.
+**Hostname target:** `shows.bzaudio.com`  
+**Status:** functional local production-sheet prototype; not yet deployed.
 
-Show Workspace will organize the production context around an event or venue:
+## Current features
 
-- Shows, venues, dates and production notes
-- Equipment lists and system plans
-- Input lists, stage plots and patch documentation
-- Files, console backups, revisions and change history
-- Compatibility reports and unresolved technical tasks
-- Export/import handoff to SystemOS
+- Enter production, venue, date and stage/room details.
+- Add and remove stage input-list entries with mic/DI and notes.
+- Add production notes.
+- Export a local JSON show sheet.
 
-The first release should support useful local project workflows before adding cloud accounts. Cloud sharing requires explicit user consent, secure authentication, authorization, backups and data deletion/export paths.
+## Next phases
+
+Stage plot editing, equipment references, attachments, revisions, console backups and SystemOS handoff are planned. Cloud sharing requires a selected backend, secure authentication, authorization, backups and user-controlled data export/deletion.
+
+No account or cloud storage is implemented.
