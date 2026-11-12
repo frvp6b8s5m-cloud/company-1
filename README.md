@@ -16,6 +16,10 @@ python3 -m http.server 4173
 
 Open http://localhost:4173.
 
+### Quality checks
+
+The GitHub Actions quality workflow runs JavaScript syntax and static structure checks, then installs Playwright/Chromium and exercises the responsive navigation, PA Designer wizard and quote-request handoff in a headless browser.
+
 ### Configuration
 
 Set the inquiry recipient in `site-config.js`:
