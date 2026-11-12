@@ -7,6 +7,7 @@
   const steps = [...form.querySelectorAll(".sm-step")];
   const count = document.querySelector("#sm-count");
   const progress = document.querySelector("#sm-progress-bar");
+  const progressTrack = document.querySelector(".sm-progress");
   const back = document.querySelector("#sm-back");
   const next = document.querySelector("#sm-next");
   const controls = form.querySelector(".sm-controls");
@@ -89,13 +90,16 @@
     return lines.join("\n");
   };
 
-  const renderStep = () => {
+  const renderStep = (focusFirst = false) => {
     steps.forEach((step, index) => { step.hidden = index !== current; });
     review.hidden = true;
     builder.hidden = true;
     controls.hidden = false;
     count.textContent = String(current + 1).padStart(2, "0") + " / 06";
     progress.style.width = ((current + 1) / steps.length * 100) + "%";
+    progressTrack.setAttribute("aria-valuenow", String(current + 1));
+    progressTrack.setAttribute("aria-valuetext", "Step " + (current + 1) + " of " + steps.length);
+    if (focusFirst) steps[current].querySelector("input,select,textarea")?.focus({ preventScroll: true });
     back.disabled = current === 0;
     next.textContent = current === steps.length - 1 ? "Review system brief →" : "Continue →";
     status.textContent = "";
@@ -198,6 +202,8 @@
     builder.hidden = false;
     count.textContent = "REVIEW";
     progress.style.width = "100%";
+    progressTrack.setAttribute("aria-valuenow", String(steps.length));
+    progressTrack.setAttribute("aria-valuetext", "Review");
     briefOutput.textContent = buildBrief();
     renderItems();
     renderSaved();
@@ -214,7 +220,7 @@
     }
     if (current < steps.length - 1) {
       current += 1;
-      renderStep();
+      renderStep(true);
     } else {
       showReview();
     }
@@ -223,13 +229,13 @@
   back.addEventListener("click", () => {
     if (current > 0) {
       current -= 1;
-      renderStep();
+      renderStep(true);
     }
   });
 
   document.querySelector("#sm-edit").addEventListener("click", () => {
     current = steps.length - 1;
-    renderStep();
+    renderStep(true);
   });
 
   document.querySelector("#sm-copy").addEventListener("click", async () => {
@@ -245,7 +251,7 @@
     const message = document.querySelector('#project-form [name="message"]');
     const service = document.querySelector('#project-form [name="service"]');
     if (message) message.value = buildBrief();
-    if (service) service.value = "Equipment quote";
+    if (service) service.value = "SoundMatch system quote";
     document.querySelector("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
     message?.focus({ preventScroll: true });
   });
@@ -322,7 +328,7 @@
       quantity: Math.min(100, Math.max(1, Number(item.quantity) || 1))
     }));
     current = steps.length - 1;
-    renderStep();
+    renderStep(true);
     renderItems();
     status.textContent = "Saved design loaded. Continue to review your system.";
   });
