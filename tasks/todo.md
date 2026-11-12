@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Implementation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks have passed through run #63; responsive image refactoring is under re-verification. Manual/device, asset-rights, contact-recipient and production release gates remain open.
+**Status:** Implementation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks passed through run #82 after responsive image refactoring. SoundMatch, SystemOS roadmap and the industrial theme are implemented on the feature branch and are undergoing strict regression/accessibility re-verification. Manual/device, asset-rights, contact-recipient and production release gates remain open.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -209,7 +209,7 @@ This status snapshot supersedes stale planning checkboxes where implementation h
 - [x] Mobile and desktop hero preload selection plus regression checks.
 
 ### In progress / not yet release-ready
-- [ ] Responsive image migration with srcset, high-priority hero loading and lazy loading below the fold; wait for full CI re-verification.
+- [x] Responsive image migration with srcset, high-priority hero loading and lazy loading below the fold; browser verifies all seven photo elements load. Run #82 passed.
 - [ ] Inspect final image content at full resolution for visible brand/person/property rights concerns and decide whether to retain remote CDN or publish optimized local copies.
 - [ ] Manual keyboard and screen-reader review with VoiceOver/NVDA and real-device testing.
 - [ ] Run Lighthouse in a real browser environment and capture measured LCP/CLS/INP; CI timing diagnostics are not field metrics.
@@ -252,15 +252,24 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
   - Files: SoundMatch and OS sections, content and tests.
 
 ## Visual direction refinement
-- [ ] Align the visual system with the approved industrial/brutalist, cinematic direction: charcoal/black surfaces, electric-orange signal accents, oversized typography, technical labels, real photography, restrained signal/frequency motion and reduced-motion support.
+- [x] Apply the industrial/brutalist cinematic direction: charcoal/black surfaces, electric-orange signal accents, oversized typography, technical labels, real photography, restrained signal/frequency motion and reduced-motion support.
 - [ ] Review the new direction at mobile/tablet/desktop and rerun the strict axe-core audit before accepting the visual update.
 
 
-## GitHub preview deployment follow-up — 2026-11-12
 
-- The existing GitHub Pages workflow was updated to publish pushes from both `main` and `feat/bzaudio-company-site`. This provides a live preview using the repository's single Pages site address; it is not a separate Pages environment and will replace whatever that repository currently serves at that address.
-- The workflow change is committed on the feature branch. The deployment itself is not marked successful until the GitHub Pages Actions run reports a completed deployment and the published URL is opened for a live smoke test.
-- The full quality workflow's run #63 completed successfully before the deployment/documentation-only updates. Its steps all passed: JavaScript syntax, static verification, Chromium browser smoke, strict axe-core accessibility, performance/CDN checks and screenshot artifact upload.
-- The feature branch remains separate from `main`; no merge to `main` has occurred.
-- Release gates still open: actual published-site smoke test; manual VoiceOver/NVDA and physical-device testing; measured Lighthouse/Core Web Vitals; final photography/logo/person rights review; inquiry recipient configuration; and verified Allen & Heath hardware/protocol tests before any live mixer-control claim.
-- Do not describe the site as production-ready or claim all real-world tests passed until those gates have evidence.
+## Deployment safety follow-up — 2026-11-12
+- The Pages workflow had been changed to trigger on the feature branch. GitHub Actions created feature-branch deployment runs, but the observed runs failed or were cancelled; no successful feature-branch Pages deployment was reported.
+- Reverted the Pages workflow trigger to main only. This prevents further feature-branch pushes from attempting to replace the repository's single live Pages site.
+- GitHub Pages for this repository is not a separate preview environment. A safe isolated preview must be configured before using a public preview URL. CI screenshots and logs remain available as review artifacts.
+- No merge to main or successful production deployment has been performed.
+
+## SoundMatch and SystemOS implementation — 2026-11-12
+- [x] Added SoundMatch as a separate six-stage system-planning wizard alongside the PA Designer.
+- [x] Added user-editable component entries and Essential / Recommended / Professional comparison tiers.
+- [x] Added copyable SoundMatch quote brief, browser-local save/load for up to 10 drafts, and individual deletion. Saved data remains on the current device/browser.
+- [x] Added Basic Free / Advanced Pro positioning. Advanced preview is open during development; subscription/account entitlement enforcement is not connected.
+- [x] Added SystemOS roadmap section covering QR-linked system records, signal maps, equipment/document vault, Live Assistant, maintenance history and upgrade advisor. All are labeled concept/roadmap, not available features.
+- [x] Added security/privacy review documenting trust boundaries, local storage, email draft behavior and GitHub Pages header limitations.
+- [ ] Complete latest full CI after the SoundMatch, SystemOS, theme, security and Pages workflow updates; strict axe-core audit must pass with zero violations.
+- [ ] Perform five-axis code review and open a draft pull request to main after CI is green.
+- [ ] Configure the actual inquiry recipient before production cutover.
