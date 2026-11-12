@@ -10,6 +10,6 @@
   "scripts": {
     "test:systemos": "node scripts/systemos-core-smoke.mjs",
     "verify:site": "node scripts/verify-site.mjs",
-    "check:systemos-app": "node --check apps/systemos/app.js"
+    "check:systemos-app": "node --check apps/systemos/app.js && node scripts/systemos-app-smoke.mjs"
   }
 }
