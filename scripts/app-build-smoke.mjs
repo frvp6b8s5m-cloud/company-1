@@ -12,4 +12,6 @@ for (const app of apps) {
 for (const file of ["systemos-core.js", "avantis-csv.js", "systemos.css"]) {
   assert.ok(existsSync(`dist/apps/systemos/${file}`), `Missing SystemOS dependency ${file}`);
 }
-for (const file of ["fx-engine.js", "fx.css"]) assert.ok(existsSync(`dist/apps/fx-lab/${file}`), `Missing FX Lab dependency ${file}`);\nassert.ok(existsSync("dist/apps/bzaudio-id/id.css"), "Missing BZaudio ID styles");\nconsole.log("Six standalone BZaudio app bundles verified.");
+for (const file of ["fx-engine.js", "fx.css"]) assert.ok(existsSync(`dist/apps/fx-lab/${file}`), `Missing FX Lab dependency ${file}`);
+assert.ok(existsSync("dist/apps/bzaudio-id/id.css"), "Missing BZaudio ID styles");
+console.log("Six standalone BZaudio app bundles verified.");
