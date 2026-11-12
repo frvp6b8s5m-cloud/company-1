@@ -1,0 +1,19 @@
+name: Move BZaudio Pages to controlled GitHub Actions releases
+on:
+  push:
+    branches:
+      - feat/bzaudio-company-site
+    paths:
+      - .github/workflows/pages-source-mode.yml
+permissions:
+  contents: read
+  pages: write
+jobs:
+  switch-pages-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Switch repository Pages build type to GitHub Actions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method PUT "repos/${GITHUB_REPOSITORY}/pages" -f build_type=workflow
