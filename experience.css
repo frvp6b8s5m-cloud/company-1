@@ -1,0 +1,92 @@
+:root{--signal:#ff6a2a;--acid:var(--signal);--ink:#f0eee8;--ink-soft:#252b26;--paper:#111412;--paper-light:#1b201c;--muted:#bbc1b8;--line:#3c443d;--white:#f8f7f2}
+html,body{background:#111412;color:var(--ink)}
+a:hover{color:var(--signal)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--signal);outline-offset:4px}
+.site-header{background:rgba(17,20,18,.96);border-bottom:1px solid #343b35}
+.brand-symbol span,.section-meta span:first-child{color:var(--signal)}
+.nav{color:#d3d8d0}
+.nav a:hover{color:var(--signal)}
+.header-cta{border-color:#626b61;color:#f0eee8}
+.header-cta:hover{border-color:var(--signal);color:var(--signal)}
+.intro,.connection-section{background:#111412;color:#f0eee8}
+.work-section,.equipment-section,.contact-section{background:#1b201c;color:#f0eee8}
+.intro h2,.section-heading h2,.equipment-heading h2,.connection-grid h2,.contact-intro h2{color:#f0eee8}
+.intro h2 em,.section-heading h2 em,.equipment-heading h2 em,.connection-grid h2 em,.contact-intro h2 em{color:var(--signal)}
+.section-meta{color:#b8c0b6}
+.section-meta span:first-child{color:var(--signal)}
+.intro-copy p:not(.large-copy),.section-heading>p,.equipment-heading>p,.service-body p,.equip-no,.equip-detail,.quote-note,.connection-copy,.compatibility-note>span,.compatibility-note p,.contact-intro>p,.contact-promise,.form-note{color:#bbc1b8}
+.under-link,.card-link{border-color:var(--signal)}
+.service-card{background:#252b26;color:#f0eee8}
+.service-body h3{color:#f4f2ec}
+.card-index{color:#c0c7bd}
+.equipment-list{border-color:#4a534a}
+.equipment-list a{border-color:#4a534a}
+.equipment-list a:hover{background:#ffffff0d}
+.equip-no{color:#c0c7bd}
+.equip-title{color:#f0eee8}
+.equip-detail{color:#aeb7ad}
+.designer-section,.os-section{background:#101311}
+.designer-panel{background:#e9e7df;color:#171916}
+.connection-card{background:#242a25;color:#f0eee8}
+.connection-card>p{color:#e0e4dc}
+.connection-card-foot{color:#d1d7ce}
+.compatibility-note{border-color:#3d463f}
+.contact-intro h2{color:#f0eee8}
+.contact-form{background:#252b26;color:#f0eee8}
+.contact-form .form-grid label{color:#e5e8e1}
+.contact-form .form-grid input,.contact-form .form-grid select,.contact-form .form-grid textarea{background:#151a16;border-color:#4b554c;color:#f4f2ec}
+.contact-form .form-grid input::placeholder,.contact-form .form-grid textarea::placeholder{color:#aeb7ad}
+.form-status{color:#ff9b6d}
+.contact-mark{color:var(--signal)}
+.site-footer{background:#0b0e0c;color:#f0eee8;border-top:1px solid #303831}
+.site-footer>p,.footer-copy,.back-top{color:#c0c7bd}
+.back-top:hover{color:var(--signal)}
+.button-light,.button-dark{background:var(--signal);color:#171916}
+.button-light:hover,.button-dark:hover{background:#ff8b58;color:#171916}
+.button-outline{border-color:#697268;color:#f0eee8}
+.hero-link span{color:var(--signal)}
+.hero-caption{color:#e2e4dc}
+.hero-index{color:#ffffffa6}
+.signal-readout{position:absolute;right:10vw;bottom:68px;z-index:3;display:flex;align-items:center;gap:12px;color:#e5e7df;font:8px var(--mono);letter-spacing:1.6px}
+.signal-dot{width:6px;height:6px;border-radius:50%;background:var(--signal);box-shadow:0 0 12px #ff6a2a;animation:signal-blink 1.8s ease-in-out infinite}
+.signal-bars{height:28px;display:flex;align-items:center;gap:3px}
+.signal-bars i{display:block;width:3px;height:var(--bar);background:var(--signal);transform-origin:center;animation:signal-meter .85s ease-in-out infinite alternate}
+.signal-bars i:nth-child(2n){animation-delay:-.35s}.signal-bars i:nth-child(3n){animation-delay:-.6s}.signal-bars i:nth-child(4n){animation-delay:-.18s}
+@keyframes signal-meter{from{transform:scaleY(.28);opacity:.65}to{transform:scaleY(1);opacity:1}}
+@keyframes signal-blink{0%,100%{opacity:1}50%{opacity:.4}}
+.sm-plan-card{background:#202521}.sm-plan-pro{background:#25231f}
+.sm-panel{background:#e9e7df;color:#171916}
+@media(max-width:680px){.nav{background:#171b18}.nav a{color:#f0eee8;border-color:#343b35}.header-cta{color:#f0eee8}.signal-readout{right:7vw;bottom:88px}.hero-caption{z-index:2}}
+@media(prefers-reduced-motion:reduce){.signal-dot,.signal-bars i{animation:none}.signal-bars i{transform:none}}
+
+/* The PA Designer intentionally remains a light work surface inside the dark site theme. */
+.designer-panel{background:#e9e7df;color:#171916}
+.designer-panel .card-index{color:#4e544b}
+.designer-panel .wizard-count{color:#171916}
+.designer-panel .wizard-count span{color:#4e544b}
+.designer-panel .wizard-step legend{color:#4e544b}
+.designer-panel .form-grid label{color:#42483d}
+.designer-panel .form-grid input,.designer-panel .form-grid select,.designer-panel .form-grid textarea{background:#fff;color:#171916;border-color:#aeb2a5}
+.designer-panel .form-grid input::placeholder,.designer-panel .form-grid textarea::placeholder{color:#656c61}
+.designer-panel .button-outline{color:#171916;border-color:#646b60}
+.designer-panel .wizard-back{color:#4e544b}
+
+/* Contrast fixes for the Connection Lab's light compatibility matrix on the dark section. */
+.connection-section .dark-eyebrow{color:#c1c6bd}
+.connection-card .status-pill{color:#e5e8e1}
+.connection-card .status-pill i{background:#ff6a2a}
+.family-grid strong{color:#171916}
+.family-grid small{color:#4e544b}
+
+.systemos-roadmap{margin-top:52px;padding-top:28px;border-top:1px solid #495149}
+.systemos-heading h3{font-size:clamp(28px,4vw,44px);letter-spacing:-.07em;margin:14px 0}
+.systemos-heading p{max-width:610px;color:#c0c6bc;font-size:12px;line-height:1.8}
+.systemos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:26px 0}
+.systemos-grid>div{min-height:112px;padding:17px;border:1px solid #414a42;background:#1c221e;display:flex;flex-direction:column;gap:8px}
+.systemos-grid span{font:9px var(--mono);color:var(--signal)}
+.systemos-grid strong{font-size:12px;color:#f0eee8}
+.systemos-grid small{font-size:10px;line-height:1.5;color:#b8c0b6}
+@media(max-width:900px){.systemos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.systemos-roadmap{margin-top:38px}.systemos-grid{grid-template-columns:1fr}.systemos-grid>div{min-height:90px}}
+
+.matrix-caveat{color:#c1c6bd!important}
