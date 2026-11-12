@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 const root = process.cwd();
 const out = join(root, "dist", "apps");
-const hosts = { systemos: "https://os.bzaudio.com/", "system-builder": "https://build.bzaudio.com/", "compatibility-center": "https://compat.bzaudio.com/", "show-workspace": "https://shows.bzaudio.com/" };
+const hosts = { systemos: "https://os.bzaudio.com/", "system-builder": "https://build.bzaudio.com/", "compatibility-center": "https://compat.bzaudio.com/", "show-workspace": "https://shows.bzaudio.com/", "fx-lab": "https://fx.bzaudio.com/", "bzaudio-id": "https://id.bzaudio.com/" };
 await mkdir(out, { recursive: true });
 
 async function writeApp(name, sourceFiles, transform) {
@@ -43,3 +43,7 @@ for (const name of ["system-builder", "compatibility-center", "show-workspace"])
   });
 }
 console.log("Built four independent static BZaudio application bundles in dist/apps/.");
+
+await writeApp("fx-lab", ["apps/fx-lab/index.html", "apps/fx-lab/app.js", "apps/fx-lab/fx-engine.js", "apps/fx-lab/fx.css"], html => html.replace("../../packages/design-system/tokens.css", "tokens.css"));
+await writeApp("bzaudio-id", ["apps/bzaudio-id/index.html", "apps/bzaudio-id/app.js", "apps/bzaudio-id/id.css"], html => html.replace("../../packages/design-system/tokens.css", "tokens.css"));
+console.log("Added FX Lab and BZaudio ID standalone bundles.");
