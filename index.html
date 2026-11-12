@@ -21,8 +21,10 @@
   <link rel="preload" as="image" href="https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=2200" media="(min-width: 681px)">
   <link rel="preload" as="image" href="https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" media="(max-width: 680px)">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="soundmatch.css">
   <script src="site-config.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="soundmatch.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -30,7 +32,7 @@
     <a class="brand" href="#top" aria-label="BZaudio home"><span class="brand-symbol">BZ<span>·</span></span><span class="brand-word">audio</span></a>
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
     <nav class="nav" id="primary-nav" aria-label="Main navigation">
-      <a href="#work">What we do</a><a href="#equipment">Equipment</a><a href="#designer">PA Designer</a><a href="#connection">Connection Lab</a><a href="#os">BZaudio OS</a>
+      <a href="#work">What we do</a><a href="#equipment">Equipment</a><a href="#soundmatch">SoundMatch</a><a href="#designer">PA Designer</a><a href="#connection">Connection Lab</a><a href="#os">BZaudio OS</a>
     </nav>
     <a class="header-cta" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
   </header>
@@ -86,6 +88,116 @@
         <a href="#contact" data-quote="Stage and infrastructure"><span class="equip-no">05</span><span class="equip-title">Stage & infrastructure</span><span class="equip-detail">Racks · Cabling · Accessories</span><span class="equip-arrow" aria-hidden="true">↗</span></a>
       </div>
       <p class="quote-note">Equipment inquiries begin with a tailored quote. Online checkout is not currently offered.</p>
+    </section>
+
+    <section class="soundmatch-section section-wrap" id="soundmatch">
+      <div class="section-meta"><span>04</span><span>SOUNDMATCH / SYSTEM CONFIGURATOR</span></div>
+      <div class="sm-intro">
+        <div><p class="eyebrow dark-eyebrow">FREE BASIC / ADVANCED PRO</p><h2>Make every piece<br><em>work together.</em></h2></div>
+        <p>Build a system around the room, the people using it and the work it needs to do. SoundMatch turns the details into a clear, editable quote brief — without pretending unverified gear is compatible.</p>
+      </div>
+      <div class="sm-plan-grid">
+        <article class="sm-plan-card"><span class="sm-plan-label">01 / START HERE</span><h3>Basic <em>Free</em></h3><p>A guided system brief for venues, engineers and equipment buyers.</p><ul><li>Six-stage project intake</li><li>System priorities and signal-flow needs</li><li>Copyable quote brief</li></ul></article>
+        <article class="sm-plan-card sm-plan-pro"><span class="sm-plan-label">02 / GO DEEPER</span><h3>Advanced <em>Pro</em></h3><p>More control for complex systems and repeat workflows.</p><ul><li>Editable equipment lists and quantities</li><li>Essential / Recommended / Professional comparisons</li><li>Multiple saved system drafts</li></ul><span class="sm-roadmap">PRO FEATURES IN DEVELOPMENT — PREVIEW TOOLS ARE OPEN DURING BUILD</span></article>
+      </div>
+      <div class="sm-panel">
+        <div class="sm-panel-head"><div><span class="sm-kicker">SOUNDMATCH / PROJECT BUILDER</span><h3>Start with the system.</h3></div><div class="sm-progress-wrap"><span id="sm-count">01 / 06</span><div class="sm-progress"><span id="sm-progress-bar"></span></div></div></div>
+        <form id="soundmatch-form" novalidate>
+          <fieldset class="sm-step" data-step="0">
+            <legend>01 — The venue</legend>
+            <div class="sm-fields">
+              <label>Venue type<select name="sm-venue" required><option value="">Choose a venue</option><option>House of worship</option><option>Live music venue</option><option>School / auditorium</option><option>Outdoor event</option><option>Commercial / hospitality</option><option>Multi-purpose room</option><option>Portable / touring</option></select></label>
+              <label>Audience size<input name="sm-audience" type="number" min="1" max="100000" placeholder="e.g. 350" required></label>
+              <label>Environment<select name="sm-environment" required><option value="">Choose one</option><option>Indoor</option><option>Outdoor</option><option>Mixed / portable</option></select></label>
+              <label>Audience layout<select name="sm-layout" required><option value="">Choose a layout</option><option>Seated</option><option>Standing</option><option>Mixed</option><option>Multiple rooms / zones</option></select></label>
+              <label>Room width (feet)<input name="sm-width" type="number" min="1" max="2000" step="0.5" placeholder="Optional"></label>
+              <label>Room length (feet)<input name="sm-length" type="number" min="1" max="2000" step="0.5" placeholder="Optional"></label>
+            </div>
+          </fieldset>
+          <fieldset class="sm-step" data-step="1" hidden>
+            <legend>02 — The application</legend>
+            <div class="sm-fields">
+              <label>Primary application<select name="sm-application" required><option value="">Choose the main use</option><option>Speech / presentation</option><option>Live music</option><option>Worship services</option><option>DJ / playback</option><option>Sports / announcements</option><option>Mixed use</option></select></label>
+              <label>Coverage priority<select name="sm-coverage" required><option value="">Choose a priority</option><option>Even coverage throughout</option><option>Speech intelligibility</option><option>High-impact music</option><option>Multiple zones</option><option>Fast portable setup</option></select></label>
+              <label>Number of zones<input name="sm-zones" type="number" min="1" max="100" value="1" required></label>
+              <label>Subwoofer requirement<select name="sm-sub-goal" required><option value="">Choose one</option><option>Not required</option><option>Helpful for music</option><option>Important / high output</option><option>Not sure</option></select></label>
+              <label class="sm-wide">Sources and signal needs<textarea name="sm-sources" rows="3" placeholder="Microphones, instruments, playback, streaming, recording, remote feeds..."></textarea></label>
+            </div>
+          </fieldset>
+          <fieldset class="sm-step" data-step="2" hidden>
+            <legend>03 — Mixing and I/O</legend>
+            <div class="sm-fields">
+              <label>Console approach<select name="sm-mixer" required><option value="">Choose one</option><option>Digital mixing console</option><option>Analog mixer</option><option>Installed / matrix system</option><option>Computer / software-based</option><option>Not sure yet</option></select></label>
+              <label>Required input channels<input name="sm-inputCount" type="number" min="1" max="512" placeholder="e.g. 32" required></label>
+              <label>Stage I/O<select name="sm-stageIO" required><option value="">Choose one</option><option>Local inputs only</option><option>Digital stagebox</option><option>Analog stagebox / split</option><option>Multiple stage locations</option><option>Not sure</option></select></label>
+              <label>Recording / streaming<select name="sm-recording" required><option value="">Choose one</option><option>Not needed</option><option>Stereo recording</option><option>Multitrack recording</option><option>Live streaming</option><option>Recording and streaming</option></select></label>
+              <label class="sm-wide">Console brands or models already owned<textarea name="sm-console-owned" rows="2" placeholder="Optional — exact model names help us verify fit later."></textarea></label>
+            </div>
+          </fieldset>
+          <fieldset class="sm-step" data-step="3" hidden>
+            <legend>04 — Loudspeakers and amplification</legend>
+            <div class="sm-fields">
+              <label>Main speaker approach<select name="sm-speakerApproach" required><option value="">Choose one</option><option>Point source</option><option>Line array</option><option>Distributed speakers</option><option>Portable PA</option><option>Not sure — help me plan</option></select></label>
+              <label>Main speaker quantity<input name="sm-main-count" type="number" min="1" max="100" value="2" required></label>
+              <label>Subwoofer quantity<input name="sm-subCount" type="number" min="0" max="100" value="0" required></label>
+              <label>Monitor quantity<input name="sm-monitorCount" type="number" min="0" max="100" value="0" required></label>
+              <label>Amplification / DSP<select name="sm-amplification" required><option value="">Choose one</option><option>Powered speakers</option><option>Passive speakers with amplifiers</option><option>Existing amplification / DSP</option><option>Not sure</option></select></label>
+              <label>Additional microphone / wireless needs<select name="sm-microphones" required><option value="">Choose one</option><option>Wired microphones</option><option>Wireless microphones</option><option>Both wired and wireless</option><option>Not sure</option></select></label>
+            </div>
+          </fieldset>
+          <fieldset class="sm-step" data-step="4" hidden>
+            <legend>05 — Infrastructure and expansion</legend>
+            <div class="sm-fields">
+              <label>Installation approach<select name="sm-infrastructure" required><option value="">Choose one</option><option>Permanent installed system</option><option>Portable / touring system</option><option>Hybrid installed and portable</option><option>Equipment-only supply</option></select></label>
+              <label>Mounting / rigging<select name="sm-mounting" required><option value="">Choose one</option><option>Floor / stand mounted</option><option>Wall / ceiling mounted</option><option>Flown / rigged</option><option>Not sure</option></select></label>
+              <label>Networking needs<select name="sm-network" required><option value="">Choose one</option><option>Basic control network</option><option>Audio over IP</option><option>Remote control / monitoring</option><option>No network required</option><option>Not sure</option></select></label>
+              <label>Expansion plans<select name="sm-expansion" required><option value="">Choose one</option><option>No planned expansion</option><option>More zones / rooms</option><option>More inputs / stage positions</option><option>More output / coverage</option><option>Future flexibility is important</option></select></label>
+              <label class="sm-wide">Power, cabling, access or room constraints<textarea name="sm-infra-notes" rows="3" placeholder="Describe available power, cable paths, mounting limits, network access or other constraints."></textarea></label>
+            </div>
+          </fieldset>
+          <fieldset class="sm-step" data-step="5" hidden>
+            <legend>06 — Existing equipment and project</legend>
+            <div class="sm-fields">
+              <label>Existing system<select name="sm-existing" required><option value="">Choose one</option><option>Starting from scratch</option><option>Upgrading existing equipment</option><option>Replacing specific components</option><option>Adding zones / rooms</option><option>Not sure</option></select></label>
+              <label>Project scope<select name="sm-scope" required><option value="">Choose one</option><option>Design and specification</option><option>Equipment supply</option><option>Design, supply and installation</option><option>Upgrade / expansion</option><option>Consultation / troubleshooting</option></select></label>
+              <label>Budget range<select name="sm-budget" required><option value="">Choose a range</option><option>Under $5,000</option><option>$5,000–$15,000</option><option>$15,000–$35,000</option><option>$35,000–$75,000</option><option>$75,000+</option><option>Need help establishing a budget</option></select></label>
+              <label>Timeline<select name="sm-timeline" required><option value="">Choose a timeline</option><option>As soon as possible</option><option>1–3 months</option><option>3–6 months</option><option>Planning for later</option></select></label>
+              <label class="sm-wide">Existing gear, preferred brands and project notes<textarea name="sm-notes" rows="4" placeholder="List exact model numbers where possible. Unverified compatibility will be flagged for review."></textarea></label>
+            </div>
+          </fieldset>
+          <div class="sm-controls"><button class="sm-back" id="sm-back" type="button" disabled>← Back</button><button class="button button-dark" id="sm-next" type="button">Continue <span aria-hidden="true">→</span></button></div>
+          <p class="sm-status" id="sm-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="sm-review" id="sm-review" hidden>
+          <div class="sm-review-head"><span class="sm-kicker">YOUR SYSTEM BRIEF</span><h4>Built around your requirements.</h4><p>This is a planning brief for a BZaudio quote, not a verified equipment recommendation or compatibility certificate.</p></div>
+          <pre id="sm-brief"></pre>
+          <div class="sm-review-actions"><button class="button button-outline" id="sm-copy" type="button">Copy system brief</button><button class="sm-back" id="sm-edit" type="button">← Edit answers</button><button class="button button-dark" id="sm-quote" type="button">Use in quote request ↗</button></div>
+        </div>
+        <div class="sm-builder" id="sm-builder" hidden>
+          <div class="sm-builder-head"><div><span class="sm-kicker">ADVANCED PREVIEW / PRO ROADMAP</span><h4>Customize the equipment plan.</h4></div><p>Add components to each system tier. Exact model compatibility and product availability still require BZaudio verification.</p></div>
+          <div class="sm-add-row">
+            <label>System tier<select id="sm-tier"><option value="essential">Essential</option><option value="recommended">Recommended</option><option value="professional">Professional</option></select></label>
+            <label>Category<select id="sm-category"><option>Mixing console</option><option>Stage I/O</option><option>Main loudspeakers</option><option>Subwoofers</option><option>Amplifiers / DSP</option><option>Monitors</option><option>Microphones / wireless</option><option>Networking</option><option>Accessories / cabling</option></select></label>
+            <label class="sm-item-name">Component / model<input id="sm-item-name" maxlength="100" placeholder="Enter a component or model"></label>
+            <label class="sm-qty">Qty<input id="sm-quantity" type="number" min="1" max="100" value="1"></label>
+            <button class="button button-dark" id="sm-add-item" type="button">Add item +</button>
+          </div>
+          <div class="sm-tier-grid">
+            <section><h5>Essential</h5><ul id="sm-items-essential"></ul></section>
+            <section><h5>Recommended</h5><ul id="sm-items-recommended"></ul></section>
+            <section><h5>Professional</h5><ul id="sm-items-professional"></ul></section>
+          </div>
+          <div class="sm-save-row">
+            <label>Save this design<input id="sm-design-name" maxlength="60" placeholder="e.g. Main auditorium system"></label>
+            <button class="button button-outline" id="sm-save" type="button">Save design</button>
+            <label>Saved designs<select id="sm-saved-select"><option value="">No saved designs</option></select></label>
+            <button class="button button-outline" id="sm-load" type="button">Load</button>
+            <button class="sm-back" id="sm-delete" type="button">Delete saved</button>
+          </div>
+          <p class="sm-privacy">Saved designs stay in this browser on this device. They are not uploaded to BZaudio or synced between devices.</p>
+        </div>
+      </div>
+      <p class="sm-caveat">SoundMatch helps organize requirements and a quote brief. It does not validate acoustic coverage, SPL, electrical capacity, manufacturer compatibility or product availability. Those checks require verified data and engineering review.</p>
     </section>
 
     <section class="designer-section" id="designer">
