@@ -1,21 +1,17 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { createRequire } from "node:module";
-
-const require = createRequire(import.meta.url);
+import vm from "node:vm";
 const source = readFileSync(new URL("../adapters/allen-heath/avantis-csv.js", import.meta.url), "utf8");
-const vm = await import("node:vm");
-const context = { Object, Number, Set, String, Error, TypeError };
-vm.runInNewContext(source, context);
+const context = vm.createContext({});
+vm.runInContext(source, context);
 const adapter = context.BZAudioAvantisCsv;
 assert.ok(adapter, "Avantis CSV adapter is exposed");
-
 const fixture = `[Version]
 2
 [Channels]
 Channel Type,Channel No.,Name,Colour,Socket Type,Socket No.,Source Side,Gain.,PAD,+48v
 Input,1,"Lead, Vocal",Green,Surface,1,Left,25,Off,On
-Group,1,Drums,Red,,,,,
+Group,1,Drums,Red,,,,,,
 [Outputs]
 Output Type,Channel No.,Source Type,Source Ch No.,Stereo
 Surface,1,Main,1,Left
@@ -32,9 +28,9 @@ assert.equal(parsed.show.channels[0].preamp.gainDb, 25);
 assert.equal(parsed.show.channels[0].preamp.phantom48v, "On");
 assert.equal(parsed.show.routing[0].output.socketNumber, 1);
 assert.equal(parsed.show.io[0].sourceType, "USB");
-assert.equal(parsed.capabilities.write, false, "Parser does not claim an unverified writer");
-assert.throws(() => adapter.parse("[Channels]\nInput,1"), /Version/);
-assert.throws(() => adapter.parse("[Version]\n1\n[Channels]\n\"unterminated"), /unterminated/);
+assert.equal(parsed.capabilities.write, false);
+assert.throws(() => adapter.parse("[Channels]\\nInput,1"), /Version/);
+assert.throws(() => adapter.parse("[Version]\\n1\\n[Channels]\\n\\"unterminated"), /unterminated/);
 const invalid = adapter.parse(`[Version]
 1
 [Channels]
