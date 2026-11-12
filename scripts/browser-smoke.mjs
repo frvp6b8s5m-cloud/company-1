@@ -42,12 +42,12 @@ try {
   await menu.click();
   assert.equal(await menu.getAttribute("aria-expanded"), "true", "Menu trigger exposes the expanded state");
   assert.equal(await nav.getAttribute("aria-hidden"), "false", "Open navigation is exposed to assistive technology");
-  await page.locator("#primary-nav a[href=\"#designer\"]").click();
+  await page.locator("#primary-nav a[href=\"#soundmatch\"]").click();
   await page.waitForFunction(() => document.querySelector("#primary-nav")?.getAttribute("aria-hidden") === "true", null, { timeout: 1500 });
   assert.equal(await nav.getAttribute("aria-hidden"), "true", "Selecting a mobile link closes the menu");
   assert.equal(await nav.evaluate((element) => element.inert), true, "Closed navigation is removed from tab order");
   assert.equal(await menu.evaluate((element) => element === document.activeElement), true, "Focus returns to the mobile menu trigger");
-  assert.equal(new URL(page.url()).hash, "#designer", "PA Designer navigation target works");
+  assert.equal(new URL(page.url()).hash, "#soundmatch", "SoundMatch navigation target works");
 
   await menu.click();
   assert.equal(await menu.getAttribute("aria-expanded"), "true", "Menu can be reopened");
@@ -55,45 +55,6 @@ try {
   assert.equal(await menu.getAttribute("aria-expanded"), "false", "Escape closes the mobile menu");
   assert.equal(await nav.getAttribute("aria-hidden"), "true", "Escape hides navigation from assistive technology");
   assert.equal(await menu.evaluate((element) => element === document.activeElement), true, "Escape restores focus to the menu trigger");
-
-  const next = page.locator("#wizard-next");
-  await next.click();
-  assert.equal(await page.locator('[name="venue"]').evaluate((element) => element.checkValidity()), false, "Required first-step fields block progression");
-  assert.equal(await page.locator('.wizard-step[data-step="0"]').isVisible(), true, "Invalid step remains visible");
-
-  await page.locator('[name="venue"]').selectOption({ label: "House of worship" });
-  await page.locator('[name="audience"]').fill("350");
-  await page.locator('[name="width"]').fill("60");
-  await page.locator('[name="length"]').fill("90");
-  await page.locator('[name="height"]').fill("24");
-  await page.locator('[name="environment"]').selectOption({ label: "Indoor" });
-  await next.click();
-  assert.equal(await page.locator('.wizard-step[data-step="1"]').isVisible(), true, "Wizard advances to sound goals");
-
-  await page.locator('[name="use"]').selectOption({ label: "Worship services" });
-  await page.locator('[name="audienceLayout"]').selectOption({ label: "Seated" });
-  await page.locator('[name="speakerApproach"]').selectOption({ label: "Not sure — recommend an approach" });
-  await page.locator('[name="coverage"]').selectOption({ label: "Speech intelligibility" });
-  await page.locator('[name="sources"]').fill("4 wireless microphones and playback");
-  await next.click();
-  assert.equal(await page.locator('.wizard-step[data-step="2"]').isVisible(), true, "Wizard advances to project parameters");
-
-  await page.locator('[name="existing"]').selectOption({ label: "Starting from scratch" });
-  await page.locator('[name="scope"]').selectOption({ label: "Design, supply and installation" });
-  await page.locator('[name="budget"]').selectOption({ label: "$15,000–$35,000" });
-  await page.locator('[name="brands"]').fill("Allen & Heath");
-  await next.click();
-  const brief = page.locator("#brief-output");
-  assert.equal(await brief.isVisible(), true, "Final step produces a project brief");
-  const briefText = await brief.innerText();
-  for (const expected of ["House of worship", "350", "60 ft wide", "Worship services", "Allen & Heath", "not an acoustic prediction"]) {
-    assert.ok(briefText.toLowerCase().includes(expected.toLowerCase()), `Project brief includes ${expected}`);
-  }
-
-  await page.locator("#use-brief").click();
-  assert.equal(await page.locator('#project-form [name="service"]').inputValue(), "PA system design", "PA Designer handoff selects the correct inquiry type");
-  assert.ok((await page.locator('#project-form [name="message"]').inputValue()).includes("BZAUDIO PA DESIGNER"), "PA Designer handoff includes the complete brief");
-  assert.equal(await page.locator("#project-form").evaluate((form) => form.checkValidity()), false, "Contact form requires customer contact details before preparing an inquiry");
 
   await page.locator("#soundmatch").scrollIntoViewIfNeeded();
   const smNext = page.locator("#sm-next");
@@ -166,6 +127,26 @@ try {
   await page.locator("#sm-delete").click();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "Empty saved-design state remains available after deletion");
 
+  await page.locator("#os").scrollIntoViewIfNeeded();
+  await page.locator("#sys-new-project").click();
+  await page.locator("#sys-project-form [name=name]").fill("Main auditorium");
+  await page.locator("#sys-project-form [name=location]").fill("North hall");
+  await page.locator("#sys-project-form button[type=submit]").click();
+  assert.equal(await page.locator("#sys-active-name").innerText(), "Main auditorium", "SystemOS creates and selects a system");
+  await page.locator(".sys-tab[data-view=inventory]").click();
+  await page.locator("#sys-equipment-form [name=name]").fill("SQ-6");
+  await page.locator("#sys-equipment-form button[type=submit]").click();
+  assert.ok((await page.locator("#sys-equipment-list").innerText()).includes("SQ-6"), "SystemOS adds equipment");
+  await page.locator(".sys-tab[data-view=signal]").click();
+  await page.locator("#sys-signal-form [name=name]").fill("Vocal microphones");
+  await page.locator("#sys-signal-form button[type=submit]").click();
+  assert.ok((await page.locator("#sys-signal-list").innerText()).includes("Vocal microphones"), "SystemOS records signal path nodes");
+  await page.locator(".sys-tab[data-view=service]").click();
+  await page.locator("#sys-service-form [name=title]").fill("Annual inspection");
+  await page.locator("#sys-service-form [name=date]").fill("2026-11-12");
+  await page.locator("#sys-service-form button[type=submit]").click();
+  assert.ok((await page.locator("#sys-service-list").innerText()).includes("Annual inspection"), "SystemOS logs maintenance");
+  assert.ok(await page.evaluate(()=>localStorage.getItem("bzaudio.systemos.workspace.v1"))?.includes("Main auditorium"), "SystemOS persists workspace data locally");
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.waitForTimeout(400);
   assert.equal(await nav.getAttribute("aria-hidden"), "false", "Desktop navigation is exposed");
