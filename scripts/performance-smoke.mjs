@@ -62,7 +62,7 @@ try {
   for (const viewport of [{ width: 390, height: 844, name: "mobile-390" }, { width: 768, height: 1024, name: "tablet-768" }, { width: 1440, height: 900, name: "desktop-1440" }]) {
     const reviewPage = await browser.newPage({ viewport });
     await reviewPage.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "load" });
-    await reviewPage.waitForTimeout(300);
+    await reviewPage.waitForTimeout(1600);
     await reviewPage.screenshot({ path: resolve(root, `artifacts/visual-review/${viewport.name}-first-screen.png`) });
     const documentHeight = await reviewPage.evaluate(() => document.documentElement.scrollHeight);
     const scrollStep = Math.max(350, Math.floor(viewport.height * 0.75));
