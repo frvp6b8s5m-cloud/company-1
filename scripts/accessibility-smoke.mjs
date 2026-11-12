@@ -48,7 +48,30 @@ try {
     assert.deepEqual(failures.map((item) => item.id), [], `WCAG violations at ${viewport.width}px`);
     await page.close();
   }
-  console.log("BZaudio WCAG 2.2 AA automated accessibility checks passed at 390px, 768px and 1440px.");
+
+  const appPaths = [
+    "/apps/systemos/",
+    "/apps/system-builder/",
+    "/apps/compatibility-center/",
+    "/apps/show-workspace/"
+  ];
+  for (const path of appPaths) {
+    for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }]) {
+      const page = await browser.newPage({ viewport, reducedMotion: "reduce" });
+      await page.goto(`http://127.0.0.1:${address.port}${path}`, { waitUntil: "domcontentloaded" });
+      const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+      assert.equal(horizontalOverflow, false, `No horizontal overflow for ${path} at ${viewport.width}px`);
+      await page.addScriptTag({ content: axe.source });
+      const results = await page.evaluate(async () => window.axe.run(document, {
+        runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] }
+      }));
+      if (results.violations.length) console.log(JSON.stringify({ path, viewport, violations: results.violations.map(v => ({ id: v.id, impact: v.impact, nodes: v.nodes.slice(0, 4).map(n => ({ target: n.target, summary: n.failureSummary })) })) }, null, 2));
+      assert.deepEqual(results.violations.map(v => v.id), [], `WCAG violations for ${path} at ${viewport.width}px`);
+      await page.close();
+    }
+  }
+
+  console.log("BZaudio WCAG 2.2 AA checks passed for the company site and four applications at 390px, 768px and 1440px.");
 } finally {
   await browser.close();
   await new Promise((resolveClose, rejectClose) => server.close((error) => error ? rejectClose(error) : resolveClose()));
