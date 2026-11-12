@@ -15,6 +15,13 @@ assert.ok(css.length < 50_000, "CSS source stays under the 50 KB source budget")
 assert.ok(js.length < 30_000, "JavaScript source stays under the 30 KB source budget");
 assert.ok(config.length < 2_000, "Site configuration stays lightweight");
 
+const desktopHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=2200";
+const mobileHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1200";
+assert.ok(html.includes(`href="${desktopHero.replaceAll("&", "&amp;")}" media="(min-width: 681px)"`), "Desktop hero preload must match the desktop background image");
+assert.ok(html.includes(`href="${mobileHero.replaceAll("&", "&amp;")}" media="(max-width: 680px)"`), "Mobile hero preload must match the mobile background image");
+assert.ok(css.includes(desktopHero), "Desktop hero background image must match its preload");
+assert.ok(css.includes(mobileHero), "Mobile hero background image must match its preload");
+
 const imageUrls = [...new Set([...css.matchAll(/https:\/\/images\.pexels\.com\/photos\/\d+\/[^")]+/g)].map((match) => match[0]))];
 const imageById = new Map();
 for (const url of imageUrls) {
