@@ -1,0 +1,46 @@
+import assert from "node:assert/strict";
+import { createServer } from "node:http";
+import { readFile } from "node:fs/promises";
+import { extname, resolve, sep } from "node:path";
+import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
+
+const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
+const mime={".html":"text/html; charset=utf-8",".css":"text/css; charset=utf-8",".js":"text/javascript; charset=utf-8"};
+const server=createServer(async(req,res)=>{try{let path=decodeURIComponent(new URL(req.url,"http://localhost").pathname);let relative=path==="/"?"index.html":path.slice(1);if(relative.endsWith("/"))relative+="index.html";const file=resolve(root,relative);if(file!==root&&!file.startsWith(root+sep))throw new Error("bad path");res.writeHead(200,{"content-type":mime[extname(file)]||"application/octet-stream"});res.end(await readFile(file));}catch{res.writeHead(404);res.end("Not found");}});
+const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
+try{
+ await new Promise(resolveListen=>server.listen(0,"127.0.0.1",resolveListen));
+ const origin="http://127.0.0.1:"+server.address().port;
+ const context=await browser.newContext({viewport:{width:1280,height:900}});
+ const page=await context.newPage();const errors=[];page.on("pageerror",e=>errors.push(e.message));
+ const response=await page.goto(origin+"/apps/fx-lab/",{waitUntil:"domcontentloaded"});
+ assert.equal(response.status(),200,"FX Lab loads");
+ assert.equal(await page.locator(".module").count(),6,"FX Lab exposes six processing modules");
+ await page.locator("#start-tone").click();
+ await page.waitForFunction(()=>document.querySelector("#engine-state")?.textContent==="ENGINE READY");
+ await page.waitForFunction(()=>document.querySelector("#peak-value")?.textContent!=="−∞ dB",{timeout:4000});
+ assert.ok((await page.locator("#source-status").innerText()).includes("test tone"),"FX Lab starts a real oscillator source");
+ await page.locator('[data-param="threshold"]').fill("-24");
+ assert.equal(await page.locator("#threshold-value").innerText(),"-24 dB","Compressor threshold updates");
+ await page.locator('[data-param="delayTime"]').fill("480");
+ assert.equal(await page.locator("#delay-time-value").innerText(),"480 ms","Delay time updates");
+ await page.locator('[data-bypass="compressor"]').click();
+ assert.equal(await page.locator('[data-bypass="compressor"]').getAttribute("aria-pressed"),"true","Compressor bypass is stateful");
+ await page.locator('[data-bypass="compressor"]').click();
+ await page.locator('[data-preset="space"]').click();
+ assert.equal(await page.locator("#decay-value").innerText(),"5.2 s","Preset updates reverb decay");
+ await page.locator("#stop-audio").click();
+ assert.ok((await page.locator("#source-status").innerText()).includes("Audio stopped"),"Stop control halts source");
+ assert.deepEqual(errors,[],"FX Lab has no uncaught browser errors");
+ await page.goto(origin+"/apps/bzaudio-id/",{waitUntil:"domcontentloaded"});
+ await page.locator("#display-name").fill("Studio Test");
+ await page.locator("#email").fill("studio@example.test");
+ await page.locator("#role").selectOption({label:"Live sound engineer"});
+ await page.locator("#profile-form button[type=submit]").click();
+ assert.ok((await page.locator("#profile-status").innerText()).includes("not an authenticated"),"ID preview clearly disclaims authentication");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#display-name").inputValue(),"Studio Test","Local ID profile restores after reload");
+ assert.deepEqual(errors,[],"BZaudio ID has no uncaught browser errors");
+ console.log("FX Lab audio engine and BZaudio ID profile browser smoke tests passed.");
+}finally{await browser.close();server.close();}
