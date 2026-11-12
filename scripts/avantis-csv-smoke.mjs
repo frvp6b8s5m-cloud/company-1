@@ -29,8 +29,8 @@ assert.equal(parsed.show.channels[0].preamp.phantom48v, "On");
 assert.equal(parsed.show.routing[0].output.socketNumber, 1);
 assert.equal(parsed.show.io[0].sourceType, "USB");
 assert.equal(parsed.capabilities.write, false);
-assert.throws(() => adapter.parse("[Channels]\\nInput,1"), /Version/);
-assert.throws(() => adapter.parse("[Version]\\n1\\n[Channels]\\n\\"unterminated"), /unterminated/);
+assert.throws(() => adapter.parse("[Channels]\nInput,1"), /Version/);
+assert.throws(() => adapter.parse("[Version]\n1\n[Channels]\n\"unterminated"), /unterminated/);
 const invalid = adapter.parse(`[Version]
 1
 [Channels]
