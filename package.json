@@ -1,0 +1,15 @@
+{
+  "name": "bzaudio-platform",
+  "private": true,
+  "version": "0.1.0",
+  "description": "BZaudio company website and connected professional-audio applications",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test:systemos": "node scripts/systemos-core-smoke.mjs",
+    "verify:site": "node scripts/verify-site.mjs",
+    "check:systemos-app": "node --check apps/systemos/app.js"
+  }
+}
