@@ -53,6 +53,7 @@ See [docs/assets.md](docs/assets.md) for image sources, licensing notes and prod
 - [Repository baseline](docs/repository-baseline.md)
 - [Connection Lab compatibility assessment](docs/connection-lab-compatibility.md)
 - [Security and privacy review](docs/security-review.md)
+- [Five-axis release review](docs/release-review.md)
 
 ### GitHub Pages deployment
 
