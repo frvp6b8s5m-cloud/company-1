@@ -14,14 +14,14 @@ Primary audience: live-sound engineers, venues, houses of worship, schools, inst
 | Module ID | Responsibility | Depends on |
 |---|---|---|
 | brand-experience | Brand system, navigation, homepage, responsive motion | — |
-| equipment-marketplace | Equipment categories, discovery, product information and quote paths | brand-experience |
-| pa-services-designer | Service information and guided PA project brief | brand-experience |
-| connection-lab | Free Connection Lab introduction and verified compatibility/connection experience | brand-experience; protocol validation |
-| bzaudio-os | Dedicated OS, Windows/macOS software and touchscreen ecosystem overview | brand-experience |
+| equipment-marketplace | Equipment categories, verified product information and quote paths | brand-experience; verified product sources |
+| soundmatch | Free basic and Pro-level customizable system configurator, comparisons and quote brief | brand-experience; verified catalog/compatibility data |
+| pa-services-designer | Guided venue/project brief and future validated acoustic design | brand-experience; validated engineering methods for calculations |
+| connection-lab | Free Connection Lab entry point and model-specific compatibility/connection experience | brand-experience; protocol validation and real hardware |
+| bzaudio-os | Dedicated OS, Windows/macOS software, touchscreen controller and SystemOS roadmap | brand-experience |
 | customer-contact | Contact and project inquiry workflows | brand-experience |
 
-Build order: brand-experience → equipment-marketplace and pa-services-designer → customer-contact → connection-lab → bzaudio-os → integrated review and release. The Connection Lab UI may ship before hardware integration only if it clearly labels unavailable capabilities and never simulates a live connection.
-
+Build order: brand-experience → verified equipment data → equipment-marketplace and SoundMatch foundation → PA Designer and customer-contact → Connection Lab feasibility → BZaudio OS/SystemOS roadmap → integrated review and release. The Connection Lab UI may ship before hardware integration only if it clearly labels unavailable capabilities and never simulates a live connection. SoundMatch may create planning briefs before a full catalog exists, but compatibility claims and specific equipment recommendations must be grounded in verified data.
 ## Visual and interaction requirements
 - Real-world photography of actual audio equipment, venues, studios, installations and architecture; only assets with confirmed usage rights.
 - No AI-looking imagery, robot imagery, synthetic neural-network motifs, or generic sci-fi graphics.
@@ -37,6 +37,15 @@ Homepage, clear navigation, company positioning, featured services, featured tec
 ### Equipment marketplace
 Category discovery, search/filter/sort where a reliable catalog exists, product detail/specification presentation, and inquiry/quote actions. Do not invent products, stock, pricing, reviews, manufacturer relationships, or checkout status. Payment/checkout is out of scope until a provider, catalog source, tax/shipping rules and credentials are approved.
 
+### SoundMatch — customizable system configurator
+- Basic tier is free; the advanced experience is planned for Pro. Do not imply subscription billing or account-based feature enforcement exists until those services are implemented and configured.
+- Guide customers and audio technicians through six adaptive stages: venue, audience/zones, application and sound goals, mixer/I/O/sources/connectivity, mounting/electrical/expansion, and existing equipment/budget/installation.
+- Cover mixers, loudspeakers, subwoofers, amplifiers, microphones, wireless, processing/DSP, networking and accessories.
+- Allow users to adjust quantities, add/remove equipment, and compare Essential, Recommended and Professional system approaches side by side.
+- Save and reload multiple local browser designs where feasible; provide a detailed, copyable quote brief.
+- Explain each suggestion and surface warnings. Compatibility status must be model-specific and data-backed. Unknown combinations are labeled unverified; never fabricate compatibility, stock, prices or product specifications.
+- Until a verified product catalog exists, operate as a configurable planning/quote brief rather than a product recommender.
+
 ### PA services and designer
 Explain PA design, installation, tuning and support. Provide a guided project brief for venue/application, room information, audience/use, priorities and budget. Do not claim engineering-grade coverage, SPL, prediction or equipment recommendations until validated calculation methods and data are implemented and independently checked.
 
@@ -45,6 +54,9 @@ Accessible project inquiry form with validation and a clearly disclosed delivery
 
 ### Free Connection Lab
 Free website entry point. Present only model-specific verified Allen & Heath compatibility. Distinguish discovery, monitoring and control. Browser local-network restrictions may require a local companion app. No network scanning, mixer control, or live connection claim until protocol, permissions, recovery behavior and real hardware tests are verified. Unknown models must be marked unverified, not supported.
+
+### BZaudio SystemOS concept
+The long-term connected system workspace may include a QR-linked system record, interactive signal-flow map, equipment and documentation vault, configuration history, system-specific Live Assistant, maintenance history and upgrade advisor. The website may present this as a roadmap concept. Do not claim live accounts, QR provisioning, configuration storage, live assistance or equipment control are available until their architecture, security, data ownership, integrations and operating costs are approved and implemented.
 
 ### BZaudio OS
 Accurately introduce the planned ecosystem: dedicated-device operating system, Windows/macOS platform and dedicated touchscreen controller. Label roadmap capabilities as planned, not available.
