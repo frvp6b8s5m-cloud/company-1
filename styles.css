@@ -15,3 +15,10 @@
 @media(prefers-reduced-motion:reduce){.hero-image{will-change:auto}.hero-content .eyebrow,.hero-content h1,.hero-content .hero-lede,.hero-content .hero-actions{opacity:1;animation:none}.service-photo{clip-path:none;transform:none}.connection-card .console-detail{transform:none}}
 
 .noscript-note{margin:0;padding:16px 7vw;background:#fff3cd;color:#3d3520;font-size:12px;line-height:1.6}
+
+.family-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:20px}
+.family-grid>div{padding:13px 14px;border:1px solid #d0d2c5;display:flex;flex-direction:column;gap:7px;background:#e8e8df}
+.family-grid strong{font-size:14px;letter-spacing:-.04em}
+.family-grid small{font:8px var(--mono);letter-spacing:.5px;color:#777e64}
+.matrix-caveat{margin-top:14px!important;font:9px/1.6 var(--mono)!important;color:#858b7c!important}
+@media(max-width:680px){.family-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
