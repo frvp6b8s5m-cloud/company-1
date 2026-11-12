@@ -146,3 +146,12 @@ This revision supersedes the earlier separate PA Designer quiz and SystemOS road
 ## SystemOS technical engineering expansion — 2026-11-12
 
 Extend the local-first workspace with structured equipment specifications, channel-level patchbay documentation, network endpoint records, commissioning evidence and expanded engineering metrics. Keep all records browser-local and compatible with version-1 JSON backups. Clearly distinguish manually entered records from live hardware/network/acoustic functionality. Acceptance requires automated static, browser, accessibility and performance checks plus manual device review.
+
+
+## Approved product-direction revision — Universal SystemOS (2026-11-12)
+
+The owner has clarified that SystemOS must become a universal professional mixing platform, not remain a local equipment/documentation workspace. The approved target architecture is [docs/systemos-universal-architecture.md](../docs/systemos-universal-architecture.md). This revision supersedes the earlier SystemOS roadmap and local-workspace-only product definition while preserving the useful existing engineering register as a subsystem.
+
+Implementation is incremental and evidence-gated: neutral show schema and versioned show package first; adapter contract and capability registry next; Transfer Studio and transparent translation reports; then exact model/file adapters with permitted fixtures and semantic round-trip tests. Yamaha and Allen & Heath are priority ecosystems, but no family/model is declared supported until its exact formats, firmware range and hardware import/export path are verified. Bidirectional translation must be tested separately in each direction.
+
+The browser remains the first delivery surface. File processing should remain local where practical. Live network discovery, meters and console write/control are separate later phases; no simulated data or fake connection state may be presented as real hardware operation. Do not discard source files, silently drop unsupported parameters, or claim perfect conversion where destination capabilities differ.
