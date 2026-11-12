@@ -26,8 +26,8 @@ assert.ok(sourceBytes.config < 2_000, "Site configuration stays lightweight");
 
 const desktopHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=2200";
 const mobileHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1200";
-assert.ok(html.includes(`href="${desktopHero.replaceAll("&", "&amp;")}" media="(min-width: 681px)"`), "Desktop hero preload must match the desktop background image");
-assert.ok(html.includes(`href="${mobileHero.replaceAll("&", "&amp;")}" media="(max-width: 680px)"`), "Mobile hero preload must match the mobile background image");
+assert.ok(html.includes(`href="${desktopHero.replaceAll("&", "&amp;")}" media="(min-width: 681px)"`), "Desktop hero preload must match the desktop responsive image");
+assert.ok(html.includes(`href="${mobileHero.replaceAll("&", "&amp;")}" media="(max-width: 680px)"`), "Mobile hero preload must match the mobile responsive image");
 const heroTag = html.match(/<img\b[^>]*class="hero-image"[^>]*>/)?.[0] || "";
 assert.ok(heroTag.includes(desktopHero.replaceAll("&", "&amp;")), "Desktop hero source must be available in the responsive image set");
 assert.ok(heroTag.includes(mobileHero.replaceAll("&", "&amp;")), "Mobile hero source must be available in the responsive image set");
