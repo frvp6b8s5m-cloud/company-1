@@ -39,6 +39,8 @@ jobs:
           node --check scripts/app-build-smoke.mjs
           node --check apps/systemos/app.js
           node --check adapters/allen-heath/avantis-csv.js
+          node --check adapters/yamaha/clql-csv-normalization.js
+          node --check scripts/yamaha-clql-normalization-smoke.mjs
           node --check scripts/avantis-csv-smoke.mjs
           node --check apps/system-builder/app.js
           node --check apps/compatibility-center/app.js
@@ -53,6 +55,8 @@ jobs:
         run: node scripts/systemos-app-smoke.mjs
       - name: Test Avantis CSV adapter
         run: node scripts/avantis-csv-smoke.mjs
+      - name: Test Yamaha CL/QL CSV vocabulary helpers
+        run: node scripts/yamaha-clql-normalization-smoke.mjs
       - name: Test other BZaudio application foundations
         run: node scripts/ecosystem-app-smoke.mjs
       - name: Verify connected app ecosystem scaffold
