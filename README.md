@@ -52,6 +52,7 @@ See [docs/assets.md](docs/assets.md) for image sources, licensing notes and prod
 - [Task checklist](tasks/todo.md)
 - [Repository baseline](docs/repository-baseline.md)
 - [Connection Lab compatibility assessment](docs/connection-lab-compatibility.md)
+- [Security and privacy review](docs/security-review.md)
 
 ### GitHub Pages preview
 
