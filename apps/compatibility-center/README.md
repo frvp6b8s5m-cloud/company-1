@@ -1,18 +1,16 @@
 # BZaudio Compatibility Center
 
-**Hostname:** `compat.bzaudio.com`  
-**Status:** scaffold only; no new compatibility claims are published by this scaffold.
+**Hostname target:** `compat.bzaudio.com`  
+**Status:** searchable evidence prototype; not yet deployed.
 
-Compatibility Center is the evidence-backed source of equipment, model, firmware, accessory and feature relationships shared by System Builder and SystemOS.
+## Current features
 
-## Required assertion fields
+- Search a small set of vendor-documented format/workflow records.
+- Distinguish manufacturer-documented facts from unverified cross-manufacturer conversion.
+- Open the cited vendor documentation.
 
-- Manufacturer, exact model and hardware revision where relevant
-- Firmware/software version and tested version range
-- Feature or connection being evaluated
-- Directionality (A-to-B, B-to-A, or both)
-- Status: verified, verified with conversion, requires review, unsupported, unverified
-- Evidence source, fixture/test reference, test date and known limitations
-- Reviewer and schema version
+## Data integrity rules
 
-Unknown must remain unknown. A manufacturer's general protocol support is not proof that every model or firmware supports a feature. Every published compatibility claim needs traceable evidence.
+Compatibility Center is the evidence-backed source for equipment, model, firmware, accessory and feature relationships shared by System Builder and SystemOS. Each full assertion should eventually include exact models, firmware/software range, direction, status, evidence, fixture/test reference, test date and limitations.
+
+Unknown must remain unknown. The current dataset documents selected Yamaha CL/QL and Allen & Heath Avantis CSV workflows. It does **not** claim that the two vendors' CSV formats are interchangeable or that full show files can be translated.
