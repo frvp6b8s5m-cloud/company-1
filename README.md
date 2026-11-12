@@ -54,6 +54,10 @@ See [docs/assets.md](docs/assets.md) for image sources, licensing notes and prod
 - [Connection Lab compatibility assessment](docs/connection-lab-compatibility.md)
 - [Security and privacy review](docs/security-review.md)
 
+### BZaudio application ecosystem
+
+The approved direction is a GitHub-managed application ecosystem with independently developed products for the company site, SystemOS, System Builder, Compatibility Center and Show Workspace. See [docs/subdomain-architecture.md](docs/subdomain-architecture.md) for the repository layout, shared contracts, hosting constraints and staged subdomain release plan. The hostnames listed there are proposed; DNS and separate hosting targets must be configured before they are live. The existing company site and its GitHub Pages workflow remain unchanged during application development.
+
 ### GitHub Pages deployment
 
 The GitHub Pages workflow deploys `main` only. Feature-branch pushes run quality checks and upload visual-review artifacts; they do not publish a public preview. This repository has one Pages site address, so a separate preview environment must be configured before public preview deployment. Do not merge to `main` until the configured inquiry recipient and release checklist are complete.
