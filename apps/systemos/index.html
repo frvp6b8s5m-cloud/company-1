@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0c">
+  <meta name="description" content="BZaudio SystemOS — a browser-first professional audio show workspace.">
+  <title>SystemOS — BZaudio</title>
+  <link rel="stylesheet" href="../../packages/design-system/tokens.css">
+  <link rel="stylesheet" href="systemos.css">
+  <script src="../../systemos-core.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="BZaudio home"><span>BZ<span class="dot">·</span></span>audio</a>
+    <nav aria-label="Application navigation"><a class="active" href="#overview">Overview</a><a href="#shows">Shows</a><a href="#transfer">Transfer Studio</a><a href="#devices">Devices</a></nav>
+    <span class="local-status"><i></i> LOCAL WORKSPACE</span>
+  </header>
+  <main id="main">
+    <section class="hero" id="overview">
+      <p class="eyebrow">BZAUDIO / PROFESSIONAL AUDIO PLATFORM</p>
+      <div class="hero-row"><div><h1>Your shows.<br><em>One workspace.</em></h1><p class="lede">Organize show data in a neutral format, prepare transfers and keep your production information together.</p></div><div class="hero-mark" aria-hidden="true">BZ<span>OS</span></div></div>
+      <div class="hero-foot"><span>01 / SHOW MANAGEMENT</span><span>BUILT FOR A MULTI-MANUFACTURER WORLD</span></div>
+    </section>
+    <section class="section" id="shows">
+      <div class="section-head"><div><p class="eyebrow">YOUR PRODUCTION DATA</p><h2>Show workspace</h2></div><button class="primary" id="new-show" type="button">＋ New show</button></div>
+      <div class="show-card"><div class="show-icon">S</div><div class="show-copy"><strong id="show-name">Untitled show</strong><span id="show-meta">No venue assigned · Neutral BZaudio show package</span></div><span class="state">LOCAL DRAFT</span></div>
+      <div class="actions"><button class="secondary" id="export-show" type="button">Export show package ↗</button><label class="secondary file-button">Import show package<input id="import-show" type="file" accept=".json,application/json"></label></div>
+      <p class="feedback" id="feedback" role="status" aria-live="polite">Your work stays in this browser until you export a file.</p>
+    </section>
+    <section class="section transfer" id="transfer">
+      <div class="section-head"><div><p class="eyebrow">IMPORT → VALIDATE → MAP → EXPORT</p><h2>Transfer Studio</h2></div><span class="pill">FOUNDATION PHASE</span></div>
+      <p class="section-intro">A safe transfer workflow starts with understanding exactly what a source file contains and what the destination can accept. Vendor-native adapters are not enabled yet.</p>
+      <div class="pipeline"><div><b>01</b><strong>Identify</strong><span>Recognize file and model</span></div><div><b>02</b><strong>Normalize</strong><span>Map to neutral show data</span></div><div><b>03</b><strong>Validate</strong><span>Check every field</span></div><div><b>04</b><strong>Export</strong><span>Only supported targets</span></div></div>
+    </section>
+    <section class="section" id="devices">
+      <div class="section-head"><div><p class="eyebrow">MODEL-BY-MODEL SUPPORT</p><h2>Device ecosystem</h2></div><span class="pill muted">ADAPTERS IN DEVELOPMENT</span></div>
+      <div class="device-grid"><article><span class="manufacturer">YAMAHA</span><h3>Console adapters</h3><p>Family and model-specific format research is the next validation step.</p><span class="device-state">Not yet supported</span></article><article><span class="manufacturer">ALLEN &amp; HEATH</span><h3>Console adapters</h3><p>Family and model-specific format research is the next validation step.</p><span class="device-state">Not yet supported</span></article><article><span class="manufacturer">MORE MANUFACTURERS</span><h3>Open adapter system</h3><p>Future integrations will be added only with documented and tested capabilities.</p><span class="device-state">Planned</span></article></div>
+    </section>
+    <footer><span>BZAUDIO SYSTEMOS / EARLY FOUNDATION</span><span>NO LIVE HARDWARE CONNECTION IS ACTIVE</span></footer>
+  </main>
+  <dialog id="show-dialog"><form method="dialog" id="show-form"><p class="eyebrow">NEW PRODUCTION</p><h2>Create a show</h2><label>Show name<input id="input-name" maxlength="120" required placeholder="e.g. Summer Festival"></label><label>Venue<input id="input-venue" maxlength="160" placeholder="Venue or room"></label><div class="dialog-actions"><button class="secondary" value="cancel">Cancel</button><button class="primary" id="create-show" value="default">Create show</button></div></form></dialog>
+</body>
+</html>
