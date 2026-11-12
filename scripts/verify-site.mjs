@@ -7,6 +7,8 @@ const css = read("../styles.css");
 const js = read("../script.js");
 const soundmatch = read("../soundmatch.js");
 const systemos = read("../systemos.js");
+const systemosCore = read("../systemos-core.js");
+const systemosCoreTests = read("./systemos-core-smoke.mjs");
 const systemosCss = read("../systemos.css");
 const experience = read("../experience.css");
 const config = read("../site-config.js");
@@ -95,3 +97,12 @@ assert.ok(!/background(?:-image)?\s*:[^;]*images\.pexels\.com/.test(css), "Photo
 
 console.log("BZaudio static site checks passed.");
 console.log(`Checked ${ids.length} unique IDs, ${internalLinks.length} internal links, ${buttons.length} buttons and ${photoUrls.length} licensed photo references.`);
+
+
+assert.ok(html.includes('src="systemos-core.js"') && html.indexOf('src="systemos-core.js"') < html.indexOf('src="systemos.js"'), "Universal SystemOS core must load before its UI");
+for (const capability of ["createShow", "validateShow", "serializeShow", "parseShow", "createAdapterRegistry", "createTransferReport"]) {
+  assert.ok(systemosCore.includes(capability), "Universal SystemOS core is missing " + capability);
+}
+assert.ok(systemosCore.includes("bzaudio-show") && systemosCore.includes("schemaVersion"), "Neutral show packages must be versioned");
+assert.ok(systemosCore.includes("Unknown fields") === false, "Core implementation must not claim behavior it does not implement");
+assert.ok(systemosCoreTests.includes("Unknown vendor fields survive round-trip") && systemosCoreTests.includes("already registered"), "Core tests must cover extension preservation and adapter registration");
