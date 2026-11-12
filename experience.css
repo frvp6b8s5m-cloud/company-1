@@ -58,3 +58,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .sm-panel{background:#e9e7df;color:#171916}
 @media(max-width:680px){.nav{background:#171b18}.nav a{color:#f0eee8;border-color:#343b35}.header-cta{color:#f0eee8}.signal-readout{right:7vw;bottom:88px}.hero-caption{z-index:2}}
 @media(prefers-reduced-motion:reduce){.signal-dot,.signal-bars i{animation:none}.signal-bars i{transform:none}}
+
+/* The PA Designer intentionally remains a light work surface inside the dark site theme. */
+.designer-panel{background:#e9e7df;color:#171916}
+.designer-panel .card-index{color:#4e544b}
+.designer-panel .wizard-count{color:#171916}
+.designer-panel .wizard-count span{color:#4e544b}
+.designer-panel .wizard-step legend{color:#4e544b}
+.designer-panel .form-grid label{color:#42483d}
+.designer-panel .form-grid input,.designer-panel .form-grid select,.designer-panel .form-grid textarea{background:#fff;color:#171916;border-color:#aeb2a5}
+.designer-panel .form-grid input::placeholder,.designer-panel .form-grid textarea::placeholder{color:#656c61}
+.designer-panel .button-outline{color:#171916;border-color:#646b60}
+.designer-panel .wizard-back{color:#4e544b}
