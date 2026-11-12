@@ -39,3 +39,15 @@ Export downloads a JSON snapshot. Import accepts JSON backups up to 5 MB and at 
 ## Explicitly outside this browser workspace
 
 No Allen & Heath discovery/control, mixer monitoring, command transmission, QR provisioning, account synchronization, acoustic simulation, SPL prediction, product compatibility verification or desktop/hardware OS is claimed. Those capabilities require separate engineering, security and physical-device validation.
+
+
+## Engineering modules added
+
+- **Asset engineering register:** manufacturer, model, serial, firmware/hardware revision, IP, rack position, channel capacity, connector/interface and notes.
+- **Patchbay:** source and destination endpoints, source/destination channel identifiers, connector/medium, transport/protocol, verification state and cable/phantom-power notes.
+- **Network topology register:** endpoint, IP, MAC, subnet, gateway, VLAN, switch/port, link speed, address assignment and notes.
+- **Commissioning evidence log:** test category, manually entered pass/fail/conditional/not-tested result, date, measured value, instrument/reference, test method and conditions.
+- **Overview metrics:** aggregate asset, patch point, network node, signal node, commissioning and service counts across the local workspace.
+- All new records persist in the same versioned local workspace and are included in JSON backup/restore. Older version-1 backups remain importable; missing new collections are initialized empty.
+
+These are technical documentation and workflow tools. They do not probe network endpoints, discover devices, transmit console commands, measure SPL/frequency response/latency, validate electrical safety or certify work. Commissioning outcomes are user-entered records and should be supported by real measurement evidence.
