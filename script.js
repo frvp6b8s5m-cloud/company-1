@@ -44,7 +44,7 @@
   if (year) year.textContent = String(new Date().getFullYear());
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const revealTargets = document.querySelectorAll(".section-meta, .intro-grid, .service-card, .equipment-list a, .connection-card, .os-platforms > div, .contact-grid, .designer-panel");
+  const revealTargets = document.querySelectorAll(".section-meta, .intro-grid, .service-card, .equipment-list a, .connection-card, .os-platforms > div, .contact-grid");
   const heroImage = document.querySelector(".hero-image");
   if (heroImage && !reducedMotion) {
     let parallaxFrame = 0;
@@ -68,107 +68,6 @@
       });
     }, { threshold: 0.12 });
     revealTargets.forEach((element) => { element.classList.add("reveal"); observer.observe(element); });
-  }
-
-  const wizard = document.querySelector("#pa-wizard");
-  if (wizard) {
-    const steps = [...wizard.querySelectorAll(".wizard-step")];
-    const count = document.querySelector("#wizard-count");
-    const progress = document.querySelector("#wizard-progress");
-    const back = document.querySelector("#wizard-back");
-    const next = document.querySelector("#wizard-next");
-    const controls = document.querySelector("#wizard-controls");
-    const review = document.querySelector("#wizard-review");
-    const output = document.querySelector("#brief-output");
-    const status = document.querySelector("#wizard-status");
-    const copyButton = document.querySelector("#copy-brief");
-    const useButton = document.querySelector("#use-brief");
-    const editButton = document.querySelector("#wizard-edit");
-    let current = 0;
-    let brief = "";
-    const values = () => Object.fromEntries(new FormData(wizard).entries());
-    const label = (value) => value && String(value).trim() ? String(value).trim() : "Not specified";
-    const makeBrief = (data) => [
-      "BZAUDIO PA DESIGNER — PRELIMINARY PROJECT BRIEF",
-      "",
-      "SPACE",
-      "Venue: " + label(data.venue),
-      "Audience: " + label(data.audience),
-      "Room: " + label(data.width) + " ft wide × " + label(data.length) + " ft long × " + label(data.height) + " ft high",
-      "Environment: " + label(data.environment),
-      "",
-      "APPLICATION & SOUND GOALS",
-      "Primary use: " + label(data.use),
-      "Audience layout: " + label(data.audienceLayout),
-      "Preferred speaker approach: " + label(data.speakerApproach),
-      "Coverage priority: " + label(data.coverage),
-      "Additional zones: " + label(data.zones),
-      "Sources: " + label(data.sources),
-      "Room challenges: " + label(data.challenges),
-      "",
-      "PROJECT PARAMETERS",
-      "Existing equipment: " + label(data.existing),
-      "Project scope: " + label(data.scope),
-      "Preferred brands / equipment: " + label(data.brands),
-      "Budget: " + label(data.budget),
-      "Additional notes: " + label(data.notes),
-      "",
-      "NEXT STEP",
-      "Review this brief with BZaudio to develop a verified system design and equipment quote.",
-      "",
-      "Planning note: This intake summary is not an acoustic prediction, coverage map, SPL calculation or final equipment specification."
-    ].join("\n");
-    const renderStep = () => {
-      steps.forEach((step, index) => { step.hidden = index !== current; });
-      review.hidden = true;
-      controls.hidden = false;
-      count.innerHTML = String(current + 1).padStart(2, "0") + " <span>/ 03</span>";
-      progress.style.width = ((current + 1) / steps.length * 100) + "%";
-      back.disabled = current === 0;
-      next.textContent = current === steps.length - 1 ? "Review project brief" : "Continue →";
-      status.textContent = "";
-    };
-    const validateCurrent = () => {
-      const fields = [...steps[current].querySelectorAll("input,select,textarea")];
-      for (const field of fields) {
-        if (!field.checkValidity()) { field.reportValidity(); return false; }
-      }
-      return true;
-    };
-    next.addEventListener("click", () => {
-      if (!validateCurrent()) return;
-      if (current < steps.length - 1) { current += 1; renderStep(); return; }
-      brief = makeBrief(values());
-      output.textContent = brief;
-      steps.forEach((step) => { step.hidden = true; });
-      review.hidden = false;
-      controls.hidden = true;
-      count.textContent = "REVIEW";
-      progress.style.width = "100%";
-      status.textContent = "Your project brief is ready.";
-    });
-    back.addEventListener("click", () => {
-      if (!review.hidden) { renderStep(); current = steps.length - 1; renderStep(); return; }
-      if (current > 0) { current -= 1; renderStep(); }
-    });
-    editButton.addEventListener("click", () => { current = steps.length - 1; renderStep(); });
-    copyButton.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(brief);
-        status.textContent = "Project brief copied.";
-      } catch {
-        status.textContent = "Copy isn't available in this browser. Select the brief text to copy it.";
-      }
-    });
-    useButton.addEventListener("click", () => {
-      const message = document.querySelector('#project-form [name="message"]');
-      const service = document.querySelector('#project-form [name="service"]');
-      if (message) message.value = brief;
-      if (service) service.value = "PA system design";
-      document.querySelector("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
-      message?.focus({ preventScroll: true });
-    });
-    renderStep();
   }
 
   document.querySelectorAll("[data-quote]").forEach((link) => {
