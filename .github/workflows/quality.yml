@@ -35,6 +35,12 @@ jobs:
           node --check scripts/performance-smoke.mjs
           node --check scripts/verify-ecosystem.mjs
           node --check apps/systemos/app.js
+          node --check adapters/allen-heath/avantis-csv.js
+          node --check scripts/avantis-csv-smoke.mjs
+          node --check apps/system-builder/app.js
+          node --check apps/compatibility-center/app.js
+          node --check apps/show-workspace/app.js
+          node --check scripts/ecosystem-app-smoke.mjs
           node --check scripts/systemos-app-smoke.mjs
       - name: Verify site structure and requirements
         run: node scripts/verify-site.mjs
@@ -42,6 +48,10 @@ jobs:
         run: node scripts/systemos-core-smoke.mjs
       - name: Test SystemOS browser app scaffold
         run: node scripts/systemos-app-smoke.mjs
+      - name: Test Avantis CSV adapter
+        run: node scripts/avantis-csv-smoke.mjs
+      - name: Test other BZaudio application foundations
+        run: node scripts/ecosystem-app-smoke.mjs
       - name: Verify connected app ecosystem scaffold
         run: node scripts/verify-ecosystem.mjs
       - name: Install browser test dependency
