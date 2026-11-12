@@ -29,7 +29,7 @@ try {
   for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }]) {
     const page = await browser.newPage({ viewport, reducedMotion: "reduce" });
     await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "domcontentloaded" });
-    await page.addScriptTag({ content: axe.source });
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);\n    assert.equal(overflow, false, `No horizontal page overflow at ${viewport.width}px`);\n    await page.addScriptTag({ content: axe.source });
     const results = await page.evaluate(async () => window.axe.run(document, {
       runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] }
     }));
