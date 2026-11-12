@@ -146,7 +146,14 @@ try {
   await page.locator("#sys-service-form [name=date]").fill("2026-11-12");
   await page.locator("#sys-service-form button[type=submit]").click();
   assert.ok((await page.locator("#sys-service-list").innerText()).includes("Annual inspection"), "SystemOS logs maintenance");
-  assert.ok(await page.evaluate(()=>localStorage.getItem("bzaudio.systemos.workspace.v1"))?.includes("Main auditorium"), "SystemOS persists workspace data locally");
+  assert.ok((await page.evaluate(()=>localStorage.getItem("bzaudio.systemos.workspace.v1")))?.includes("Main auditorium"), "SystemOS persists workspace data locally");
+  const backupDownload = page.waitForEvent("download");
+  await page.locator("#sys-export").click();
+  assert.equal((await backupDownload).suggestedFilename(), "bzaudio-systemos-backup.json", "SystemOS exports a named JSON backup");
+  const importPayload = {version:1,activeId:"imported",projects:[{id:"imported",name:"Imported rehearsal room",type:"Live venue",location:"Studio B",inventory:[],signal:[],documents:[],service:[],activity:[]}]};
+  await page.locator("#sys-import").setInputFiles({name:"systemos-backup.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(importPayload))});
+  await page.waitForFunction(()=>document.querySelector("#sys-active-name")?.textContent==="Imported rehearsal room");
+  assert.equal(await page.locator("#sys-project-select").inputValue(),"imported","SystemOS restores an imported backup");
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.waitForTimeout(400);
   assert.equal(await nav.getAttribute("aria-hidden"), "false", "Desktop navigation is exposed");
