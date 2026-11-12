@@ -43,6 +43,7 @@
     const status = document.querySelector("#wizard-status");
     const copyButton = document.querySelector("#copy-brief");
     const useButton = document.querySelector("#use-brief");
+    const editButton = document.querySelector("#wizard-edit");
     let current = 0;
     let brief = "";
     const values = () => Object.fromEntries(new FormData(wizard).entries());
@@ -105,6 +106,7 @@
       if (!review.hidden) { renderStep(); current = steps.length - 1; renderStep(); return; }
       if (current > 0) { current -= 1; renderStep(); }
     });
+    editButton.addEventListener("click", () => { current = steps.length - 1; renderStep(); });
     copyButton.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(brief);
