@@ -59,3 +59,9 @@
 
 /* The header blur creates a containing block for fixed descendants; keep the mobile overlay viewport-fixed. */
 .site-header{backdrop-filter:none;background:var(--paper-light)}
+
+/* Architectural editorial refinement */
+:root{--signal:#ff6a2a;--concrete:#d9d7ce;--graphite:#111412}
+.section-wrap{max-width:1480px}.section-meta{letter-spacing:.18em}h1,h2,h3{letter-spacing:-.065em}
+.service-card,.sm-plan-card,.sm-panel,.contact-form,.equipment-list a{border-radius:0}
+@media(min-width:1100px){.hero-content{max-width:1480px}.hero h1{font-size:clamp(6rem,12vw,12rem)}.service-grid{grid-template-columns:1.15fr .85fr .85fr;align-items:stretch}.service-card{min-height:610px}.service-feature{min-height:690px}}
