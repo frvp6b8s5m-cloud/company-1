@@ -116,6 +116,24 @@
         const row = document.createElement("li");
         const detail = document.createElement("span");
         detail.textContent = item.quantity + " × " + item.category + " — " + item.name;
+        const quantity = document.createElement("input");
+        quantity.type = "number";
+        quantity.min = "1";
+        quantity.max = "100";
+        quantity.value = String(item.quantity);
+        quantity.className = "sm-item-qty";
+        quantity.setAttribute("aria-label", "Quantity for " + item.name + " in " + tierNames[tier]);
+        quantity.addEventListener("change", () => {
+          const nextQuantity = Number(quantity.value);
+          if (!quantity.checkValidity() || !Number.isInteger(nextQuantity)) {
+            quantity.value = String(item.quantity);
+            status.textContent = "Quantity must be a whole number from 1 to 100.";
+            return;
+          }
+          item.quantity = nextQuantity;
+          briefOutput.textContent = buildBrief();
+          status.textContent = "Component quantity updated.";
+        });
         const verification = document.createElement("small");
         verification.className = "sm-unverified";
         verification.textContent = "UNVERIFIED / REVIEW REQUIRED";
@@ -129,7 +147,7 @@
           renderItems();
           briefOutput.textContent = buildBrief();
         });
-        row.append(detail, verification, remove);
+        row.append(detail, quantity, verification, remove);
         list.append(row);
       });
     }
