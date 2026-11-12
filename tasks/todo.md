@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Plan approved 2026-11-12. Phase 0 is complete; Phase 1 first implementation pass is in place. Automated static and Chromium smoke checks pass; visual/device and production-readiness reviews remain open.
+**Status:** Implementation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks have passed through run #63; responsive image refactoring is under re-verification. Manual/device, asset-rights, contact-recipient and production release gates remain open.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -192,3 +192,31 @@
 - GitHub Actions run #60 passed on the feature branch (commit `1470dd01c1a622d22250111c83182cdadf27dd78`): static verification, Chromium browser smoke, strict axe-core WCAG audit (all reported violations fail the gate), performance/CDN checks and responsive screenshot capture all succeeded. Run: https://github.com/frvp6b8s5m-cloud/company-1/actions/runs/43303645289
 - Added breakpoint-specific hero image preloads so mobile devices preload the 1200px image used by the mobile CSS rather than also fetching the 2200px desktop hero. A regression assertion now checks both preload URLs and their CSS background counterparts; this change is awaiting its own CI run.
 - Remaining release blockers are unchanged: physical-device testing, manual screen-reader review, real-world Lighthouse/Core Web Vitals measurement, final image-rights review, and configuration of the actual inquiry email. No production deployment or merge has been authorized.
+
+
+## Current implementation truth — 2026-11-12
+This status snapshot supersedes stale planning checkboxes where implementation has since landed. It does not waive the acceptance criteria or manual release gates.
+
+### Implemented on the feature branch
+- [x] Responsive brand shell, navigation, skip link, focus styling and reduced-motion support.
+- [x] Cinematic homepage using sourced real-world Pexels photography and a documented asset ledger.
+- [x] Service overview, equipment-category inquiry links and quote-first business model.
+- [x] Guided three-step PA Designer intake, validation, editable/copyable project brief and quote handoff. No acoustic prediction is claimed.
+- [x] Free Connection Lab information and model-family status matrix; no live connection or unsupported compatibility claim.
+- [x] BZaudio OS ecosystem overview with roadmap/in-development labels.
+- [x] Accessible inquiry form with validation and a user-reviewed email draft; no false delivery claim and no data storage.
+- [x] CI static validation, Chromium interaction tests, axe-core WCAG 2.2 AA checks, CDN checks and responsive screenshot artifacts. Latest fully green pre-image-refactor run: #63.
+- [x] Mobile and desktop hero preload selection plus regression checks.
+
+### In progress / not yet release-ready
+- [ ] Responsive image migration with srcset, high-priority hero loading and lazy loading below the fold; wait for full CI re-verification.
+- [ ] Inspect final image content at full resolution for visible brand/person/property rights concerns and decide whether to retain remote CDN or publish optimized local copies.
+- [ ] Manual keyboard and screen-reader review with VoiceOver/NVDA and real-device testing.
+- [ ] Run Lighthouse in a real browser environment and capture measured LCP/CLS/INP; CI timing diagnostics are not field metrics.
+- [ ] Confirm BZaudio inquiry recipient and set site-config.js; until then, the email draft has no prefilled recipient.
+- [ ] Product source/catalog decision before listing individual models, specifications, prices or stock. Current category-level quote links are intentional.
+- [ ] Model-by-model protocol research and physical Allen & Heath hardware testing before claiming Connection Lab support or enabling control.
+- [ ] Final PR review, merge to main, GitHub Pages production deployment, and post-deployment smoke/rollback verification.
+
+### Release boundaries
+No checkout, payment collection, customer-data backend, unverified product catalog, unverified acoustic calculations, live mixer control or paid third-party service is to be represented as available. Do not mark manual or hardware tasks complete without evidence.
