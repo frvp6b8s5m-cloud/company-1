@@ -13,3 +13,5 @@
 .connection-card .console-detail{transition:transform 1.3s cubic-bezier(.2,.7,.2,1),filter 1s}
 .connection-card.is-visible .console-detail{transform:scale(1.025);filter:saturate(.8)}
 @media(prefers-reduced-motion:reduce){.hero-image{will-change:auto}.hero-content .eyebrow,.hero-content h1,.hero-content .hero-lede,.hero-content .hero-actions{opacity:1;animation:none}.service-photo{clip-path:none;transform:none}.connection-card .console-detail{transform:none}}
+
+.noscript-note{margin:0;padding:16px 7vw;background:#fff3cd;color:#3d3520;font-size:12px;line-height:1.6}
