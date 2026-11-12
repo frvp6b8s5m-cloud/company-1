@@ -23,3 +23,9 @@
 @media(max-width:900px){.sys-topbar{align-items:flex-start;flex-direction:column}.sys-layout{grid-template-columns:1fr}.sys-rail{display:grid;grid-template-columns:repeat(3,1fr);border-right:0;border-bottom:1px solid #343a33}.sys-rail-foot{display:none}.sys-main{padding:22px}.sys-metrics{grid-template-columns:repeat(2,1fr)}.sys-quick-actions{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.systemos-section{padding:70px 0}.systemos-masthead{grid-template-columns:1fr;gap:20px;padding:32px 0}.sys-top-actions{width:100%}.sys-project-select,.sys-project-select select{width:100%}.sys-rail{grid-template-columns:repeat(2,1fr)}.sys-main{padding:16px}.sys-overview-grid{grid-template-columns:1fr}.sys-form{grid-template-columns:1fr}.sys-span{grid-column:auto}.sys-view-heading{align-items:flex-start;flex-direction:column}.sys-record{flex-direction:column}.sys-footnote{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.sys-button,.sys-tab,.sys-quick-actions button{transition:none!important}}
+
+/* Contrast repairs for the architectural workspace */
+.systemos-section>.section-meta span{color:#50574e}
+.systemos-section>.section-meta span:first-child{color:#8b3618}
+.systemos-masthead>p{color:#555a52}
+.sys-tab span{color:#8c9789}
