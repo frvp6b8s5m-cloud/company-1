@@ -75,7 +75,8 @@ assert.ok(systemos.includes("bzaudio.systemos.workspace.v1") && systemos.include
 assert.ok(systemosCss.includes(".sys-layout") && systemosCss.includes("@media(max-width:600px)"), "SystemOS must have responsive workspace styling");
 assert.ok(!html.includes('id="designer"') && !html.includes('id="connection"'), "Duplicate PA Designer and unimplemented Connection Lab sections must be removed");
 assert.ok(!html.includes("IN DEVELOPMENT") && !html.includes("ROADMAP") && !html.includes("PA Designer"), "The public site must not advertise unfinished modules or a duplicate quiz");
-assert.ok(html.includes("SoundMatch") && html.includes("SYSTEM CONFIGURATOR"), "SoundMatch must remain the single guided system configurator");
+assert.ok(html.includes("SoundMatch") && html.includes("SYSTEM CONFIGURATOR") && html.includes("Equipment builder"), "SoundMatch must remain the single guided system configurator");
+assert.ok(!html.includes("<em>Pro</em>") && !html.includes("IN DEVELOPMENT") && !html.includes("ROADMAP"), "Do not imply unimplemented paid tiers or roadmap features are available");
 assert.ok(favicon.includes("<svg") && favicon.includes("BZ"), "The BZaudio favicon must be a real SVG brand mark");
 assert.ok(!/href=["']#["']/.test(html), "Avoid placeholder links");
 
