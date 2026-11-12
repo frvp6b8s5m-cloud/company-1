@@ -46,5 +46,6 @@ See [docs/assets.md](docs/assets.md) for image sources, licensing notes and prod
 - [Implementation plan](tasks/plan.md)
 - [Task checklist](tasks/todo.md)
 - [Repository baseline](docs/repository-baseline.md)
+- [Connection Lab compatibility assessment](docs/connection-lab-compatibility.md)
 
 The GitHub Pages workflow currently deploys from `main`; work on `feat/bzaudio-company-site` is not automatically published. Production release requires a separate approval.
