@@ -4,7 +4,11 @@
   const menuButton = document.querySelector(".menu-toggle");
   const nav = document.querySelector("#primary-nav");
   const isMobileNav = () => window.matchMedia("(max-width: 680px)").matches;
-  if (nav) nav.inert = isMobileNav();
+  if (nav) {
+    const collapsed = isMobileNav();
+    nav.inert = collapsed;
+    nav.setAttribute("aria-hidden", String(collapsed));
+  }
   const setMenu = (open) => {
     if (!menuButton || !nav) return;
     nav.classList.toggle("open", open);
@@ -15,7 +19,11 @@
     document.body.classList.toggle("menu-open", open);
   };
   menuButton?.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
-  nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => { setMenu(false); menuButton?.focus(); }));
+  nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+    const restoreFocus = isMobileNav() && menuButton?.getAttribute("aria-expanded") === "true";
+    setMenu(false);
+    if (restoreFocus) menuButton.focus();
+  }));
   window.addEventListener("resize", () => {
     if (!isMobileNav()) setMenu(false);
     else if (menuButton?.getAttribute("aria-expanded") !== "true" && nav) { nav.inert = true; nav.setAttribute("aria-hidden", "true"); }
