@@ -283,7 +283,7 @@
       <div class="section-meta"><span>08</span><span>LET'S TALK ABOUT YOUR PROJECT</span></div>
       <div class="contact-grid">
         <div class="contact-intro"><h2>Let's make<br>it <em>sound right.</em></h2><p>Tell us what you're working on. Equipment quote, new PA, installation, upgrade or technical support—we'll start with the details.</p><div class="contact-promise"><span class="contact-mark">BZ·</span><span>Thoughtful systems.<br>Clear communication.</span></div></div>
-        <form class="contact-form" id="project-form" method="post">
+        <form class="contact-form" id="project-form" action="mailto:" method="post" enctype="text/plain">
           <div class="form-grid">
             <label>Your name<input name="name" autocomplete="name" required placeholder="Name"></label>
             <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
@@ -299,7 +299,7 @@
     </section>
   </main>
 
-  <noscript><p class="noscript-note">Interactive project tools and email-draft preparation require JavaScript. This site does not collect or send your information automatically.</p></noscript>
+  <noscript><p class="noscript-note">Interactive project tools and the prefilled email handoff require JavaScript. Without it, the contact form attempts to open a plain email draft; add the BZaudio recipient manually. This site does not collect or send your information automatically.</p></noscript>
   <footer class="site-footer">
     <a class="brand footer-brand" href="#top"><span class="brand-symbol">BZ<span>·</span></span><span class="brand-word">audio</span></a>
     <p>Sound, engineered.</p><span class="footer-copy">© <span id="year"></span> BZAUDIO</span><a href="#top" class="back-top">BACK TO TOP ↑</a>
