@@ -7,6 +7,7 @@ const css = read("../styles.css");
 const js = read("../script.js");
 const config = read("../site-config.js");
 const assets = read("../docs/assets.md");
+const favicon = read("../favicon.svg");
 
 const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map((match) => match[1]);
 assert.equal(new Set(ids).size, ids.length, "HTML IDs must be unique");
@@ -47,6 +48,10 @@ for (const photoUrl of photoUrls) {
   assert.ok(photoId && assets.includes(photoId), `Photo ${photoId} must be recorded in the asset rights ledger`);
 }
 
+assert.ok(html.includes('rel="icon" href="favicon.svg" type="image/svg+xml"'), "A scalable BZaudio favicon must be linked");
+assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), "Social sharing should use the large-image card");
+assert.ok(html.includes('property="og:image"'), "Open Graph image metadata is required");
+assert.ok(favicon.includes("<svg") && favicon.includes("BZ"), "The BZaudio favicon must be a real SVG brand mark");
 assert.ok(!/href=["']#["']/.test(html), "Avoid placeholder links");
 
 const imageTags = [...html.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
