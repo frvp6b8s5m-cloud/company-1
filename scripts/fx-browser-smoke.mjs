@@ -19,11 +19,11 @@ try{
  assert.equal(await page.locator(".module").count(),6,"FX Lab exposes six processing modules");
  await page.locator("#start-tone").click();
  await page.waitForFunction(()=>document.querySelector("#engine-state")?.textContent==="ENGINE READY");
- await page.waitForFunction(()=>document.querySelector("#peak-value")?.textContent!=="−∞ dB",{timeout:4000});
+ await page.waitForFunction(()=>document.querySelector("#peak-value")?.textContent!=="−∞ dB",null,{timeout:4000});
  assert.ok((await page.locator("#source-status").innerText()).includes("test tone"),"FX Lab starts a real oscillator source");
- await page.locator('[data-param="threshold"]').fill("-24");
+ await page.locator('[data-param="threshold"]').evaluate(el=>{el.value="-24";el.dispatchEvent(new Event("input",{bubbles:true}));});
  assert.equal(await page.locator("#threshold-value").innerText(),"-24 dB","Compressor threshold updates");
- await page.locator('[data-param="delayTime"]').fill("480");
+ await page.locator('[data-param="delayTime"]').evaluate(el=>{el.value="480";el.dispatchEvent(new Event("input",{bubbles:true}));});
  assert.equal(await page.locator("#delay-time-value").innerText(),"480 ms","Delay time updates");
  await page.locator('[data-bypass="compressor"]').click();
  assert.equal(await page.locator('[data-bypass="compressor"]').getAttribute("aria-pressed"),"true","Compressor bypass is stateful");
