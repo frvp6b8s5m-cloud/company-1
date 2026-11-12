@@ -28,6 +28,7 @@ jobs:
           node --check script.js
           node --check site-config.js
           node --check scripts/verify-site.mjs
+          node --check scripts/accessibility-smoke.mjs
       - name: Verify site structure and requirements
         run: node scripts/verify-site.mjs
       - name: Install browser test dependency
@@ -36,3 +37,5 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run browser smoke tests
         run: node scripts/browser-smoke.mjs
+      - name: Run WCAG accessibility audit
+        run: node scripts/accessibility-smoke.mjs
