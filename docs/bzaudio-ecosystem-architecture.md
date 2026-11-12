@@ -18,7 +18,7 @@ BZaudio is a family of focused audio products, not a collection of unrelated web
 | SystemOS | `os.bzaudio.com` | Universal show workspace, show-file transfer, scenes, routing and model-specific console integrations | Existing browser prototype; evolve in place |
 | System Builder | `build.bzaudio.com` | Guided design of complete audio systems, equipment selection and quote-ready bill of materials | Scaffold only |
 | Compatibility Center | `compat.bzaudio.com` | Evidence-based model, firmware, accessory and feature compatibility | Scaffold only |
-| Show Workspace | `shows.bzaudio.com` | Venue/show projects, stage plots, input lists, equipment plans, revisions and documents | Scaffold only |
+| Show Workspace | `shows.bzaudio.com` | Venue/show projects, stage plots, input lists, equipment plans, revisions and documents | Scaffold only |\n| FX Lab | `fx.bzaudio.com` | Browser-based real-time EQ, compression, saturation, modulation, delay and reverb | Functional browser DSP prototype |\n| BZaudio ID | `id.bzaudio.com` | Identity roadmap, profile and entry point to connected products | Local profile preview only; no authentication or cloud sync |
 
 Hostnames are proposed and require domain ownership, DNS and hosting configuration. Do not claim they are live until verified.
 
@@ -118,7 +118,7 @@ A single account may eventually provide access across products. This is a platfo
 - [ ] Round-trip, malformed-file, preservation and data-loss tests.
 - [ ] Live device integration only after model-specific physical verification.
 
-### Milestone 6 — Shared identity and production
+### Milestone 6 — FX Lab, shared identity and production\n- [x] Build browser-local Web Audio FX chain with EQ, compressor, saturation, chorus, delay and reverb controls.\n- [x] Add test tone, local audio-file playback and permission-based microphone input.\n- [ ] Add DSP unit/browser tests, clipping/latency review and accessible control refinements.\n- [ ] Design and threat-model secure identity/backend architecture.
 - [ ] Select and threat-model identity/backend architecture.
 - [ ] Implement authentication, authorization, account recovery and consent.
 - [ ] Configure and verify hosting, DNS and HTTPS per subdomain.
