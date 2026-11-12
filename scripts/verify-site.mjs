@@ -34,6 +34,9 @@ assert.ok(css.includes("prefers-reduced-motion"), "Reduced-motion styles are req
 assert.ok(css.includes("@media(max-width:680px)"), "Mobile breakpoint is required");
 assert.ok((css.match(/{/g) || []).length === (css.match(/}/g) || []).length, "CSS braces must balance");
 assert.ok(js.includes("nav.inert"), "Collapsed mobile navigation must be removed from tab order");
+assert.ok(js.includes('nav.setAttribute("aria-hidden", String(collapsed))'), "Initial mobile navigation state must be exposed to assistive technology");
+assert.ok(js.includes("const restoreFocus = isMobileNav()"), "Navigation focus restoration must be limited to the open mobile menu");
+assert.ok(js.includes("if (restoreFocus) menuButton.focus();"), "Closing the mobile menu must restore focus to its trigger");
 assert.ok(js.includes("textContent = brief"), "User-provided project data must be rendered as text");
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
 
