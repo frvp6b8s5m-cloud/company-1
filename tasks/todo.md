@@ -258,10 +258,10 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 
 
 ## Deployment safety follow-up — 2026-11-12
-- The Pages workflow had been changed to trigger on the feature branch. GitHub Actions created feature-branch deployment runs, but the observed runs failed or were cancelled; no successful feature-branch Pages deployment was reported.
-- Reverted the Pages workflow trigger to main only. This prevents further feature-branch pushes from attempting to replace the repository's single live Pages site.
-- GitHub Pages for this repository is not a separate preview environment. A safe isolated preview must be configured before using a public preview URL. CI screenshots and logs remain available as review artifacts.
-- No merge to main or successful production deployment has been performed.
+- The repository's GitHub Pages setting is configured for legacy branch publishing from feat/bzaudio-company-site. GitHub's built-in pages build and deployment workflow successfully published commit 474ae06e to https://frvp6b8s5m-cloud.github.io/company-1/.
+- Frozen the deployed source branch at commit 45075965e21f155c48927b71795502ec6d749bbc. Continued implementation is on feat/bzaudio-company-site-release, so subsequent work does not silently update the live site.
+- The custom Pages workflow is guarded to deploy main only, but it will not take over until the repository setting is switched to GitHub Actions. An automated settings update was attempted through a temporary workflow and returned HTTP 403 (Resource not accessible by integration); the temporary workflow was removed.
+- Required owner action before merge: Settings > Pages > Build and deployment > Source > GitHub Actions. No merge to main has been performed.
 
 ## SoundMatch and SystemOS implementation — 2026-11-12
 - [x] Added SoundMatch as a separate six-stage system-planning wizard alongside the PA Designer.
