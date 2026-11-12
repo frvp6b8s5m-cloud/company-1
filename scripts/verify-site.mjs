@@ -44,6 +44,7 @@ assert.ok(js.includes("textContent = brief"), "User-provided project data must b
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
 assert.ok(html.includes('action="mailto:" method="post" enctype="text/plain"'), "The contact form must have a non-JavaScript mailto fallback");
 assert.ok(html.includes('src="soundmatch.js"'), "SoundMatch behavior must be loaded");
+assert.ok(html.includes('role="progressbar" aria-label="SoundMatch progress"') && html.includes('id="sm-count" aria-live="polite"'), "SoundMatch progress is announced accessibly");
 assert.equal([...html.matchAll(/class="sm-step"/g)].length, 6, "SoundMatch must have six guided stages");
 for (const field of ["venue", "audience", "environment", "application", "coverage", "zones", "inputCount", "mixer", "stageIO", "speakerApproach", "subCount", "monitorCount", "infrastructure", "expansion", "existing", "scope", "budget", "timeline", "notes"]) {
   assert.ok(html.includes(`name="sm-${field}"`), `SoundMatch must include ${field}`);
