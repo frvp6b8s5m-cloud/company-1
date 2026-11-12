@@ -236,13 +236,13 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
   - Dependencies: SM.1.
   - Files: SoundMatch UI, script and tests.
 - [ ] **Task SM.3: Add configurable equipment list and comparison**
-  - Acceptance: user can add/remove/edit components and quantities and compare Essential / Recommended / Professional approaches; unverified compatibility is clearly marked.
+  - Acceptance: user can add/remove components, edit quantities after adding, and compare Essential / Recommended / Professional approaches; every unverified component is clearly marked.
   - Verify: add/remove/quantity/compare regression tests.
   - Dependencies: SM.2 and sourced product data for any specific recommendation.
   - Files: SoundMatch components and tests.
 - [ ] **Task SM.4: Save/reload multiple drafts and copy quote brief**
   - Acceptance: multiple designs persist locally with clear privacy disclosure and can be copied/exported; no server storage is implied.
-  - Verify: save, reload, rename/delete and copy tests.
+  - Verify: save, reload, delete, quantity persistence and copy tests.
   - Dependencies: SM.2.
   - Files: SoundMatch persistence and tests.
 - [ ] **Task SM.5: Pro feature preview and SystemOS roadmap**
