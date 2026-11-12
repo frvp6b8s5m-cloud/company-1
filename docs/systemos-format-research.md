@@ -48,9 +48,14 @@ Official sources:
 - [Yamaha — QL Editor Owner's Manual](https://data.yamaha.com/download/files/2106902)
 - [Yamaha — QL Editor manual PDF](https://data.yamaha.com/files/download/other_assets/6/798476/qleditor_en_om_f0.pdf)
 
+The QL Editor manual also documents two CSV export variants: Short (CL/QL Editor V4.0.0/V4.0.1) and Normal (V4.1); V4.1 can read both. The detailed-form comment option adds additional data to the third comment line. The manual documents color aliases and port-name aliases for DANTE/DNT, OMNI/AD, INPUT, playback, SLOT/SL, FX, PRFX, GEQ, MIX/MX, MATRIX/MT and stereo/mono destinations.
+
+Official source: [Yamaha QL Editor Owner's Manual — CSV export formats and notation](https://data.yamaha.com/files/download/other_assets/6/798476/qleditor_en_om_f0.pdf).
+
 Implementation status:
 - No CLF binary parser/writer.
-- No Yamaha CSV parser/writer yet. The manual confirms the feature scope but the exact CSV filenames, headers, encoding and value conventions need a genuine export fixture and editor round-trip tests.
+- Yamaha CL/QL color and port-name normalization helpers implemented in `adapters/yamaha/clql-csv-normalization.js`, with unit tests.
+- No complete Yamaha CSV file parser/writer yet. Exact file names, row layouts, encoding and version/comment-line behavior still need genuine export fixtures and editor round-trip tests.
 - Do not assume Yamaha CSV files are structurally compatible with Avantis CSV.
 
 ## First interoperability milestone
