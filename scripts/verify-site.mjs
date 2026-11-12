@@ -72,6 +72,9 @@ assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), "S
 assert.ok(html.includes('property="og:image"'), "Open Graph image metadata is required");
 assert.ok(html.includes("SystemOS") && html.includes('id="sys-project-form"') && html.includes('id="sys-export"'), "SystemOS project and backup controls must be present");
 assert.ok(systemos.includes("bzaudio.systemos.workspace.v1") && systemos.includes("sys-import") && systemos.includes("sys-service-form"), "SystemOS must persist locally and support import, export and service history");
+for (const feature of ["patches", "network", "tests", "sys-patch-form", "sys-network-form", "sys-test-form", "sys-metric-patches", "sys-metric-network", "sys-metric-tests"]) assert.ok(systemos.includes(feature) || html.includes(feature), `SystemOS technical module missing: ${feature}`);
+assert.ok(html.includes("Patchbay & routing") && html.includes("Network topology") && html.includes("Commissioning & test log"), "SystemOS must expose technical engineering modules");
+assert.ok(html.includes("does not scan or change your network") && html.includes("not live hardware discovery"), "SystemOS must disclose manual documentation boundaries");
 assert.ok(systemosCss.includes(".sys-layout") && systemosCss.includes("@media(max-width:600px)"), "SystemOS must have responsive workspace styling");
 assert.ok(!html.includes('id="designer"') && !html.includes('id="connection"'), "Duplicate PA Designer and unimplemented Connection Lab sections must be removed");
 assert.ok(!html.includes("IN DEVELOPMENT") && !html.includes("ROADMAP") && !html.includes("PA Designer"), "The public site must not advertise unfinished modules or a duplicate quiz");
