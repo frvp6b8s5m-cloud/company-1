@@ -35,6 +35,8 @@ jobs:
           node --check scripts/performance-smoke.mjs
           node --check scripts/verify-ecosystem.mjs
           node --check scripts/browser-smoke.mjs
+          node --check scripts/build-app-previews.mjs
+          node --check scripts/app-build-smoke.mjs
           node --check apps/systemos/app.js
           node --check adapters/allen-heath/avantis-csv.js
           node --check scripts/avantis-csv-smoke.mjs
@@ -55,6 +57,14 @@ jobs:
         run: node scripts/ecosystem-app-smoke.mjs
       - name: Verify connected app ecosystem scaffold
         run: node scripts/verify-ecosystem.mjs
+      - name: Build independent app bundles
+        run: node scripts/build-app-previews.mjs && node scripts/app-build-smoke.mjs
+      - name: Upload independent app preview bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: bzaudio-app-previews
+          path: dist/apps/
+          if-no-files-found: error
       - name: Install browser test dependency
         run: npm install --no-save --package-lock=false playwright@1.56.1 axe-core@4.10.3
       - name: Install Chromium
