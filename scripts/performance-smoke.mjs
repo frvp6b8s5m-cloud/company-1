@@ -13,10 +13,16 @@ const experienceCss = await readFile(resolve(root, "experience.css"), "utf8");
 const js = await readFile(resolve(root, "script.js"), "utf8");
 const soundmatchJs = await readFile(resolve(root, "soundmatch.js"), "utf8");
 const config = await readFile(resolve(root, "site-config.js"), "utf8");
-assert.ok(html.length < 45_000, "HTML source stays under the 30 KB source budget");
-assert.ok(css.length + soundmatchCss.length + experienceCss.length < 80_000, "Combined CSS stays under the 80 KB source budget");
-assert.ok(js.length + soundmatchJs.length < 40_000, "Combined JavaScript stays under the 40 KB source budget");
-assert.ok(config.length < 2_000, "Site configuration stays lightweight");
+const sourceBytes = {
+  html: Buffer.byteLength(html),
+  css: Buffer.byteLength(css) + Buffer.byteLength(soundmatchCss) + Buffer.byteLength(experienceCss),
+  javascript: Buffer.byteLength(js) + Buffer.byteLength(soundmatchJs),
+  config: Buffer.byteLength(config)
+};
+assert.ok(sourceBytes.html < 45_000, "HTML source stays under the 45 KB source budget");
+assert.ok(sourceBytes.css < 80_000, "Combined CSS stays under the 80 KB source budget");
+assert.ok(sourceBytes.javascript < 40_000, "Combined JavaScript stays under the 40 KB source budget");
+assert.ok(sourceBytes.config < 2_000, "Site configuration stays lightweight");
 
 const desktopHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=2200";
 const mobileHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1200";
@@ -101,7 +107,7 @@ try {
       firstContentfulPaintMs: Math.round(paint.find((entry) => entry.name === "first-contentful-paint")?.startTime || 0)
     };
   });
-  console.log(JSON.stringify({ sourceBytes: { html: html.length, css: css.length, javascript: js.length, config: config.length }, imageChecks, browserMetrics: metrics }, null, 2));
+  console.log(JSON.stringify({ sourceBytes, imageChecks, browserMetrics: metrics }, null, 2));
   await page.close();
   console.log("BZaudio performance and CDN delivery smoke checks passed.");
 } finally {
