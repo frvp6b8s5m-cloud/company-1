@@ -1,0 +1,6 @@
+{
+  "name": "@bzaudio/design-system",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Shared BZaudio visual tokens and interface foundations"
+}
