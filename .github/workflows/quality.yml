@@ -34,10 +34,14 @@ jobs:
           node --check scripts/accessibility-smoke.mjs
           node --check scripts/performance-smoke.mjs
           node --check scripts/verify-ecosystem.mjs
+          node --check apps/systemos/app.js
+          node --check scripts/systemos-app-smoke.mjs
       - name: Verify site structure and requirements
         run: node scripts/verify-site.mjs
       - name: Test universal SystemOS core
         run: node scripts/systemos-core-smoke.mjs
+      - name: Test SystemOS browser app scaffold
+        run: node scripts/systemos-app-smoke.mjs
       - name: Verify connected app ecosystem scaffold
         run: node scripts/verify-ecosystem.mjs
       - name: Install browser test dependency
