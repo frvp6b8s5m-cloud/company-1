@@ -20,6 +20,8 @@
   let current = 0;
   let items = [];
 
+  form.addEventListener("submit", (event) => event.preventDefault());
+
   const values = () => Object.fromEntries(new FormData(form).entries());
   const clean = (value) => String(value ?? "").trim() || "Not specified";
   const tierNames = { essential: "Essential", recommended: "Recommended", professional: "Professional" };
