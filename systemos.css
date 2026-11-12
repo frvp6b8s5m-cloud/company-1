@@ -31,3 +31,13 @@
 .sys-tab span{color:#8c9789}
 
 .systemos-boundary{color:#4d534b}
+
+/* Technical engineering workspace */
+.sys-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+.sys-tab{font-size:10px;letter-spacing:-.02em}
+.sys-form label{line-height:1.45}
+.sys-record small,.sys-record p{overflow-wrap:anywhere}
+.sys-record-actions button:hover,.sys-signal-list button:hover{border-color:#ff6a2a;color:#ffb08d}
+.sys-form input::placeholder,.sys-form textarea::placeholder{color:#737e73}
+@media(max-width:900px){.sys-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.sys-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.sys-tab{min-height:44px}.sys-record-actions{flex-wrap:wrap}}
