@@ -1,25 +1,32 @@
-# SystemOS application boundary
+# BZaudio SystemOS application
 
-**Hostname:** `os.bzaudio.com`  
-**Status:** architecture approved; current browser prototype remains at repository root.
+**Hostname target:** `os.bzaudio.com`  
+**Status:** browser application scaffold; not yet deployed to a subdomain.
 
-SystemOS is the universal professional audio show-management and mixing workflow platform. Its core is manufacturer-neutral; manufacturer/model/firmware adapters provide explicit capabilities and evidence.
+SystemOS is the flagship browser-first professional audio workspace. Its core is manufacturer-neutral; manufacturer/model/firmware adapters will provide explicit capabilities and evidence.
 
-Read [the universal architecture](../../docs/systemos-universal-architecture.md).
+Read [the universal architecture](../../docs/systemos-universal-architecture.md) and [the subdomain deployment plan](../../docs/subdomain-architecture.md).
 
-## Planned areas
+## Current working features
 
-- Shows and revisions
-- Transfer Studio
-- Mixer Workspace
-- Routing and I/O
-- Scenes and cues
-- Libraries
-- Device and compatibility status
-- Validation and transfer reports
+- Create a neutral BZaudio show package with a show name and venue.
+- Export the validated show as a local JSON file.
+- Import and validate a BZaudio JSON show package in the browser.
+- Reject malformed or oversized imports.
+- Show an honest adapter-availability state for Yamaha and Allen & Heath.
 
-## Current boundary
+## Not implemented yet
 
-Do not copy the existing root `systemos.js`, `systemos.css` or `systemos-core.js` into this directory. They remain the working prototype until a migration is separately tested. The current neutral core is not a hardware driver and does not yet translate real vendor show files.
+This scaffold does not parse vendor-native Yamaha or Allen & Heath files, translate between manufacturers, connect to consoles, read live meters, or control hardware. The next engineering phase is model/firmware research, real sample-file fixtures and adapter tests. No device is advertised as supported until those checks pass.
 
-No manufacturer should be shown as supported until its exact model/firmware adapter passes documented fixtures and semantic round-trip tests.
+File operations currently run locally in the browser. There is no cloud account, remote storage, or cross-subdomain sign-in in this phase.
+
+## Local preview
+
+From the repository root:
+
+```bash
+python3 -m http.server 4173
+```
+
+Open [http://localhost:4173/apps/systemos/](http://localhost:4173/apps/systemos/).
