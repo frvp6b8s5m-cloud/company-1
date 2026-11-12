@@ -141,3 +141,8 @@ This revision supersedes the earlier separate PA Designer quiz and SystemOS road
 - Architectural visual direction: industrial/editorial composition, hard geometry, typographic hierarchy, authentic audio photography and motion that respects reduced-motion settings.
 - Release acceptance requires static verification, browser interaction tests, strict WCAG checks, performance/CDN checks, and manual keyboard/screen-reader/device review. A green CI run does not replace the manual checks.
 
+
+
+## SystemOS technical engineering expansion — 2026-11-12
+
+Extend the local-first workspace with structured equipment specifications, channel-level patchbay documentation, network endpoint records, commissioning evidence and expanded engineering metrics. Keep all records browser-local and compatible with version-1 JSON backups. Clearly distinguish manually entered records from live hardware/network/acoustic functionality. Acceptance requires automated static, browser, accessibility and performance checks plus manual device review.
