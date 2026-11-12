@@ -77,3 +77,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 .connection-card .status-pill i{background:#ff6a2a}
 .family-grid strong{color:#171916}
 .family-grid small{color:#4e544b}
+
+.systemos-roadmap{margin-top:52px;padding-top:28px;border-top:1px solid #495149}
+.systemos-heading h3{font-size:clamp(28px,4vw,44px);letter-spacing:-.07em;margin:14px 0}
+.systemos-heading p{max-width:610px;color:#c0c6bc;font-size:12px;line-height:1.8}
+.systemos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:26px 0}
+.systemos-grid>div{min-height:112px;padding:17px;border:1px solid #414a42;background:#1c221e;display:flex;flex-direction:column;gap:8px}
+.systemos-grid span{font:9px var(--mono);color:var(--signal)}
+.systemos-grid strong{font-size:12px;color:#f0eee8}
+.systemos-grid small{font-size:10px;line-height:1.5;color:#b8c0b6}
+@media(max-width:900px){.systemos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.systemos-roadmap{margin-top:38px}.systemos-grid{grid-template-columns:1fr}.systemos-grid>div{min-height:90px}}
