@@ -48,5 +48,16 @@ for (const photoUrl of photoUrls) {
 }
 
 assert.ok(!/href=["']#["']/.test(html), "Avoid placeholder links");
+
+const imageTags = [...html.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
+assert.equal(imageTags.length, 7, "All seven photographic areas must use real image elements");
+assert.ok(imageTags.every((tag) => /\balt=["'][^"']+["']/.test(tag)), "Every image must have meaningful alternative text");
+assert.ok(imageTags.every((tag) => /\bdecoding=["']async["']/.test(tag)), "Images should decode asynchronously");
+const heroImage = imageTags.find((tag) => /class=["']hero-image["']/.test(tag));
+assert.ok(heroImage && /fetchpriority=["']high["']/.test(heroImage), "The hero image must receive high fetch priority");
+assert.ok(heroImage && /srcset=["'][^"']+["']/.test(heroImage), "The hero image must offer responsive source candidates");
+assert.ok(imageTags.filter((tag) => !/class=["']hero-image["']/.test(tag)).every((tag) => /loading=["']lazy["']/.test(tag)), "Below-the-fold images must lazy-load");
+assert.ok(!/background(?:-image)?\s*:[^;]*images\.pexels\.com/.test(css), "Photography must use image elements, not eager CSS background downloads");
+
 console.log("BZaudio static site checks passed.");
 console.log(`Checked ${ids.length} unique IDs, ${internalLinks.length} internal links, ${buttons.length} buttons and ${photoUrls.length} licensed photo references.`);
