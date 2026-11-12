@@ -20,6 +20,7 @@
 | MixWizard4 | Analog mixer family | Assessment pending; network control not assumed |
 | XB | Broadcast mixer family | Assessment pending |
 | Xone | DJ mixer family | Separate DJ workflow assessment pending |
+| GR | Zone mixer family | Assessment pending |
 
 This list is an evaluation roadmap, not a compatibility promise. Some analog or legacy models may not expose a network protocol suitable for the planned browser/companion workflows. Their inclusion means they will be assessed, not that network discovery or control will be available.
 
