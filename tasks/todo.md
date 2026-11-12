@@ -282,3 +282,11 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - [x] All seven responsive photo elements loaded in Chromium; representative Pexels CDN checks passed.
 - [x] Browser lab metrics recorded: LCP 124 ms, CLS 0.0035, maximum observed interaction duration 16 ms on an unthrottled local CI runner. Not Lighthouse or field data.
 - [x] Responsive screenshot artifact reviewed at mobile and desktop sizes; dark industrial/orange design and SoundMatch layout verified.
+
+
+## Release branch and review status — 2026-11-12
+- Active release branch: feat/bzaudio-company-site-release.
+- Draft pull request: https://github.com/frvp6b8s5m-cloud/company-1/pull/2.
+- Previous PR #1 was closed as superseded; the original feat/bzaudio-company-site branch remains frozen because GitHub Pages legacy publishing uses it as the source branch.
+- Release branch full CI run #173 passed on the code snapshot: https://github.com/frvp6b8s5m-cloud/company-1/actions/runs/43309257364. Documentation-only follow-up run #176 is rechecking the latest head.
+- Five-axis review is recorded in docs/release-review.md. Production merge remains blocked by the Pages source setting and missing inquiry recipient; manual device/screen-reader, Lighthouse/field metrics and final photo-rights checks remain open.
