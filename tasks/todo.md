@@ -291,3 +291,12 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - [x] Remove unfinished roadmap labels from public feature claims; clearly state local storage and hardware-control boundaries.
 - [ ] Run static, browser, accessibility and performance checks; fix all regressions.
 - [ ] Complete manual keyboard/screen-reader and physical-device review before production release.
+
+
+## SystemOS technical engineering expansion — 2026-11-12
+- [x] Extend equipment records with manufacturer, serial, firmware, IP, rack, channel capacity and interface data.
+- [x] Add structured patchbay records with source/destination, channel mapping, connector, protocol and verification state.
+- [x] Add network endpoint records with IP/MAC, subnet, gateway, VLAN, switch/port, link speed and addressing method.
+- [x] Add commissioning evidence with category, date, result, measurement, instrument and test conditions.
+- [x] Preserve local persistence and JSON backup/restore compatibility for older version-1 workspaces.
+- [ ] Run static, browser, accessibility and performance checks; fix regressions.
