@@ -128,3 +128,16 @@ See [todo.md](todo.md) for ordered tasks and checkpoints.
 The project owner has authorized continued implementation, verification, review, repository integration and launch work going forward. This supersedes the earlier requirement to stop for a separate approval before each ordinary project step. Safety and factual gates remain: do not invent contact details, product data, compatibility, measured acoustic results or external credentials; do not enable mixer write/control without model-specific hardware verification; do not incur paid-service costs without a real configured account and budget authority.
 
 The current implementation remains static-first and quote-request-led. The site has no product data feed, confirmed contact recipient, backend delivery service or validated acoustic engine. These are explicit capability boundaries, not defects to conceal. Work may proceed to a production release only after the release checklist, contact handoff decision, image-rights inspection and deployment verification are complete.
+
+
+## Approved scope revision — 2026-11-12
+
+This revision supersedes the earlier separate PA Designer quiz and SystemOS roadmap tasks:
+
+- SoundMatch is the only customer-facing guided configurator.
+- The separate PA Designer wizard and duplicate navigation entry have been removed. PA design remains an ordinary quote/service request, not a second quiz.
+- The old SystemOS concept card is replaced by a functional browser-local workspace: system records, equipment inventory, signal-flow documentation, reference links/notes, maintenance logs, local persistence and JSON backup/restore.
+- Public feature copy must not advertise unfinished roadmap or subscription capabilities as live. Hardware control, cloud accounts, QR provisioning, acoustic prediction and device integrations remain outside the verified browser workspace.
+- Architectural visual direction: industrial/editorial composition, hard geometry, typographic hierarchy, authentic audio photography and motion that respects reduced-motion settings.
+- Release acceptance requires static verification, browser interaction tests, strict WCAG checks, performance/CDN checks, and manual keyboard/screen-reader/device review. A green CI run does not replace the manual checks.
+

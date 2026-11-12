@@ -37,3 +37,15 @@
 - GitHub Pages serves static assets; this repository's HTML cannot set all response security headers (for example, CSP, HSTS and X-Content-Type-Options). Do not pretend a meta tag is equivalent to an HTTP response header. If the site later moves to a host that supports response-header configuration, add a restrictive CSP and the appropriate security headers there.
 - Re-run dependency and security review whenever runtime dependencies, server-side features, account storage, payment processing or external integrations are added.
 - Before enabling any mixer control, complete protocol-specific threat modeling, permission design, command validation, disconnect/recovery behavior and physical hardware testing.
+
+
+## SystemOS browser workspace addendum — 2026-11-12
+
+- SystemOS stores project records, equipment inventory, ordered signal-flow notes, document/reference metadata and maintenance entries in browser localStorage under the versioned key bzaudio.systemos.workspace.v1.
+- The workspace has no server endpoint, account system, cloud synchronization, remote telemetry or third-party data transfer. Data remains in the current browser profile.
+- JSON export creates a portable user-controlled backup. JSON import validates the backup envelope and bounds collection sizes before replacing the current local workspace. Users should keep their own backups; clearing browser storage or changing devices can remove access to local records.
+- User-supplied record text is rendered through DOM textContent, not interpreted as HTML. Imported records are treated as untrusted data.
+- SystemOS records signal flow as ordered documentation. It does not discover devices, validate network topology, calculate acoustic performance, or send control commands to consoles.
+- Documents are currently reference links and notes, not uploaded binary file storage.
+- The browser workspace is a functional local-first planning and service-record tool; it is not the dedicated-device operating system, Windows/macOS desktop application or touchscreen controller.
+
