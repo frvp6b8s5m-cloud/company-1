@@ -282,3 +282,12 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - [x] All seven responsive photo elements loaded in Chromium; representative Pexels CDN checks passed.
 - [x] Browser lab metrics recorded: LCP 124 ms, CLS 0.0035, maximum observed interaction duration 16 ms on an unthrottled local CI runner. Not Lighthouse or field data.
 - [x] Responsive screenshot artifact reviewed at mobile and desktop sizes; dark industrial/orange design and SoundMatch layout verified.
+
+
+## Approved scope change — SoundMatch + functional SystemOS (2026-11-12)
+- [x] Remove the separate PA Designer quiz and its navigation/section; system-design requests use the quote form.
+- [x] Keep SoundMatch as the only guided configurator.
+- [x] Replace the SystemOS roadmap with a browser-local workspace for systems, equipment, signal flow, documents/references, maintenance and JSON backup/restore.
+- [x] Remove unfinished roadmap labels from public feature claims; clearly state local storage and hardware-control boundaries.
+- [ ] Run static, browser, accessibility and performance checks; fix all regressions.
+- [ ] Complete manual keyboard/screen-reader and physical-device review before production release.
