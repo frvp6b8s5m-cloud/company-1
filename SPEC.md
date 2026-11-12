@@ -149,3 +149,10 @@ Existing deployment workflow remains until its replacement is tested.
 - Source authentic, commercially licensed professional photography. Keep provenance and license records in the project documentation; do not show public source labels unless a license requires attribution.
 - PA Designer **is included**. Start with a guided PA-planning wizard and clear project summary. Do not promise perfect results or acoustic predictions. Validated acoustic calculations are a later engineering milestone requiring verified speaker data, documented methods and test evidence.
 - Contact/project inquiry functionality is included. Keep the recipient email configurable; until an approved address or delivery backend is supplied, provide a reviewable email-draft flow and never claim that an inquiry was sent.
+
+
+## Approved scope update — 2026-11-12
+- SoundMatch is the only guided customer configurator. The separate PA Designer quiz is removed; system-design requests route to the quote form.
+- SystemOS is a functional browser-local workspace with system records, equipment inventory, signal-flow notes, references, maintenance logs and JSON import/export.
+- Local data remains on the current browser/device. Do not claim cloud sync, authentication, live console control, QR provisioning, acoustic simulation or product compatibility without implementation and verification.
+- Visual direction: architectural/industrial editorial design, precise grids, material contrast, restrained signal orange, real audio photography and reduced-motion support.
