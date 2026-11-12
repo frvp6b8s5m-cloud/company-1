@@ -54,3 +54,7 @@
 .matrix-caveat{color:#4e544b!important}
 
 .wizard-step legend{color:#4e544b}
+
+/* Light-section metadata sits on dark cinematic panels and keeps its light contrast. */
+.light-meta{color:#d0d1c7}
+.light-meta span:first-child{color:var(--acid)}
