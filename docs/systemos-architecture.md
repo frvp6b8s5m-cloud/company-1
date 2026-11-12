@@ -1,4 +1,8 @@
-# BZaudio SystemOS browser workspace
+# BZaudio SystemOS — Current Browser Prototype (Superseded Product Direction)
+
+> **Current product target:** [Universal Mixing Platform Architecture](systemos-universal-architecture.md). This file documents the existing browser-local prototype only. It is not the long-term SystemOS product definition. The prototype's forms and documentation registers must not be mistaken for a universal mixer OS, native show-file translation, live metering or console control.
+
+
 
 ## Purpose
 
@@ -51,3 +55,8 @@ No Allen & Heath discovery/control, mixer monitoring, command transmission, QR p
 - All new records persist in the same versioned local workspace and are included in JSON backup/restore. Older version-1 backups remain importable; missing new collections are initialized empty.
 
 These are technical documentation and workflow tools. They do not probe network endpoints, discover devices, transmit console commands, measure SPL/frequency response/latency, validate electrical safety or certify work. Commissioning outcomes are user-entered records and should be supported by real measurement evidence.
+
+
+## Status
+
+This implementation is the initial local-workspace prototype. The universal mixing platform architecture is the approved next direction. Preserve useful engineering-register functionality as a subsystem while replacing the primary experience with show management, Transfer Studio, a neutral show model and verified manufacturer/model adapters. Existing browser-local storage is not yet a show-file translation engine.
