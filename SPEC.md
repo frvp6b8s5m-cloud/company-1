@@ -3,7 +3,7 @@
 **Version:** 1.0 — approved 2026-11-12  
 **Repository:** `frvp6b8s5m-cloud/company-1`  
 **Working branch:** `feat/bzaudio-company-site`  
-**Status:** Approved for planning; implementation not yet approved.
+**Status:** Approved for implementation; ongoing work authorized 2026-11-12.
 
 ## Objective
 Replace the existing single-page BZaudio site with a cohesive, premium professional-audio company website. The experience combines a cinematic, real-world architectural art direction with useful equipment discovery, PA services, a free Connection Lab entry point, and an accurate introduction to the BZaudio OS ecosystem.
