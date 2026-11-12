@@ -95,16 +95,35 @@ try {
     await reviewPage.screenshot({ path: resolve(root, `artifacts/visual-review/${viewport.name}.png`), fullPage: true });
     await reviewPage.close();
   }
-  const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  await page.addInitScript(() => {
+    window.__bzaudioLabMetrics = { largestContentfulPaintMs: 0, cumulativeLayoutShift: 0, maxInteractionDurationMs: 0 };
+    if (!("PerformanceObserver" in window)) return;
+    try {
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) window.__bzaudioLabMetrics.largestContentfulPaintMs = Math.round(entry.startTime);
+      }).observe({ type: "largest-contentful-paint", buffered: true });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__bzaudioLabMetrics.cumulativeLayoutShift += entry.value;
+      }).observe({ type: "layout-shift", buffered: true });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) if (entry.interactionId) window.__bzaudioLabMetrics.maxInteractionDurationMs = Math.max(window.__bzaudioLabMetrics.maxInteractionDurationMs, Math.round(entry.duration));
+      }).observe({ type: "event", buffered: true, durationThreshold: 16 });
+    } catch {}
+  });
   const response = await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "load" });
   assert.equal(response.status(), 200, "Homepage must load");
+  await page.locator(".menu-toggle").click();
+  await page.locator('#primary-nav a[href="#soundmatch"]').click();
+  await page.waitForTimeout(500);
   const metrics = await page.evaluate(() => {
     const nav = performance.getEntriesByType("navigation")[0];
     const paint = performance.getEntriesByType("paint");
     return {
       domContentLoadedMs: Math.round(nav?.domContentLoadedEventEnd || 0),
       loadEventMs: Math.round(nav?.loadEventEnd || 0),
-      firstContentfulPaintMs: Math.round(paint.find((entry) => entry.name === "first-contentful-paint")?.startTime || 0)
+      firstContentfulPaintMs: Math.round(paint.find((entry) => entry.name === "first-contentful-paint")?.startTime || 0),
+      ...window.__bzaudioLabMetrics
     };
   });
   console.log(JSON.stringify({ sourceBytes, imageChecks, browserMetrics: metrics }, null, 2));
