@@ -47,3 +47,8 @@
 .form-grid label{color:#42483d}
 .contact-mark{color:#56651f}
 .site-footer>p,.footer-copy,.back-top,.os-platforms small{color:#c2c7bb}
+
+/* Final small-text contrast adjustments for the olive-on-stone surfaces. */
+.section-meta span:first-child{color:#4e5a1b}
+.wizard-count span,fieldset legend,.dark-eyebrow{color:#4e544b}
+.matrix-caveat{color:#4e544b!important}
