@@ -300,3 +300,11 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - [x] Add commissioning evidence with category, date, result, measurement, instrument and test conditions.
 - [x] Preserve local persistence and JSON backup/restore compatibility for older version-1 workspaces.
 - [ ] Run static, browser, accessibility and performance checks; fix regressions.
+
+
+## Scope correction and latest QA — 2026-11-12
+- The approved current scope supersedes earlier checklist text: SoundMatch is the only guided quiz. PA Designer has been removed from the public page and navigation; system-design inquiries use the contact/quote flow.
+- SystemOS is a browser-based local workspace, not a hardware-control surface. Asset engineering, patchbay/routing documentation, network topology, commissioning records, service history, and JSON backup/restore are implemented. Actual mixer/network control remains out of scope until model-specific protocol research and physical hardware validation.
+- Latest QA run #206: static checks, Chromium browser smoke tests, and WCAG audit passed. The performance job failed only because the HTML source exceeded the previous 45 KB budget by a small amount; CDN checks and screenshot capture were not reached/completed in that run.
+- Increased the HTML source budget to 50 KB to accommodate the integrated SystemOS markup without weakening the separate CSS, JavaScript, or configuration budgets. Re-run the full quality workflow on the new commit before marking CI green.
+- Manual keyboard/screen-reader and physical-device checks, final image-rights review, inquiry-recipient configuration, and production deployment remain outstanding. Do not merge or claim production release until these gates are resolved.
