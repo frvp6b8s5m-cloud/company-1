@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Plan approved 2026-11-12. Phase 0 baseline documentation is underway.
+**Status:** Plan approved 2026-11-12. Phase 0 is complete; Phase 1 implementation is underway.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -21,9 +21,9 @@
   - Scope: S.
 
 ## Checkpoint A — Baseline
-- [ ] Existing deployment path understood.
-- [ ] Rollback point recorded.
-- [ ] Asset rights process agreed.
+- [x] Existing deployment path understood.
+- [x] Rollback point recorded in Git history (pre-replacement commit remains on the feature branch).
+- [x] Asset rights process documented; candidate photography sourced and recorded.
 
 ## Phase 1 — Brand experience
 - [ ] **Task 1.1: Build design tokens and responsive shell**
@@ -44,6 +44,12 @@
   - Dependencies: 1.1–1.2.
   - Files: shared layout/style/script files.
   - Scope: S.
+
+## Phase 1 progress note (2026-11-12)
+- Initial cinematic photographic homepage, responsive navigation, service sections, equipment quote categories, Connection Lab status, BZaudio OS roadmap and contact flow have been implemented on the feature branch.
+- Guided PA Designer wizard has been included with three validated intake steps, a reviewable project brief, copy action and quote-request handoff.
+- Static checks currently pass: JavaScript syntax, unique HTML IDs, internal anchor targets, explicit button types, balanced CSS braces, responsive breakpoint and reduced-motion rule.
+- Browser/device interaction, screen-reader and live image delivery checks remain outstanding; do not mark Phase 1 complete until those checks pass.
 
 ## Checkpoint B — Brand experience
 - [ ] Homepage and navigation work at mobile/tablet/desktop.
