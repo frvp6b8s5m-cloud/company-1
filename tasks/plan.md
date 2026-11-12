@@ -114,3 +114,9 @@ See [todo.md](todo.md) for ordered tasks and checkpoints.
 - Licensed authentic photography; provenance stored in project docs, no visible source labels unless required by license.
 - PA Designer included as a guided planning wizard first. Validated acoustic calculations remain a separately verified milestone.
 - Contact recipient is configurable; email draft until a real delivery address/service is approved.
+
+
+## Authorization and execution update — 2026-11-12
+The project owner has authorized continued implementation, verification, review, repository integration and launch work going forward. This supersedes the earlier requirement to stop for a separate approval before each ordinary project step. Safety and factual gates remain: do not invent contact details, product data, compatibility, measured acoustic results or external credentials; do not enable mixer write/control without model-specific hardware verification; do not incur paid-service costs without a real configured account and budget authority.
+
+The current implementation remains static-first and quote-request-led. The site has no product data feed, confirmed contact recipient, backend delivery service or validated acoustic engine. These are explicit capability boundaries, not defects to conceal. Work may proceed to a production release only after the release checklist, contact handoff decision, image-rights inspection and deployment verification are complete.
