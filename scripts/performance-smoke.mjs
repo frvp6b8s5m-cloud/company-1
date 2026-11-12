@@ -78,6 +78,7 @@ try {
       await reviewPage.evaluate((position) => window.scrollTo(0, position), y);
       await reviewPage.waitForTimeout(120);
     }
+    await reviewPage.waitForFunction(() => [...document.images].every((image) => image.complete && image.naturalWidth > 0), null, { timeout: 20000 });
     await reviewPage.waitForTimeout(1300);
     await reviewPage.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; window.scrollTo(0, 0); });
     await reviewPage.waitForTimeout(150);
