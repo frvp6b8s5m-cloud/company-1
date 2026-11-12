@@ -3,6 +3,7 @@ import { join } from "node:path";
 
 const root = process.cwd();
 const out = join(root, "dist", "apps");
+const hosts = { systemos: "https://os.bzaudio.com/", "system-builder": "https://build.bzaudio.com/", "compatibility-center": "https://compat.bzaudio.com/", "show-workspace": "https://shows.bzaudio.com/" };
 await mkdir(out, { recursive: true });
 
 async function writeApp(name, sourceFiles, transform) {
@@ -32,9 +33,13 @@ await writeApp("systemos", [
   .replace("../../index.html", "https://www.bzaudio.com/"));
 
 for (const name of ["system-builder", "compatibility-center", "show-workspace"]) {
-  await writeApp(name, [`apps/${name}/index.html`, `apps/${name}/app.js`], html => html
-    .replace("../../packages/design-system/tokens.css", "tokens.css")
-    .replace("../app.css", "app.css")
-    .replace("../../index.html", "https://www.bzaudio.com/"));
+  await writeApp(name, [`apps/${name}/index.html`, `apps/${name}/app.js`], html => {
+    let output = html
+      .replace("../../packages/design-system/tokens.css", "tokens.css")
+      .replace("../app.css", "app.css")
+      .replace("../../index.html", "https://www.bzaudio.com/");
+    for (const [app, host] of Object.entries(hosts)) output = output.replaceAll(`../${app}/`, host);
+    return output;
+  });
 }
 console.log("Built four independent static BZaudio application bundles in dist/apps/.");
