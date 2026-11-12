@@ -53,6 +53,7 @@ assert.ok(soundmatch.includes("bzaudio.soundmatch.drafts.v1"), "SoundMatch draft
 assert.ok(soundmatch.includes("textContent"), "SoundMatch user content must be rendered as text");
 assert.ok(soundmatch.includes("UNVERIFIED / REVIEW REQUIRED"), "SoundMatch must flag unverified equipment compatibility");
 assert.ok(soundmatch.includes("sm-item-qty"), "SoundMatch equipment quantities must be editable after adding items");
+assert.ok(html.includes('id="sm-quantity" type="number" min="1" max="100" value="1" required'), "SoundMatch new equipment quantities must be required");
 assert.ok(html.includes('href="experience.css"'), "The industrial BZaudio visual system must be loaded");
 assert.ok(experience.includes("--signal:#ff6a2a") && experience.includes("#111412"), "The visual system must use charcoal and electric-orange signal accents");
 assert.ok(experience.includes("prefers-reduced-motion:reduce"), "New motion must respect reduced-motion preferences");
