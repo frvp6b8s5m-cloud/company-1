@@ -186,6 +186,7 @@
     if (!contactForm.reportValidity()) return;
     const data = new FormData(contactForm);
     const recipient = typeof config.inquiryEmail === "string" ? config.inquiryEmail.trim() : "";
+    const mailtoRecipient = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(recipient) ? recipient : "";
     const subject = encodeURIComponent("BZaudio project inquiry — " + data.get("service"));
     const body = encodeURIComponent([
       "Name: " + data.get("name"),
@@ -200,6 +201,6 @@
     status.textContent = recipient
       ? "Your email app is opening with a draft addressed to BZaudio. Review it before sending."
       : "Your email app is opening with a draft. Add the BZaudio recipient address, review it and send when ready.";
-    window.location.href = "mailto:" + encodeURIComponent(recipient) + "?subject=" + subject + "&body=" + body;
+    window.location.href = "mailto:" + mailtoRecipient + "?subject=" + subject + "&body=" + body;
   });
 })();
