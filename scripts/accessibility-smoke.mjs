@@ -29,8 +29,9 @@ try {
   for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }]) {
     const page = await browser.newPage({ viewport, reducedMotion: "reduce" });
     await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "domcontentloaded" });
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
-    assert.equal(overflow, false, `No horizontal page overflow at ${viewport.width}px`);
+    const overflow = await page.evaluate(() => ({ page: document.documentElement.scrollWidth > window.innerWidth, elements: [...document.querySelectorAll("*")].map((element) => { const rect = element.getBoundingClientRect(); return { tag: element.tagName, id: element.id, className: typeof element.className === "string" ? element.className : "", left: Math.round(rect.left), right: Math.round(rect.right), width: Math.round(rect.width) }; }).filter((item) => item.right > window.innerWidth + 1 || item.left < -1).slice(0, 12) }));
+    if (overflow.page) console.log(JSON.stringify({ viewport, overflowingElements: overflow.elements }));
+    assert.equal(overflow.page, false, `No horizontal page overflow at ${viewport.width}px`);
     await page.addScriptTag({ content: axe.source });
     const results = await page.evaluate(async () => window.axe.run(document, {
       runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] }
