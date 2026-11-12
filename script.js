@@ -3,16 +3,26 @@
   const config = window.BZAUDIO_CONFIG || {};
   const menuButton = document.querySelector(".menu-toggle");
   const nav = document.querySelector("#primary-nav");
+  const isMobileNav = () => window.matchMedia("(max-width: 680px)").matches;
+  if (nav) nav.inert = isMobileNav();
   const setMenu = (open) => {
     if (!menuButton || !nav) return;
     nav.classList.toggle("open", open);
+    nav.inert = isMobileNav() && !open;
+    nav.setAttribute("aria-hidden", String(isMobileNav() && !open));
     menuButton.setAttribute("aria-expanded", String(open));
     menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     document.body.classList.toggle("menu-open", open);
   };
   menuButton?.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
   nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
-  document.addEventListener("keydown", (event) => { if (event.key === "Escape") setMenu(false); });
+  window.addEventListener("resize", () => {
+    if (!isMobileNav()) setMenu(false);
+    else if (menuButton?.getAttribute("aria-expanded") !== "true" && nav) { nav.inert = true; nav.setAttribute("aria-hidden", "true"); }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menuButton?.getAttribute("aria-expanded") === "true") { setMenu(false); menuButton.focus(); }
+  });
   const year = document.querySelector("#year");
   if (year) year.textContent = String(new Date().getFullYear());
 
