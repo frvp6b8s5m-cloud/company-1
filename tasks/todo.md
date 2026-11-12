@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Implementation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks passed through run #82 after responsive image refactoring. SoundMatch, SystemOS roadmap and the industrial theme are implemented on the feature branch and are undergoing strict regression/accessibility re-verification. Manual/device, asset-rights, contact-recipient and production release gates remain open.
+**Status:** Implementation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks passed through run #82 after responsive image refactoring. SoundMatch, SystemOS roadmap and the industrial theme are implemented. Latest complete CI run #160 passed static verification, Chromium interaction tests, strict axe-core WCAG 2.2 AA, responsive image/CDN checks and screenshot capture. Manual/device, asset-rights, contact-recipient and production release gates remain open.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -212,7 +212,7 @@ This status snapshot supersedes stale planning checkboxes where implementation h
 - [x] Responsive image migration with srcset, high-priority hero loading and lazy loading below the fold; browser verifies all seven photo elements load. Run #82 passed.
 - [ ] Complete final visual rights review for visible brand/person/property concerns. Initial launch decision is to retain responsive Pexels CDN delivery; representative CDN and all seven browser image loads are tested.
 - [ ] Manual keyboard and screen-reader review with VoiceOver/NVDA and real-device testing.
-- [ ] Run Lighthouse in a real browser environment and capture measured LCP/CLS/INP; CI timing diagnostics are not field metrics.
+- [ ] Run a pinned Lighthouse audit on a representative deployment and obtain real-user Core Web Vitals only after launch/consented telemetry. CI lab diagnostic (unthrottled local Chromium, run #160): LCP 124 ms, CLS 0.0035, max observed interaction duration 16 ms; these are not field metrics.
 - [ ] Confirm BZaudio inquiry recipient and set site-config.js; until then, the email draft has no prefilled recipient.
 - [ ] Product source/catalog decision before listing individual models, specifications, prices or stock. Current category-level quote links are intentional.
 - [ ] Model-by-model protocol research and physical Allen & Heath hardware testing before claiming Connection Lab support or enabling control.
@@ -225,27 +225,27 @@ No checkout, payment collection, customer-data backend, unverified product catal
 ## Restored approved scope — SoundMatch system configurator
 The earlier BZaudio planning included SoundMatch as a distinct feature. It was absent from the first website implementation and is now part of the approved project scope. These tasks are additive; the PA Designer remains a separate room/project-intake tool.
 
-- [ ] **Task SM.1: Define six-stage SoundMatch data model and free/Pro boundary**
+- [x] **Task SM.1: Define six-stage SoundMatch data model and free/Pro boundary**
   - Acceptance: venue, audience/zones, application, mixer/I/O/sources/connectivity, mounting/electrical/expansion, existing gear/budget/installation are represented; Basic is free and advanced Pro is explicitly roadmap-only until entitlements exist.
   - Verify: schema validation and no invented product/compatibility fields.
   - Dependencies: verified catalog boundary.
   - Files: SoundMatch spec/data model and tests.
-- [ ] **Task SM.2: Build Basic free SoundMatch flow**
+- [x] **Task SM.2: Build Basic free SoundMatch flow**
   - Acceptance: adaptive six-stage intake gathers requirements and outputs a detailed quote brief without pretending to select verified SKUs.
   - Verify: step validation, back/next, empty states and generated brief tests.
   - Dependencies: SM.1.
   - Files: SoundMatch UI, script and tests.
-- [ ] **Task SM.3: Add configurable equipment list and comparison**
+- [x] **Task SM.3: Add configurable equipment list and comparison**
   - Acceptance: user can add/remove components, edit quantities after adding, and compare Essential / Recommended / Professional approaches; every unverified component is clearly marked.
   - Verify: add/remove/quantity/compare regression tests.
   - Dependencies: SM.2 and sourced product data for any specific recommendation.
   - Files: SoundMatch components and tests.
-- [ ] **Task SM.4: Save/reload multiple drafts and copy quote brief**
+- [x] **Task SM.4: Save/reload multiple drafts and copy quote brief**
   - Acceptance: multiple designs persist locally with clear privacy disclosure and can be copied/exported; no server storage is implied.
   - Verify: save, reload, delete, quantity persistence and copy tests.
   - Dependencies: SM.2.
   - Files: SoundMatch persistence and tests.
-- [ ] **Task SM.5: Pro feature preview and SystemOS roadmap**
+- [x] **Task SM.5: Pro feature preview and SystemOS roadmap**
   - Acceptance: Basic free and advanced Pro capabilities are explained accurately; SystemOS concept includes QR-linked system record, signal map, documentation/configuration, Live Assistant, maintenance history and upgrade advisor as planned capabilities only.
   - Verify: no false claims of subscriptions, account storage, live control or available features.
   - Dependencies: SM.1 and BZaudio OS overview.
@@ -253,7 +253,7 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 
 ## Visual direction refinement
 - [x] Apply the industrial/brutalist cinematic direction: charcoal/black surfaces, electric-orange signal accents, oversized typography, technical labels, real photography, restrained signal/frequency motion and reduced-motion support.
-- [ ] Review the new direction at mobile/tablet/desktop and rerun the strict axe-core audit before accepting the visual update.
+- [x] Review the new direction at mobile/tablet/desktop and rerun the strict axe-core audit. CI screenshots and strict axe checks passed in run #160.
 
 
 
@@ -273,3 +273,12 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - [ ] Complete latest full CI after the SoundMatch, SystemOS, theme, security and Pages workflow updates; strict axe-core audit must pass with zero violations.
 - [ ] Perform five-axis code review and open a draft pull request to main after CI is green.
 - [ ] Configure the actual inquiry recipient before production cutover.
+
+
+## Latest verified build — 2026-11-12
+- [x] Full feature-branch CI run #160 passed: https://github.com/frvp6b8s5m-cloud/company-1/actions/runs/43308392838
+- [x] Chromium verified SoundMatch six-step validation, brief creation, clipboard copy, editable quantity, unverified warnings, local save/reload, restored field values, quantity persistence and delete.
+- [x] Strict axe-core WCAG 2.2 AA audit passed at 390px, 768px and 1440px with zero reported violations.
+- [x] All seven responsive photo elements loaded in Chromium; representative Pexels CDN checks passed.
+- [x] Browser lab metrics recorded: LCP 124 ms, CLS 0.0035, maximum observed interaction duration 16 ms on an unthrottled local CI runner. Not Lighthouse or field data.
+- [x] Responsive screenshot artifact reviewed at mobile and desktop sizes; dark industrial/orange design and SoundMatch layout verified.
