@@ -64,3 +64,5 @@
   .nav{transform:none;clip-path:inset(0 0 0 100%);transition:clip-path .35s cubic-bezier(.2,.7,.2,1),visibility .35s}
   .nav.open{transform:none;clip-path:inset(0);visibility:visible}
 }
+
+@media(max-width:680px){.nav{z-index:60}}
