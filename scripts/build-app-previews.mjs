@@ -42,7 +42,7 @@ for (const name of ["system-builder", "compatibility-center", "show-workspace"])
     return output;
   });
 }
-console.log("Built four independent static BZaudio application bundles in dist/apps/.");
+console.log("Built initial four independent BZaudio application bundles.");
 
 await writeApp("fx-lab", ["apps/fx-lab/index.html", "apps/fx-lab/app.js", "apps/fx-lab/fx-engine.js", "apps/fx-lab/fx.css"], html => html.replace("../../packages/design-system/tokens.css", "tokens.css"));
 await writeApp("bzaudio-id", ["apps/bzaudio-id/index.html", "apps/bzaudio-id/app.js", "apps/bzaudio-id/id.css"], html => html.replace("../../packages/design-system/tokens.css", "tokens.css"));
