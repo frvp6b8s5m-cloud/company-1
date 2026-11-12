@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
-const apps = ["systemos", "system-builder", "compatibility-center", "show-workspace"];
+const apps = ["systemos", "system-builder", "compatibility-center", "show-workspace", "fx-lab", "bzaudio-id"];
 for (const app of apps) {
   for (const file of ["index.html", "app.js", "tokens.css", "app.css"]) {
     assert.ok(existsSync(`dist/apps/${app}/${file}`), `Missing built ${app}/${file}`);
@@ -12,4 +12,4 @@ for (const app of apps) {
 for (const file of ["systemos-core.js", "avantis-csv.js", "systemos.css"]) {
   assert.ok(existsSync(`dist/apps/systemos/${file}`), `Missing SystemOS dependency ${file}`);
 }
-console.log("Four standalone BZaudio app bundles verified.");
+for (const file of ["fx-engine.js", "fx.css"]) assert.ok(existsSync(`dist/apps/fx-lab/${file}`), `Missing FX Lab dependency ${file}`);\nassert.ok(existsSync("dist/apps/bzaudio-id/id.css"), "Missing BZaudio ID styles");\nconsole.log("Six standalone BZaudio app bundles verified.");
