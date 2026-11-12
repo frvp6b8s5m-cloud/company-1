@@ -40,6 +40,8 @@ assert.ok(js.includes("const restoreFocus = isMobileNav()"), "Navigation focus r
 assert.ok(js.includes("menuButton.focus({ preventScroll: true })"), "Closing the mobile menu must restore focus without overriding the anchor scroll position");
 assert.ok(js.includes("textContent = brief"), "User-provided project data must be rendered as text");
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
+assert.ok(js.includes("const mailtoRecipient = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(recipient) ? recipient : \"\";"), "Configured inquiry recipient must be validated without encoding the @ separator");
+assert.ok(js.includes('"mailto:" + mailtoRecipient'), "Mailto recipient must remain a valid address component");
 
 const photoUrls = [...new Set([...html.matchAll(/https:\/\/images\.pexels\.com\/photos\/\d+\/[^\s"'<>]+/g), ...css.matchAll(/https:\/\/images\.pexels\.com\/photos\/\d+\/[^\s"'<>]+/g)].map((match) => match[0].split("?")[0]))];
 assert.ok(photoUrls.length >= 3, "Expected multiple real-world photo assets");
