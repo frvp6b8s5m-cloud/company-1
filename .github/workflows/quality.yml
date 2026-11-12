@@ -34,6 +34,7 @@ jobs:
           node --check scripts/accessibility-smoke.mjs
           node --check scripts/performance-smoke.mjs
           node --check scripts/verify-ecosystem.mjs
+          node --check scripts/browser-smoke.mjs
           node --check apps/systemos/app.js
           node --check adapters/allen-heath/avantis-csv.js
           node --check scripts/avantis-csv-smoke.mjs
