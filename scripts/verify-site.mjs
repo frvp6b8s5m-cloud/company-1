@@ -5,6 +5,7 @@ const read = (path) => readFileSync(new URL(path, import.meta.url), "utf8");
 const html = read("../index.html");
 const css = read("../styles.css");
 const js = read("../script.js");
+const soundmatch = read("../soundmatch.js");
 const config = read("../site-config.js");
 const assets = read("../docs/assets.md");
 const favicon = read("../favicon.svg");
@@ -20,7 +21,7 @@ const buttons = [...html.matchAll(/<button\b([^>]*)>/g)].map((match) => match[1]
 assert.ok(buttons.length > 0, "Expected interactive buttons");
 assert.ok(buttons.every((attributes) => /\btype=/.test(attributes)), "Every button must declare a type");
 
-for (const id of ["work", "equipment", "designer", "connection", "os", "contact"]) {
+for (const id of ["work", "equipment", "soundmatch", "designer", "connection", "os", "contact"]) {
   assert.ok(ids.includes(id), `Missing required section: ${id}`);
 }
 
@@ -40,6 +41,14 @@ assert.ok(js.includes("const restoreFocus = isMobileNav()"), "Navigation focus r
 assert.ok(js.includes("menuButton.focus({ preventScroll: true })"), "Closing the mobile menu must restore focus without overriding the anchor scroll position");
 assert.ok(js.includes("textContent = brief"), "User-provided project data must be rendered as text");
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
+assert.ok(html.includes('src="soundmatch.js"'), "SoundMatch behavior must be loaded");
+assert.equal([...html.matchAll(/class="sm-step"/g)].length, 6, "SoundMatch must have six guided stages");
+for (const field of ["venue", "audience", "environment", "application", "coverage", "zones", "inputCount", "mixer", "stageIO", "speakerApproach", "subCount", "monitorCount", "infrastructure", "expansion", "existing", "scope", "budget", "timeline", "notes"]) {
+  assert.ok(html.includes(`name="sm-${field}"`), `SoundMatch must include ${field}`);
+}
+assert.ok(soundmatch.includes("bzaudio.soundmatch.drafts.v1"), "SoundMatch drafts must use a versioned local storage key");
+assert.ok(soundmatch.includes("textContent"), "SoundMatch user content must be rendered as text");
+
 assert.ok(js.includes("const mailtoRecipient = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(recipient) ? recipient : \"\";"), "Configured inquiry recipient must be validated without encoding the @ separator");
 assert.ok(js.includes('"mailto:" + mailtoRecipient'), "Mailto recipient must remain a valid address component");
 
