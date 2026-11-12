@@ -141,6 +141,7 @@ try {
   await page.locator("#sm-design-name").fill("Auditorium system");
   await page.locator("#sm-save").click();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "SoundMatch saves multiple local designs");
+  assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem("bzaudio.soundmatch.drafts.v1"))[0].values["sm-venue"]), "House of worship", "Saved draft captures the completed form answers");
   await page.reload({ waitUntil: "domcontentloaded" });
   await page.locator("#soundmatch").scrollIntoViewIfNeeded();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "Saved SoundMatch designs persist after reload");
