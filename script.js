@@ -198,7 +198,7 @@
       data.get("message")
     ].join("\n"));
     const status = document.querySelector("#form-status");
-    status.textContent = recipient
+    status.textContent = mailtoRecipient
       ? "Your email app is opening with a draft addressed to BZaudio. Review it before sending."
       : "Your email app is opening with a draft. Add the BZaudio recipient address, review it and send when ready.";
     window.location.href = "mailto:" + mailtoRecipient + "?subject=" + subject + "&body=" + body;
