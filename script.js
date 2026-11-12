@@ -17,7 +17,20 @@
   if (year) year.textContent = String(new Date().getFullYear());
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const revealTargets = document.querySelectorAll(".section-meta, .intro-grid, .service-card, .equipment-list a, .connection-card, .os-platforms > div, .contact-grid");
+  const revealTargets = document.querySelectorAll(".section-meta, .intro-grid, .service-card, .equipment-list a, .connection-card, .os-platforms > div, .contact-grid, .designer-panel");
+  const heroImage = document.querySelector(".hero-image");
+  if (heroImage && !reducedMotion) {
+    let parallaxFrame = 0;
+    const updateHeroDepth = () => {
+      const offset = Math.min(window.scrollY * 0.12, 70);
+      const scale = 1.025 + Math.min(window.scrollY / 10000, 0.04);
+      heroImage.style.transform = "translate3d(0," + offset + "px,0) scale(" + scale + ")";
+      parallaxFrame = 0;
+    };
+    window.addEventListener("scroll", () => {
+      if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(updateHeroDepth);
+    }, { passive: true });
+  }
   if ("IntersectionObserver" in window && !reducedMotion) {
     const observer = new IntersectionObserver((entries, current) => {
       entries.forEach((entry) => {
