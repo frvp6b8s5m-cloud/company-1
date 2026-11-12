@@ -7,7 +7,7 @@ import { chromium } from "playwright";
 
 const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const mime={".html":"text/html; charset=utf-8",".css":"text/css; charset=utf-8",".js":"text/javascript; charset=utf-8"};
-const server=createServer(async(req,res)=>{try{let path=decodeURIComponent(new URL(req.url,"http://localhost").pathname);let relative=path==="/"?"index.html":path.slice(1);if(relative.endsWith("/"))relative+="index.html";const file=resolve(root,relative);if(file!==root&&!file.startsWith(root+sep))throw new Error("bad path");res.writeHead(200,{"content-type":mime[extname(file)]||"application/octet-stream"});res.end(await readFile(file));}catch{res.writeHead(404);res.end("Not found");}});
+const server=createServer(async(req,res)=>{try{let path=decodeURIComponent(new URL(req.url,"http://localhost").pathname);let relative=path==="/"?"index.html":path.slice(1);if(relative.endsWith("/"))relative+="index.html";const file=resolve(root,relative);if(file!==root&&!file.startsWith(root+sep))throw new Error("bad path");const body=await readFile(file);res.writeHead(200,{"content-type":mime[extname(file)]||"application/octet-stream"});res.end(body);}catch{res.writeHead(404);res.end("Not found");}});
 const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
 try{
  await new Promise(resolveListen=>server.listen(0,"127.0.0.1",resolveListen));
