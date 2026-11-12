@@ -16,7 +16,7 @@ assert.match(html, /systemos-core\.js/);
 assert.match(app, /core\.parseShow/);
 assert.match(app, /core\.serializeShow/);
 assert.match(app, /core\.limits\.packageBytes/);
-assert.match(app, /Vendor-native files are not supported/);
+assert.match(app, /native show writing are not included/);\nassert.match(app, /avantisCsv\\.parse/);
 assert.match(css, /@media\(max-width:760px\)/);
 assert.match(css, /:focus-visible/);
 console.log("SystemOS application shell checks passed.");
