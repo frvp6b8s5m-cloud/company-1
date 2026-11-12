@@ -46,6 +46,13 @@ try {
   assert.equal(await menu.evaluate((element) => element === document.activeElement), true, "Focus returns to the mobile menu trigger");
   assert.equal(new URL(page.url()).hash, "#designer", "PA Designer navigation target works");
 
+  await menu.click();
+  assert.equal(await menu.getAttribute("aria-expanded"), "true", "Menu can be reopened");
+  await page.keyboard.press("Escape");
+  assert.equal(await menu.getAttribute("aria-expanded"), "false", "Escape closes the mobile menu");
+  assert.equal(await nav.getAttribute("aria-hidden"), "true", "Escape hides navigation from assistive technology");
+  assert.equal(await menu.evaluate((element) => element === document.activeElement), true, "Escape restores focus to the menu trigger");
+
   const next = page.locator("#wizard-next");
   await next.click();
   assert.equal(await page.locator('[name="venue"]').evaluate((element) => element.checkValidity()), false, "Required first-step fields block progression");
