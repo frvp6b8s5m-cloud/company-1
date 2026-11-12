@@ -58,3 +58,9 @@
 /* Light-section metadata sits on dark cinematic panels and keeps its light contrast. */
 .light-meta{color:#d0d1c7}
 .light-meta span:first-child{color:var(--acid)}
+
+/* Keep the closed mobile menu clipped inside the viewport instead of translating it off-canvas. */
+@media(max-width:680px){
+  .nav{transform:none;clip-path:inset(0 0 0 100%);transition:clip-path .35s cubic-bezier(.2,.7,.2,1),visibility .35s}
+  .nav.open{transform:none;clip-path:inset(0);visibility:visible}
+}
