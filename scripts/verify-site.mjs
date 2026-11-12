@@ -36,7 +36,7 @@ assert.ok(js.includes("nav.inert"), "Collapsed mobile navigation must be removed
 assert.ok(js.includes('nav.setAttribute("aria-hidden", String(collapsed))'), "Initial mobile navigation state must be exposed to assistive technology");
 assert.ok(js.includes("const restoreFocus = isMobileNav()"), "Navigation focus restoration must be limited to the open mobile menu");
 assert.ok(js.includes("menuButton.focus({ preventScroll: true })"), "Closing the mobile menu must restore focus without overriding the anchor scroll position");
-assert.ok(js.includes("textContent = brief"), "User-provided project data must be rendered as text");
+assert.ok(systemos.includes("textContent") && soundmatch.includes("textContent"), "User-provided project data must be rendered as text");
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
 assert.ok(html.includes('action="mailto:" method="post" enctype="text/plain"'), "The contact form must have a non-JavaScript mailto fallback");
 assert.ok(html.includes('src="soundmatch.js"'), "SoundMatch behavior must be loaded");
@@ -74,8 +74,8 @@ assert.ok(html.includes("SystemOS") && html.includes('id="sys-project-form"') &&
 assert.ok(systemos.includes("bzaudio.systemos.workspace.v1") && systemos.includes("sys-import") && systemos.includes("sys-service-form"), "SystemOS must persist locally and support import, export and service history");
 assert.ok(systemosCss.includes(".sys-layout") && systemosCss.includes("@media(max-width:600px)"), "SystemOS must have responsive workspace styling");
 assert.ok(!html.includes('id="designer"') && !html.includes('id="connection"'), "Duplicate PA Designer and unimplemented Connection Lab sections must be removed");
-assert.ok(!html.includes("IN DEVELOPMENT") && !html.includes("ROADMAP"), "The public site must not advertise unfinished modules as available");
-assert.ok(html.includes("SoundMatch") && html.includes("ADVANCED PRO"), "SoundMatch free and Pro positioning must be visible");
+assert.ok(!html.includes("IN DEVELOPMENT") && !html.includes("ROADMAP") && !html.includes("PA Designer"), "The public site must not advertise unfinished modules or a duplicate quiz");
+assert.ok(html.includes("SoundMatch") && html.includes("SYSTEM CONFIGURATOR"), "SoundMatch must remain the single guided system configurator");
 assert.ok(favicon.includes("<svg") && favicon.includes("BZ"), "The BZaudio favicon must be a real SVG brand mark");
 assert.ok(!/href=["']#["']/.test(html), "Avoid placeholder links");
 
