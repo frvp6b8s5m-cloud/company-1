@@ -170,6 +170,55 @@ try {
   await page.locator("#sys-import").setInputFiles({name:"systemos-backup.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(importPayload))});
   await page.waitForFunction(()=>document.querySelector("#sys-active-name")?.textContent==="Imported rehearsal room");
   assert.equal(await page.locator("#sys-project-select").inputValue(),"imported","SystemOS restores an imported backup");
+
+  const appPage = await context.newPage();
+  const appErrors = [];
+  appPage.on("pageerror", (error) => appErrors.push(error.message));
+
+  await appPage.goto(`${origin}/apps/system-builder/`, { waitUntil: "domcontentloaded" });
+  await appPage.locator("#item-name").fill("Test digital console");
+  await appPage.locator("#item-form button[type=submit]").click();
+  assert.ok((await appPage.locator("#items").innerText()).includes("Test digital console"), "System Builder adds equipment");
+  assert.ok((await appPage.locator("#checks").innerText()).includes("No main speakers listed"), "System Builder shows a planning gap without claiming compatibility");
+  const planDownload = appPage.waitForEvent("download");
+  await appPage.locator("#export").click();
+  assert.equal((await planDownload).suggestedFilename(), "bzaudio-system-plan.json", "System Builder exports a plan");
+
+  await appPage.goto(`${origin}/apps/compatibility-center/`, { waitUntil: "domcontentloaded" });
+  await appPage.locator("#search").fill("Avantis");
+  assert.ok((await appPage.locator("#results").innerText()).includes("CSV import/export"), "Compatibility Center searches documented records");
+  await appPage.locator("#search").fill("Yamaha CL/QL");
+  assert.ok((await appPage.locator("#results").innerText()).includes("Documented"), "Compatibility Center displays evidence status");
+
+  await appPage.goto(`${origin}/apps/show-workspace/`, { waitUntil: "domcontentloaded" });
+  await appPage.locator("#source").fill("Lead vocal");
+  await appPage.locator("#mic").fill("Dynamic microphone");
+  await appPage.locator("#input-form button[type=submit]").click();
+  assert.ok((await appPage.locator("#inputs").innerText()).includes("Lead vocal"), "Show Workspace adds stage inputs");
+  const showDownload = appPage.waitForEvent("download");
+  await appPage.locator("#export").click();
+  assert.equal((await showDownload).suggestedFilename(), "bzaudio-show-sheet.json", "Show Workspace exports a production sheet");
+
+  await appPage.goto(`${origin}/apps/systemos/`, { waitUntil: "domcontentloaded" });
+  assert.equal(await appPage.locator("#show-name").innerText(), "Untitled show", "SystemOS app initializes a neutral show");
+  const avantisFixture = `[Version]
+2
+[Channels]
+Channel Type,Channel No.,Name,Colour,Socket Type,Socket No.,Source Side,Gain.,PAD,+48v
+Input,1,"Lead, Vocal",Green,Surface,1,Left,25,Off,On
+[Outputs]
+Output Type,Channel No.,Source Type,Source Ch No.,Stereo
+Surface,1,Main,1,Left
+[Virtual Soundcheck]
+Input Channel,VSC Source no.,VSC Source Type
+1,1,USB
+`;
+  await appPage.locator("#import-show").setInputFiles({ name: "avantis-export.csv", mimeType: "text/csv", buffer: Buffer.from(avantisFixture) });
+  assert.ok((await appPage.locator("#feedback").innerText()).includes("Avantis CSV imported"), "SystemOS imports documented Avantis CSV subset");
+  assert.ok((await appPage.locator("#show-meta").innerText()).includes("Avantis"), "SystemOS identifies the source console profile");
+  assert.deepEqual(appErrors, [], "No uncaught errors in BZaudio application pages");
+  await appPage.close();
+
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.waitForTimeout(400);
   assert.equal(await nav.getAttribute("aria-hidden"), "false", "Desktop navigation is exposed");
