@@ -24,7 +24,7 @@ Replace the current single-page HTML/CSS/JS starter in independently testable ve
 6. **Photography governance:** every production image must have documented source, license/permission and responsive optimized variants.
 
 ## Dependency graph
-`brand tokens + semantic shell → shared navigation/layout → module page/section slices → form/data behavior → integrated accessibility/performance review → Pages staging verification → release`.
+`brand tokens + semantic shell → verified product data boundaries → equipment discovery and SoundMatch → PA Designer/contact → Connection Lab feasibility → SystemOS/OS roadmap → integrated accessibility/performance review → Pages staging verification → release`.
 
 Connection Lab has an additional dependency: `verified protocol/model matrix + safe test plan + real hardware`. Without those, only an honest informational/roadmap experience may be shipped.
 
@@ -52,6 +52,14 @@ Connection Lab has an additional dependency: `verified protocol/model matrix + s
 - Create product detail presentation with specifications only from reliable source data.
 - Provide quote/contact paths; no checkout or invented prices/stock.
 - Verify empty states, filters, product detail links and keyboard use.
+
+### Phase 3B — SoundMatch system configurator (restored approved scope)
+- Build a six-stage guided system configurator for venue, audience/zones, application/sound goals, mixer/I/O/sources/connectivity, mounting/electrical/expansion, and existing gear/budget/installation.
+- Keep a useful Basic free experience. Present advanced Pro capabilities as planned until real account/entitlement enforcement exists.
+- Support configurable equipment categories, user-entered items and quantities, add/remove/edit controls, and Essential / Recommended / Professional comparison views.
+- Save/reload multiple browser-local drafts and produce a detailed copyable quote brief.
+- Explain decisions and show compatibility/fit warnings only where backed by verified model-specific data. Unverified combinations must be visibly marked.
+- Do not fabricate SKUs, specifications, availability, prices, manufacturer relationships or acoustic results. Until catalog sources are approved, SoundMatch is a system-planning/quote tool, not an automated product recommender.
 
 ### Phase 4 — PA Designer experience (included)
 - Build an advanced, guided project-planning wizard with venue/application, dimensions, audience/use, coverage goals, system priorities, constraints and budget inputs.
