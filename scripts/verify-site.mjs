@@ -40,7 +40,7 @@ assert.ok(js.includes("menuButton.focus({ preventScroll: true })"), "Closing the
 assert.ok(js.includes("textContent = brief"), "User-provided project data must be rendered as text");
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
 
-const photoUrls = [...new Set([...html.matchAll(/https:\/\/images\\.pexels\\.com\\/photos\\/\\d+\\/[^\s"'<>]+/g), ...css.matchAll(/https:\/\/images\\.pexels\\.com\\/photos\\/\\d+\\/[^\s"'<>]+/g)].map((match) => match[0].split("?")[0]))];
+const photoUrls = [...new Set([...html.matchAll(/https:\/\/images\.pexels\.com\/photos\/\d+\/[^\s"'<>]+/g), ...css.matchAll(/https:\/\/images\.pexels\.com\/photos\/\d+\/[^\s"'<>]+/g)].map((match) => match[0].split("?")[0]))];
 assert.ok(photoUrls.length >= 3, "Expected multiple real-world photo assets");
 for (const photoUrl of photoUrls) {
   const photoId = photoUrl.match(/photos\/(\d+)/)?.[1];
