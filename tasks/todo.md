@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Plan approved 2026-11-12. Phase 0 is complete; Phase 1 first implementation pass is in place and awaiting browser/device review.
+**Status:** Plan approved 2026-11-12. Phase 0 is complete; Phase 1 first implementation pass is in place. Automated static and Chromium smoke checks pass; visual/device and production-readiness reviews remain open.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -52,6 +52,7 @@
 - Added `scripts/verify-site.mjs` and a feature-branch GitHub Actions quality workflow. GitHub Actions runs #13–#15 passed for the navigation/accessibility changes and documentation.
 - Corrected mobile navigation's initial accessibility state. A Chromium run exposed that native hash navigation could override focus restoration; the link handler now updates the hash/scroll explicitly and restores focus without jumping the viewport. The revised behavior is awaiting CI confirmation.
 - Added `scripts/browser-smoke.mjs` using Playwright/Chromium to exercise mobile menu state and focus restoration, wizard validation and progression, project brief generation, quote handoff and desktop navigation. CI pins Ubuntu 24.04 for Playwright compatibility and runs this browser suite.
+- GitHub Actions run #24 passed all steps, including Chromium installation and the complete browser smoke suite (2026-11-12). This confirms the automated checks at their configured viewports, not full device/browser coverage.
 - Browser/device review beyond the automated Chromium viewport checks, screen-reader review, actual CDN image delivery, local asset optimization and performance checks remain outstanding; do not mark Phase 1 complete until those checks pass.
 
 ## Checkpoint B — Brand experience
