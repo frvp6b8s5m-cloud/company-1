@@ -7,7 +7,9 @@ This directory contains independently scoped applications in the BZaudio monorep
 | `systemos/` | Universal audio show operating platform | `os.bzaudio.com` |
 | `system-builder/` | Complete audio system design and quote preparation | `build.bzaudio.com` |
 | `compatibility-center/` | Evidence-based equipment compatibility | `compat.bzaudio.com` |
-| `show-workspace/` | Show, venue and production project management | `shows.bzaudio.com` |\n| `fx-lab/` | Real-time browser-based audio effects and dynamics processing | `fx.bzaudio.com` |\n| `bzaudio-id/` | BZaudio ecosystem hub and local profile preview | `id.bzaudio.com` |
+| `show-workspace/` | Show, venue and production project management | `shows.bzaudio.com` |
+| `fx-lab/` | Real-time browser-based audio effects and dynamics processing | `fx.bzaudio.com` |
+| `bzaudio-id/` | BZaudio ecosystem hub and local profile preview | `id.bzaudio.com` |
 
 These are application boundaries and development homes, not claims that all apps are already implemented or deployed. Each app must own its build, tests, configuration and release workflow. Shared contracts and design foundations belong in `packages/`.
 
