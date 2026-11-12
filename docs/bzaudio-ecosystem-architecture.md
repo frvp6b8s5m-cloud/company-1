@@ -77,12 +77,12 @@ Shared schemas should be versioned and validated. Apps must not silently discard
 
 ### One account (future)
 
-A single account may eventually provide access across products. This is a platform milestone, not a placeholder login UI. It requires an identity provider, account lifecycle, secure session handling, consent, data ownership and authorization tests.
+BZaudio ID currently provides a local-only profile preview and ecosystem navigation. The preview is not authentication, does not verify email, and does not sync between devices. A single secure account across products remains a platform milestone. It requires an identity provider, account lifecycle, secure session handling, recovery, consent, data ownership and server-side authorization tests. No password or credential collection is implemented in the preview.
 
 ## Technical and release boundaries
 
 - Keep the current root website's GitHub Pages workflow unchanged until an independently verified deployment design is ready.
-- A single GitHub Pages site cannot automatically publish five independently domain-mapped apps from five folders as five separate sites. Each subdomain needs an explicit hosting target and DNS record. Hosting may support monorepo app roots, or apps can later move to separate repositories.
+- A single GitHub Pages site cannot automatically publish multiple independently domain-mapped apps from five folders as five separate sites. Each subdomain needs an explicit hosting target and DNS record. Hosting may support monorepo app roots, or apps can later move to separate repositories.
 - GitHub remains the source of truth for code, issues, pull requests, tests and release history.
 - CI should validate each app independently plus shared contracts. A change to a shared package should trigger all dependent app checks.
 - No credentials, domain secrets, provider tokens or customer data belong in source control.
@@ -121,6 +121,7 @@ A single account may eventually provide access across products. This is a platfo
 - [ ] Live device integration only after model-specific physical verification.
 
 ### Milestone 6 — FX Lab, shared identity and production
+- [x] Create BZaudio ID local profile preview and ecosystem hub; clearly label its non-authenticated state.
 - [x] Build browser-local Web Audio FX chain with EQ, compressor, saturation, chorus, delay and reverb controls.
 - [x] Add test tone, local audio-file playback and permission-based microphone input.
 - [ ] Add DSP unit/browser tests, clipping/latency review and accessible control refinements.
