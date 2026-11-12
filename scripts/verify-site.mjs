@@ -6,6 +6,8 @@ const html = read("../index.html");
 const css = read("../styles.css");
 const js = read("../script.js");
 const soundmatch = read("../soundmatch.js");
+const systemos = read("../systemos.js");
+const systemosCss = read("../systemos.css");
 const experience = read("../experience.css");
 const config = read("../site-config.js");
 const assets = read("../docs/assets.md");
@@ -23,15 +25,8 @@ const buttons = [...html.matchAll(/<button\b([^>]*)>/g)].map((match) => match[1]
 assert.ok(buttons.length > 0, "Expected interactive buttons");
 assert.ok(buttons.every((attributes) => /\btype=/.test(attributes)), "Every button must declare a type");
 
-for (const id of ["work", "equipment", "soundmatch", "designer", "connection", "os", "contact"]) {
+for (const id of ["work", "equipment", "soundmatch", "os", "contact"]) {
   assert.ok(ids.includes(id), `Missing required section: ${id}`);
-}
-
-for (const field of ["venue", "audience", "width", "length", "environment", "use", "audienceLayout", "speakerApproach", "coverage", "sources", "zones", "challenges", "existing", "scope", "brands", "budget", "notes"]) {
-  assert.ok(html.includes(`name="${field}"`), `Missing PA Designer field: ${field}`);
-}
-for (const summaryField of ["data.audienceLayout", "data.speakerApproach", "data.zones", "data.scope", "data.brands"]) {
-  assert.ok(js.includes(summaryField), `PA Designer summary must include ${summaryField}`);
 }
 
 assert.ok(css.includes("prefers-reduced-motion"), "Reduced-motion styles are required");
@@ -75,13 +70,17 @@ assert.ok(pagesWorkflow.includes("branches:\n      - main") && !pagesWorkflow.in
 assert.ok(pagesWorkflow.includes("if: github.ref == \'refs/heads/main\'"), "Manual Pages dispatch must be guarded to main");
 assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), "Social sharing should use the large-image card");
 assert.ok(html.includes('property="og:image"'), "Open Graph image metadata is required");
-assert.ok(html.includes("SystemOS") && html.includes("QR-linked system record") && html.includes("CONCEPT ROADMAP"), "SystemOS must be presented as a roadmap, not a live service");
+assert.ok(html.includes("SystemOS") && html.includes('id="sys-project-form"') && html.includes('id="sys-export"'), "SystemOS project and backup controls must be present");
+assert.ok(systemos.includes("bzaudio.systemos.workspace.v1") && systemos.includes("sys-import") && systemos.includes("sys-service-form"), "SystemOS must persist locally and support import, export and service history");
+assert.ok(systemosCss.includes(".sys-layout") && systemosCss.includes("@media(max-width:600px)"), "SystemOS must have responsive workspace styling");
+assert.ok(!html.includes('id="designer"') && !html.includes('id="connection"'), "Duplicate PA Designer and unimplemented Connection Lab sections must be removed");
+assert.ok(!html.includes("IN DEVELOPMENT") && !html.includes("ROADMAP"), "The public site must not advertise unfinished modules as available");
 assert.ok(html.includes("SoundMatch") && html.includes("ADVANCED PRO"), "SoundMatch free and Pro positioning must be visible");
 assert.ok(favicon.includes("<svg") && favicon.includes("BZ"), "The BZaudio favicon must be a real SVG brand mark");
 assert.ok(!/href=["']#["']/.test(html), "Avoid placeholder links");
 
 const imageTags = [...html.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
-assert.equal(imageTags.length, 7, "All seven photographic areas must use real image elements");
+assert.equal(imageTags.length, 4, "All four photographic areas must use real image elements");
 assert.ok(imageTags.every((tag) => /\balt=["'][^"']+["']/.test(tag)), "Every image must have meaningful alternative text");
 assert.ok(imageTags.every((tag) => /\bdecoding=["']async["']/.test(tag)), "Images should decode asynchronously");
 const heroImage = imageTags.find((tag) => /class=["']hero-image["']/.test(tag));
