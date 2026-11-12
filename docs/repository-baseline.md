@@ -4,6 +4,7 @@
 **Repository:** `frvp6b8s5m-cloud/company-1`  
 **Working branch:** `feat/bzaudio-company-site`  
 **Default branch:** `main`  
+**Pre-documentation / pre-replacement branch head:** `1ad6d249f23720791e51e49957e10e0249ff840e`  
 **Scope:** Existing website repository only. Git history is preserved.
 
 ## Inspected branch contents
