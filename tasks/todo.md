@@ -258,7 +258,7 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 
 
 ## Deployment safety follow-up — 2026-11-12
-- The repository's GitHub Pages setting is configured for legacy branch publishing from feat/bzaudio-company-site. GitHub's built-in pages build and deployment workflow successfully published commit 474ae06e to https://frvp6b8s5m-cloud.github.io/company-1/.
+- The repository's GitHub Pages setting is configured for legacy branch publishing from feat/bzaudio-company-site. GitHub's built-in pages build and deployment workflow successfully published commit 45075965e21f155c48927b71795502ec6d749bbc to https://frvp6b8s5m-cloud.github.io/company-1/ (Pages run #7 passed).
 - Frozen the deployed source branch at commit 45075965e21f155c48927b71795502ec6d749bbc. Continued implementation is on feat/bzaudio-company-site-release, so subsequent work does not silently update the live site.
 - The custom Pages workflow is guarded to deploy main only, but it will not take over until the repository setting is switched to GitHub Actions. An automated settings update was attempted through a temporary workflow and returned HTTP 403 (Resource not accessible by integration); the temporary workflow was removed.
 - Required owner action before merge: Settings > Pages > Build and deployment > Source > GitHub Actions. No merge to main has been performed.
