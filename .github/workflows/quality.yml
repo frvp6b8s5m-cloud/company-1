@@ -44,7 +44,7 @@ jobs:
           node --check scripts/avantis-csv-smoke.mjs
           node --check apps/system-builder/app.js
           node --check apps/compatibility-center/app.js
-          node --check apps/show-workspace/app.js
+          node --check apps/show-workspace/app.js\n          node --check apps/fx-lab/app.js\n          node --check apps/fx-lab/fx-engine.js\n          node --check apps/bzaudio-id/app.js
           node --check scripts/ecosystem-app-smoke.mjs
           node --check scripts/systemos-app-smoke.mjs
       - name: Verify site structure and requirements
