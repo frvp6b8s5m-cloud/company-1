@@ -2,20 +2,22 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Pending plan approval. No implementation tasks are authorized yet.
+**Status:** Plan approved 2026-11-12. Phase 0 baseline documentation is underway.
 
 ## Phase 0 — Repository and release baseline
-- [ ] **Task 0.1: Record repository baseline**
+- [x] **Task 0.1: Record repository baseline**
   - Acceptance: branch, current commit, root files, Pages workflow and current preview/deployment behavior are documented; `main` is unchanged.
   - Verify: inspect GitHub branch and workflow; confirm feature branch head and deployment target.
   - Dependencies: None.
   - Files: `docs/repository-baseline.md`.
+  - Result: captured in `docs/repository-baseline.md`; Pages workflow currently deploys only on `main`, so a safe feature-branch preview must be planned.
   - Scope: S.
-- [ ] **Task 0.2: Establish asset rights and validation conventions**
+- [x] **Task 0.2: Establish asset rights and validation conventions**
   - Acceptance: asset provenance ledger and repeatable static validation commands are documented.
   - Verify: sample asset entry has source, license/permission, dimensions and optimization status; JS syntax check works.
   - Dependencies: 0.1.
   - Files: `docs/assets.md`, validation config/scripts as needed.
+  - Result: rights ledger and publishing rules captured in `docs/assets.md`; no production assets have been approved yet.
   - Scope: S.
 
 ## Checkpoint A — Baseline
@@ -93,14 +95,14 @@
 - [ ] No unsupported commerce claims.
 
 ## Phase 4 — PA Designer
-- [ ] **Task 4.1: Build guided PA project brief**
-  - Acceptance: user can enter venue/application, room details, audience/use, goals and constraints.
+- [ ] **Task 4.1: Build guided PA project brief (approved scope)**
+  - Acceptance: user can enter venue/application, room dimensions, audience/use, coverage goals, system priorities, constraints and budget; receives an editable preliminary project summary.
   - Verify: step validation, back/next, reset and summary tests.
   - Dependencies: Phase 2.
   - Files: designer UI, styles, logic and tests.
   - Scope: M.
 - [ ] **Task 4.2: Add transparent project summary**
-  - Acceptance: summary clearly labels preliminary intake and avoids unvalidated acoustic predictions.
+  - Acceptance: summary is useful for quote preparation, clearly labels preliminary planning and avoids unvalidated acoustic predictions. Validated acoustic calculations are a separate later gate.
   - Verify: output review for missing/invalid data and disclaimer visibility.
   - Dependencies: 4.1.
   - Files: designer summary and tests.
