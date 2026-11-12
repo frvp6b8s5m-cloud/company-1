@@ -5,14 +5,14 @@ import { extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
-const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
+const root=resolve(fileURLToPath(new URL("..",import.meta.url)));\nfunction makeWav(){const samples=4410,buffer=Buffer.alloc(44+samples*2);buffer.write("RIFF",0);buffer.writeUInt32LE(36+samples*2,4);buffer.write("WAVE",8);buffer.write("fmt ",12);buffer.writeUInt32LE(16,16);buffer.writeUInt16LE(1,20);buffer.writeUInt16LE(1,22);buffer.writeUInt32LE(44100,24);buffer.writeUInt32LE(88200,28);buffer.writeUInt16LE(2,32);buffer.writeUInt16LE(16,34);buffer.write("data",36);buffer.writeUInt32LE(samples*2,40);for(let i=0;i<samples;i++)buffer.writeInt16LE(Math.round(Math.sin(2*Math.PI*440*i/44100)*5000),44+i*2);return buffer;}
 const mime={".html":"text/html; charset=utf-8",".css":"text/css; charset=utf-8",".js":"text/javascript; charset=utf-8"};
 const server=createServer(async(req,res)=>{try{let path=decodeURIComponent(new URL(req.url,"http://localhost").pathname);let relative=path==="/"?"index.html":path.slice(1);if(relative.endsWith("/"))relative+="index.html";const file=resolve(root,relative);if(file!==root&&!file.startsWith(root+sep))throw new Error("bad path");const body=await readFile(file);res.writeHead(200,{"content-type":mime[extname(file)]||"application/octet-stream"});res.end(body);}catch{res.writeHead(404);res.end("Not found");}});
-const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
+const browser=await chromium.launch({headless:true,args:["--no-sandbox","--use-fake-device-for-media-stream","--use-fake-ui-for-media-stream"]});
 try{
  await new Promise(resolveListen=>server.listen(0,"127.0.0.1",resolveListen));
  const origin="http://127.0.0.1:"+server.address().port;
- const context=await browser.newContext({viewport:{width:1280,height:900}});
+ const context=await browser.newContext({viewport:{width:1280,height:900}});\n await context.grantPermissions(["microphone"],{origin});
  const page=await context.newPage();const errors=[];page.on("pageerror",e=>errors.push(e.message));
  const response=await page.goto(origin+"/apps/fx-lab/",{waitUntil:"domcontentloaded"});
  assert.equal(response.status(),200,"FX Lab loads");
