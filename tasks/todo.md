@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Plan approved 2026-11-12. Phase 0 is complete; Phase 1 implementation is underway.
+**Status:** Plan approved 2026-11-12. Phase 0 is complete; Phase 1 first implementation pass is in place and awaiting browser/device review.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -48,8 +48,9 @@
 ## Phase 1 progress note (2026-11-12)
 - Initial cinematic photographic homepage, responsive navigation, service sections, equipment quote categories, Connection Lab status, BZaudio OS roadmap and contact flow have been implemented on the feature branch.
 - Guided PA Designer wizard has been included with three validated intake steps, a reviewable project brief, copy action and quote-request handoff.
-- Static checks currently pass: JavaScript syntax, unique HTML IDs, internal anchor targets, explicit button types, balanced CSS braces, responsive breakpoint and reduced-motion rule.
-- Browser/device interaction, screen-reader and live image delivery checks remain outstanding; do not mark Phase 1 complete until those checks pass.
+- Static source checks pass in the current review: JavaScript syntax, unique HTML IDs, internal anchor targets, explicit button types, balanced CSS braces, responsive breakpoint, reduced-motion rule, configurable inquiry email, PA Designer field/summary coverage, and asset-ledger references.
+- Added `scripts/verify-site.mjs` and a feature-branch GitHub Actions quality workflow. No CI status has been returned yet, so the workflow result is not claimed as passing.
+- Browser/device interaction, screen-reader, actual CDN image delivery, local asset optimization and performance checks remain outstanding; do not mark Phase 1 complete until those checks pass.
 
 ## Checkpoint B — Brand experience
 - [ ] Homepage and navigation work at mobile/tablet/desktop.
