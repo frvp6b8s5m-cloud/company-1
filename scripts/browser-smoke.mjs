@@ -214,14 +214,17 @@ Input Channel,VSC Source no.,VSC Source Type
 1,1,USB
 `;
   await appPage.locator("#import-show").setInputFiles({ name: "avantis-export.csv", mimeType: "text/csv", buffer: Buffer.from(avantisFixture) });
+  await appPage.waitForFunction(() => document.querySelector("#feedback")?.textContent.includes("Avantis CSV imported"));
   assert.ok((await appPage.locator("#feedback").innerText()).includes("Avantis CSV imported"), "SystemOS imports documented Avantis CSV subset");
   assert.ok((await appPage.locator("#show-meta").innerText()).includes("Avantis"), "SystemOS identifies the source console profile");
 
   const planPayload = { format: "bzaudio-system-plan", schemaVersion: 1, items: [{ category: "Mixing console", name: "User-entered console", quantity: 1 }] };
   await appPage.locator("#import-show").setInputFiles({ name: "system-plan.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(planPayload)) });
+  await appPage.waitForFunction(() => document.querySelector("#feedback")?.textContent.includes("System Builder plan imported"));
   assert.ok((await appPage.locator("#feedback").innerText()).includes("System Builder plan imported"), "SystemOS accepts System Builder interchange files");
   const showPayload = { format: "bzaudio-show-sheet", schemaVersion: 1, show: "Friday Festival", venue: "Main Stage", date: "2026-11-12", stage: "A", inputs: [{ source: "Lead vocal", mic: "Dynamic", notes: "Boom stand" }], notes: "Doors at 6" };
   await appPage.locator("#import-show").setInputFiles({ name: "show-sheet.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify(showPayload)) });
+  await appPage.waitForFunction(() => document.querySelector("#feedback")?.textContent.includes("Show Workspace sheet imported"));
   assert.ok((await appPage.locator("#feedback").innerText()).includes("Show Workspace sheet imported"), "SystemOS accepts Show Workspace interchange files");
   assert.equal(await appPage.locator("#show-name").innerText(), "Friday Festival", "Show Workspace metadata carries into SystemOS");
 
