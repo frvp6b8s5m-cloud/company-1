@@ -73,10 +73,33 @@
         const warningCount = parsed.diagnostics.filter(d => d.severity === "warning").length;
         announce("Avantis CSV imported: " + parsed.show.channels.length + " channel rows, " + parsed.show.routing.length + " output routes and " + parsed.show.io.length + " VSC rows. Partial data only; scenes, processing and native show writing are not included." + (warningCount ? " " + warningCount + " warning(s)." : ""));
       } else {
-        const imported = core.parseShow(text);
-        activeShow = imported;
-        render();
-        announce("BZaudio neutral show package imported and validated.");
+        let payload;
+        try { payload = JSON.parse(text); } catch { throw new Error("File is not valid JSON."); }
+        if (payload && payload.format === core.format) {
+          activeShow = core.parseShow(text);
+          render();
+          announce("BZaudio neutral show package imported and validated.");
+        } else if (payload && payload.format === "bzaudio-system-plan" && payload.schemaVersion === 1 && Array.isArray(payload.items)) {
+          const nextShow = core.createShow({ name: payload.name || "Imported system plan" });
+          nextShow.extensions["bzaudio.system-plan.v1"] = payload;
+          activeShow = nextShow;
+          render();
+          announce("System Builder plan imported and preserved as a linked project extension. Equipment is not yet treated as verified console routing.");
+        } else if (payload && payload.format === "bzaudio-show-sheet" && payload.schemaVersion === 1 && Array.isArray(payload.inputs)) {
+          const nextShow = core.createShow({ name: payload.show || "Imported show sheet", venue: payload.venue || "", notes: payload.notes || "" });
+          nextShow.channels = payload.inputs.map((input, index) => ({
+            id: "show-sheet-input-" + (index + 1),
+            label: String(input.source || "Unnamed input"),
+            type: "input",
+            extensions: { "bzaudio.show-sheet.v1": { microphone: input.mic || "", notes: input.notes || "" } }
+          }));
+          nextShow.extensions["bzaudio.show-sheet.v1"] = payload;
+          activeShow = nextShow;
+          render();
+          announce("Show Workspace sheet imported: " + nextShow.channels.length + " input-list entries added to the neutral show.");
+        } else {
+          throw new Error("Unsupported JSON file. Import a BZaudio show, System Builder plan or Show Workspace sheet.");
+        }
       }
     } catch (error) {
       announce("Import rejected: " + error.message, true);
