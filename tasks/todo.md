@@ -49,8 +49,10 @@
 - Initial cinematic photographic homepage, responsive navigation, service sections, equipment quote categories, Connection Lab status, BZaudio OS roadmap and contact flow have been implemented on the feature branch.
 - Guided PA Designer wizard has been included with three validated intake steps, a reviewable project brief, copy action and quote-request handoff.
 - Static source checks pass in the current review: JavaScript syntax, unique HTML IDs, internal anchor targets, explicit button types, balanced CSS braces, responsive breakpoint, reduced-motion rule, configurable inquiry email, PA Designer field/summary coverage, and asset-ledger references.
-- Added `scripts/verify-site.mjs` and a feature-branch GitHub Actions quality workflow. GitHub Actions run #14 passed on the updated navigation/accessibility regression checks.
-- Corrected mobile navigation's initial accessibility state and limited focus restoration to the open mobile menu; added regression assertions and confirmed GitHub Actions run #14 passed. Browser/device interaction, screen-reader, actual CDN image delivery, local asset optimization and performance checks remain outstanding; do not mark Phase 1 complete until those checks pass.
+- Added `scripts/verify-site.mjs` and a feature-branch GitHub Actions quality workflow. GitHub Actions runs #13–#15 passed for the navigation/accessibility changes and documentation.
+- Corrected mobile navigation's initial accessibility state and limited focus restoration to the open mobile menu; regression assertions passed in GitHub Actions.
+- Added `scripts/browser-smoke.mjs` using Playwright/Chromium to exercise mobile menu state and focus restoration, wizard validation and progression, project brief generation, quote handoff and desktop navigation. CI now installs Chromium and runs this browser suite; its first run is pending.
+- Browser/device review beyond the automated Chromium viewport checks, screen-reader review, actual CDN image delivery, local asset optimization and performance checks remain outstanding; do not mark Phase 1 complete until those checks pass.
 
 ## Checkpoint B — Brand experience
 - [ ] Homepage and navigation work at mobile/tablet/desktop.
