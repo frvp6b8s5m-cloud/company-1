@@ -50,8 +50,8 @@
 - Guided PA Designer wizard has been included with three validated intake steps, a reviewable project brief, copy action and quote-request handoff.
 - Static source checks pass in the current review: JavaScript syntax, unique HTML IDs, internal anchor targets, explicit button types, balanced CSS braces, responsive breakpoint, reduced-motion rule, configurable inquiry email, PA Designer field/summary coverage, and asset-ledger references.
 - Added `scripts/verify-site.mjs` and a feature-branch GitHub Actions quality workflow. GitHub Actions runs #13–#15 passed for the navigation/accessibility changes and documentation.
-- Corrected mobile navigation's initial accessibility state and limited focus restoration to the open mobile menu; regression assertions passed in GitHub Actions.
-- Added `scripts/browser-smoke.mjs` using Playwright/Chromium to exercise mobile menu state and focus restoration, wizard validation and progression, project brief generation, quote handoff and desktop navigation. CI now installs Chromium and runs this browser suite; its first run is pending.
+- Corrected mobile navigation's initial accessibility state. A Chromium run exposed that native hash navigation could override focus restoration; the link handler now updates the hash/scroll explicitly and restores focus without jumping the viewport. The revised behavior is awaiting CI confirmation.
+- Added `scripts/browser-smoke.mjs` using Playwright/Chromium to exercise mobile menu state and focus restoration, wizard validation and progression, project brief generation, quote handoff and desktop navigation. CI pins Ubuntu 24.04 for Playwright compatibility and runs this browser suite.
 - Browser/device review beyond the automated Chromium viewport checks, screen-reader review, actual CDN image delivery, local asset optimization and performance checks remain outstanding; do not mark Phase 1 complete until those checks pass.
 
 ## Checkpoint B — Brand experience
