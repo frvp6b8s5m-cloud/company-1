@@ -27,6 +27,7 @@ jobs:
         run: |
           node --check script.js
           node --check soundmatch.js
+          node --check systemos.js
           node --check site-config.js
           node --check scripts/verify-site.mjs
           node --check scripts/accessibility-smoke.mjs
