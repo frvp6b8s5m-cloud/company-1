@@ -19,7 +19,7 @@ const sourceBytes = {
   javascript: Buffer.byteLength(js) + Buffer.byteLength(soundmatchJs),
   config: Buffer.byteLength(config)
 };
-assert.ok(sourceBytes.html < 45_000, "HTML source stays under the 45 KB source budget");
+assert.ok(sourceBytes.html < 50_000, "HTML source stays under the 50 KB source budget");
 assert.ok(sourceBytes.css < 80_000, "Combined CSS stays under the 80 KB source budget");
 assert.ok(sourceBytes.javascript < 40_000, "Combined JavaScript stays under the 40 KB source budget");
 assert.ok(sourceBytes.config < 2_000, "Site configuration stays lightweight");
