@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../../packages/design-system/tokens.css">
   <link rel="stylesheet" href="systemos.css">
   <script src="../../systemos-core.js" defer></script>
+  <script src="../../adapters/allen-heath/avantis-csv.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -27,12 +28,12 @@
     <section class="section" id="shows">
       <div class="section-head"><div><p class="eyebrow">YOUR PRODUCTION DATA</p><h2>Show workspace</h2></div><button class="primary" id="new-show" type="button">＋ New show</button></div>
       <div class="show-card"><div class="show-icon">S</div><div class="show-copy"><strong id="show-name">Untitled show</strong><span id="show-meta">No venue assigned · Neutral BZaudio show package</span></div><span class="state">LOCAL DRAFT</span></div>
-      <div class="actions"><button class="secondary" id="export-show" type="button">Export show package ↗</button><label class="secondary file-button">Import show package<input id="import-show" type="file" accept=".json,application/json"></label></div>
+      <div class="actions"><button class="secondary" id="export-show" type="button">Export show package ↗</button><label class="secondary file-button">Import BZaudio show or Avantis CSV<input id="import-show" type="file" accept=".json,.csv,application/json,text/csv"></label></div>
       <p class="feedback" id="feedback" role="status" aria-live="polite">Your work stays in this browser until you export a file.</p>
     </section>
     <section class="section transfer" id="transfer">
       <div class="section-head"><div><p class="eyebrow">IMPORT → VALIDATE → MAP → EXPORT</p><h2>Transfer Studio</h2></div><span class="pill">FOUNDATION PHASE</span></div>
-      <p class="section-intro">A safe transfer workflow starts with understanding exactly what a source file contains and what the destination can accept. Vendor-native adapters are not enabled yet.</p>
+      <p class="section-intro">A safe transfer workflow starts with understanding exactly what a source file contains and what the destination can accept. A first read-only Avantis CSV adapter is available for documented channel, output-patch and Virtual Soundcheck fields. Full show translation and native writers are not enabled.</p>
       <div class="pipeline"><div><b>01</b><strong>Identify</strong><span>Recognize file and model</span></div><div><b>02</b><strong>Normalize</strong><span>Map to neutral show data</span></div><div><b>03</b><strong>Validate</strong><span>Check every field</span></div><div><b>04</b><strong>Export</strong><span>Only supported targets</span></div></div>
     </section>
     <section class="section" id="devices">
