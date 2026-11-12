@@ -39,7 +39,8 @@ try {
   await menu.click();
   assert.equal(await menu.getAttribute("aria-expanded"), "true", "Menu trigger exposes the expanded state");
   assert.equal(await nav.getAttribute("aria-hidden"), "false", "Open navigation is exposed to assistive technology");
-  await page.getByRole("link", { name: "PA Designer" }).click();
+  await page.locator("#primary-nav a[href=\"#designer\"]").click();
+  await page.waitForFunction(() => document.querySelector("#primary-nav")?.getAttribute("aria-hidden") === "true", null, { timeout: 1500 });
   assert.equal(await nav.getAttribute("aria-hidden"), "true", "Selecting a mobile link closes the menu");
   assert.equal(await nav.evaluate((element) => element.inert), true, "Closed navigation is removed from tab order");
   assert.equal(await menu.evaluate((element) => element === document.activeElement), true, "Focus returns to the mobile menu trigger");
