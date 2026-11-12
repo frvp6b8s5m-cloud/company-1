@@ -10,6 +10,7 @@
   "scripts": {
     "test:systemos": "node scripts/systemos-core-smoke.mjs",
     "verify:site": "node scripts/verify-site.mjs",
-    "check:systemos-app": "node --check apps/systemos/app.js && node scripts/systemos-app-smoke.mjs && node scripts/avantis-csv-smoke.mjs"
+    "check:systemos-app": "node --check apps/systemos/app.js && node --check adapters/allen-heath/avantis-csv.js && node scripts/systemos-app-smoke.mjs && node scripts/avantis-csv-smoke.mjs",
+    "check:ecosystem-apps": "node --check apps/system-builder/app.js && node --check apps/compatibility-center/app.js && node --check apps/show-workspace/app.js && node scripts/ecosystem-app-smoke.mjs"
   }
 }
