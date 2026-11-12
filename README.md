@@ -18,7 +18,7 @@ Open http://localhost:4173.
 
 ### Quality checks
 
-The GitHub Actions quality workflow runs JavaScript syntax and static structure checks, then installs Playwright/Chromium and exercises the responsive navigation, PA Designer wizard and quote-request handoff in a headless browser.
+The GitHub Actions quality workflow runs JavaScript syntax and static structure checks, then installs Playwright/Chromium and exercises the responsive navigation, PA Designer wizard and quote-request handoff in a headless browser. The latest fully green run checked browser behavior, strict axe-core accessibility, performance/CDN responses and responsive screenshot generation.
 
 ### Configuration
 
@@ -53,4 +53,6 @@ See [docs/assets.md](docs/assets.md) for image sources, licensing notes and prod
 - [Repository baseline](docs/repository-baseline.md)
 - [Connection Lab compatibility assessment](docs/connection-lab-compatibility.md)
 
-The GitHub Pages workflow currently deploys from `main`; work on `feat/bzaudio-company-site` is not automatically published. Production release requires a separate approval.
+### GitHub Pages preview
+
+The GitHub Pages workflow publishes pushes from `feat/bzaudio-company-site` as well as `main`. The feature-branch publication is a preview using this repository's single Pages site address; it is not an isolated second Pages environment. The preview deployment must be confirmed in the Pages Actions run before it is described as live. The feature branch remains separate from `main`; production release still requires its own review and approval.
