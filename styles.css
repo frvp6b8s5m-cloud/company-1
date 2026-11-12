@@ -22,3 +22,13 @@
 .family-grid small{font:8px var(--mono);letter-spacing:.5px;color:#777e64}
 .matrix-caveat{margin-top:14px!important;font:9px/1.6 var(--mono)!important;color:#858b7c!important}
 @media(max-width:680px){.family-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media(max-width:680px){
+  .hero-image{background-image:url("https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1200")}
+  .photo-design{background-image:url("https://images.pexels.com/photos/34585137/pexels-photo-34585137.jpeg?auto=compress&cs=tinysrgb&w=900")}
+  .photo-engineer{background-image:url("https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=900")}
+  .photo-install{background-image:url("https://images.pexels.com/photos/34594386/pexels-photo-34594386.jpeg?auto=compress&cs=tinysrgb&w=900")}
+  .designer-photo{background-image:url("https://images.pexels.com/photos/34585137/pexels-photo-34585137.jpeg?auto=compress&cs=tinysrgb&w=1000")}
+  .os-image{background-image:url("https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1100")}
+  .console-detail{background-image:url("https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=900")}
+}
