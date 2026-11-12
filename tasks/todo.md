@@ -2,7 +2,7 @@
 
 **Spec:** [SPEC.md](../SPEC.md)  
 **Plan:** [plan.md](plan.md)  
-**Status:** Implementation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks passed through run #82 after responsive image refactoring. SoundMatch, SystemOS roadmap and the industrial theme are implemented. Latest complete CI run #160 passed static verification, Chromium interaction tests, strict axe-core WCAG 2.2 AA, responsive image/CDN checks and screenshot capture. Manual/device, asset-rights, contact-recipient and production release gates remain open.
+**Status:** Universal SystemOS architecture approved 2026-11-12. Existing browser-local workspace is a prototype, not the final OS. See [universal architecture](../docs/systemos-universal-architecture.md). Previous website QA results remain valid for the prototype only; they do not validate mixer interoperability or live control.ntation authorized 2026-11-12. Phase 0 is complete. The current site implements the responsive brand shell, cinematic photo homepage, service and quote categories, guided PA Designer, informational Connection Lab compatibility matrix, BZaudio OS roadmap and email-draft inquiry flow. Automated checks passed through run #82 after responsive image refactoring. SoundMatch, SystemOS roadmap and the industrial theme are implemented. Latest complete CI run #160 passed static verification, Chromium interaction tests, strict axe-core WCAG 2.2 AA, responsive image/CDN checks and screenshot capture. Manual/device, asset-rights, contact-recipient and production release gates remain open.
 
 ## Phase 0 — Repository and release baseline
 - [x] **Task 0.1: Record repository baseline**
@@ -308,3 +308,21 @@ The earlier BZaudio planning included SoundMatch as a distinct feature. It was a
 - Latest QA run #206: static checks, Chromium browser smoke tests, and WCAG audit passed. The performance job failed only because the HTML source exceeded the previous 45 KB budget by a small amount; CDN checks and screenshot capture were not reached/completed in that run.
 - Increased the HTML source budget to 50 KB to accommodate the integrated SystemOS markup without weakening the separate CSS, JavaScript, or configuration budgets. Re-run the full quality workflow on the new commit before marking CI green.
 - Manual keyboard/screen-reader and physical-device checks, final image-rights review, inquiry-recipient configuration, and production deployment remain outstanding. Do not merge or claim production release until these gates are resolved.
+
+
+## Universal SystemOS — new approved milestone (2026-11-12)
+
+- [x] Record universal mixing-platform architecture and capability boundaries in docs.
+- [x] Mark the existing browser-local workspace as a prototype/subsystem, not the final product.
+- [ ] Define a versioned, machine-readable neutral show schema with channel, bus, routing, processing, scene, cue, FX, I/O and vendor-extension entities.
+- [ ] Define adapter contract, model capability manifest and compatibility registry.
+- [ ] Implement robust local show-package import/export, migrations, version history and recovery.
+- [ ] Build Transfer Studio: identify source, parse, normalize, map, validate, preview, export and verify.
+- [ ] Add semantic transfer reports that identify exact, transformed, user-decision, unsupported and unverified data.
+- [ ] Research Yamaha and Allen & Heath published formats, official SDKs and licensing constraints; select first exact model/file pair only after evidence review.
+- [ ] Implement first source parser with real permitted fixtures and malformed-file tests.
+- [ ] Implement destination exporter and semantic round-trip tests; verify the reverse direction separately.
+- [ ] Expand to additional models/families only with model-specific evidence.
+- [ ] Keep live monitoring/control disabled until real hardware protocols, browser/bridge architecture, safety permissions and physical test procedures are validated.
+
+**Acceptance rule:** universal architecture is the goal; actual compatibility is always an explicit, tested matrix. Never report a simulated connection, fabricated meter value, unsupported export, or lossy conversion as successful.
