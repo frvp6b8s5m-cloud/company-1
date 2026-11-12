@@ -125,7 +125,6 @@ A single account may eventually provide access across products. This is a platfo
 - [x] Add test tone, local audio-file playback and permission-based microphone input.
 - [ ] Add DSP unit/browser tests, clipping/latency review and accessible control refinements.
 - [ ] Design and threat-model secure identity/backend architecture.
-- [ ] Select and threat-model identity/backend architecture.
 - [ ] Implement authentication, authorization, account recovery and consent.
 - [ ] Configure and verify hosting, DNS and HTTPS per subdomain.
 - [ ] Production smoke tests, monitoring, backups and rollback for each app.
