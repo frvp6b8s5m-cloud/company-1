@@ -66,3 +66,6 @@
 }
 
 @media(max-width:680px){.nav{z-index:60}}
+
+/* The header blur creates a containing block for fixed descendants; keep the mobile overlay viewport-fixed. */
+.site-header{backdrop-filter:none;background:var(--paper-light)}
