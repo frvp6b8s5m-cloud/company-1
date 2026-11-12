@@ -66,6 +66,8 @@ for (const photoUrl of photoUrls) {
 assert.ok(html.includes('rel="icon" href="favicon.svg" type="image/svg+xml"'), "A scalable BZaudio favicon must be linked");
 assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), "Social sharing should use the large-image card");
 assert.ok(html.includes('property="og:image"'), "Open Graph image metadata is required");
+assert.ok(html.includes("SystemOS") && html.includes("QR-linked system record") && html.includes("CONCEPT ROADMAP"), "SystemOS must be presented as a roadmap, not a live service");
+assert.ok(html.includes("SoundMatch") && html.includes("ADVANCED PRO"), "SoundMatch free and Pro positioning must be visible");
 assert.ok(favicon.includes("<svg") && favicon.includes("BZ"), "The BZaudio favicon must be a real SVG brand mark");
 assert.ok(!/href=["']#["']/.test(html), "Avoid placeholder links");
 
