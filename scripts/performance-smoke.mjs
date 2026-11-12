@@ -8,11 +8,14 @@ import { chromium } from "playwright";
 const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const html = await readFile(resolve(root, "index.html"), "utf8");
 const css = await readFile(resolve(root, "styles.css"), "utf8");
+const soundmatchCss = await readFile(resolve(root, "soundmatch.css"), "utf8");
+const experienceCss = await readFile(resolve(root, "experience.css"), "utf8");
 const js = await readFile(resolve(root, "script.js"), "utf8");
+const soundmatchJs = await readFile(resolve(root, "soundmatch.js"), "utf8");
 const config = await readFile(resolve(root, "site-config.js"), "utf8");
 assert.ok(html.length < 45_000, "HTML source stays under the 30 KB source budget");
-assert.ok(css.length < 50_000, "CSS source stays under the 50 KB source budget");
-assert.ok(js.length < 30_000, "JavaScript source stays under the 30 KB source budget");
+assert.ok(css.length + soundmatchCss.length + experienceCss.length < 80_000, "Combined CSS stays under the 80 KB source budget");
+assert.ok(js.length + soundmatchJs.length < 40_000, "Combined JavaScript stays under the 40 KB source budget");
 assert.ok(config.length < 2_000, "Site configuration stays lightweight");
 
 const desktopHero = "https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=2200";
