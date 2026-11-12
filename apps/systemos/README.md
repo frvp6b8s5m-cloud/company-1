@@ -3,23 +3,25 @@
 **Hostname target:** `os.bzaudio.com`  
 **Status:** browser application scaffold; not yet deployed to a subdomain.
 
-SystemOS is the flagship browser-first professional audio workspace. Its core is manufacturer-neutral; manufacturer/model/firmware adapters will provide explicit capabilities and evidence.
+SystemOS is the flagship browser-first professional audio workspace. Its core is manufacturer-neutral; manufacturer/model/firmware adapters provide explicit capabilities and evidence.
 
-Read [the universal architecture](../../docs/systemos-universal-architecture.md) and [the subdomain deployment plan](../../docs/subdomain-architecture.md).
+Read [the universal architecture](../../docs/systemos-universal-architecture.md), [format research](../../docs/systemos-format-research.md) and [the subdomain deployment plan](../../docs/subdomain-architecture.md).
 
 ## Current working features
 
-- Create a neutral BZaudio show package with a show name and venue.
-- Export the validated show as a local JSON file.
-- Import and validate a BZaudio JSON show package in the browser.
-- Reject malformed or oversized imports.
-- Show an honest adapter-availability state for Yamaha and Allen & Heath.
+- Create, validate, import and export neutral BZaudio show packages locally.
+- Import a documented subset of Allen & Heath Avantis sectioned CSV: channel records, output patch rows and Virtual Soundcheck rows.
+- Validate section names, columns and selected enumerated/range values.
+- Preserve the source Avantis CSV sections as vendor extensions in the neutral package.
+- Reject malformed and oversized imports.
 
-## Not implemented yet
+## Explicit limitations
 
-This scaffold does not parse vendor-native Yamaha or Allen & Heath files, translate between manufacturers, connect to consoles, read live meters, or control hardware. The next engineering phase is model/firmware research, real sample-file fixtures and adapter tests. No device is advertised as supported until those checks pass.
+The Avantis CSV reader is a **partial, read-only importer**, not a complete Avantis show adapter. It does not import scenes, processing, all console state or all hardware settings. No Avantis CSV writer is enabled because the Version-section/export details still require real export fixtures and editor/console round-trip tests.
 
-File operations currently run locally in the browser. There is no cloud account, remote storage, or cross-subdomain sign-in in this phase.
+No Yamaha parser/writer is enabled yet. Yamaha CL/QL Editor CSV support is documented, but its exact file names, headers and conventions need genuine export fixtures. There is no cross-manufacturer transfer, console connection, live metering or hardware control yet.
+
+File operations currently run locally in the browser. There is no cloud account, remote storage or cross-subdomain sign-in in this phase.
 
 ## Local preview
 
