@@ -26,10 +26,13 @@ const browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] }
 try {
   await new Promise((resolveListen) => server.listen(0, "127.0.0.1", resolveListen));
   const address = server.address();
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const origin = `http://127.0.0.1:${address.port}`;
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin });
+  const page = await context.newPage();
   const pageErrors = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
-  const response = await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "domcontentloaded" });
+  const response = await page.goto(`${origin}/`, { waitUntil: "domcontentloaded" });
   assert.equal(response.status(), 200, "Homepage must load successfully");
 
   const nav = page.locator("#primary-nav");
@@ -133,12 +136,18 @@ try {
   assert.equal(await page.locator("#sm-review").isVisible(), true, "SoundMatch produces a system brief after six stages");
   assert.ok((await page.locator("#sm-brief").innerText()).includes("BZAUDIO SOUNDMATCH"), "SoundMatch brief identifies the tool");
   assert.ok((await page.locator("#sm-brief").innerText()).includes("32"), "SoundMatch brief includes mixer input requirements");
+  await page.locator("#sm-copy").click();
+  const copiedSoundMatch = await page.evaluate(() => navigator.clipboard.readText());
+  assert.ok(copiedSoundMatch.includes("BZAUDIO SOUNDMATCH"), "SoundMatch copies the generated system brief");
   await page.locator("#sm-tier").selectOption("recommended");
   await page.locator("#sm-category").selectOption({ label: "Mixing console" });
   await page.locator("#sm-item-name").fill("Digital mixing console");
   await page.locator("#sm-add-item").click();
   assert.ok((await page.locator("#sm-items-recommended").innerText()).includes("Digital mixing console"), "Equipment can be added to a comparison tier");
   assert.ok((await page.locator("#sm-items-recommended").innerText()).includes("UNVERIFIED / REVIEW REQUIRED"), "Unverified component status is explicit");
+  await page.locator("#sm-items-recommended .sm-item-qty").fill("3");
+  await page.locator("#sm-items-recommended .sm-item-qty").dispatchEvent("change");
+  assert.ok((await page.locator("#sm-brief").innerText()).includes("3 × Mixing console — Digital mixing console"), "SoundMatch allows component quantity edits");
   await page.locator("#sm-design-name").fill("Auditorium system");
   await page.locator("#sm-save").click();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "SoundMatch saves multiple local designs");
@@ -148,6 +157,7 @@ try {
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "Saved SoundMatch designs persist after reload");
   await page.locator("#sm-load").click();
   assert.equal(await page.locator('[name="sm-venue"]').inputValue(), "House of worship", "Saved SoundMatch design reloads its answers");
+  assert.equal(await page.locator("#sm-items-recommended .sm-item-qty").inputValue(), "3", "Saved SoundMatch design reloads component quantities");
   await page.locator("#sm-delete").click();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "Empty saved-design state remains available after deletion");
 
