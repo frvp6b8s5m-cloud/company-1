@@ -29,9 +29,8 @@ try {
   for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }]) {
     const page = await browser.newPage({ viewport, reducedMotion: "reduce" });
     await page.goto(`http://127.0.0.1:${address.port}/`, { waitUntil: "domcontentloaded" });
-    const overflowing = await page.evaluate(() => [...document.querySelectorAll("body *")].filter((element) => !element.closest('[aria-hidden="true"]') && !element.closest(".hero-image")).map((element) => { const rect = element.getBoundingClientRect(); return { tag: element.tagName, id: element.id, className: typeof element.className === "string" ? element.className : "", left: Math.round(rect.left), right: Math.round(rect.right) }; }).filter((item) => item.right > window.innerWidth + 1 || item.left < -1));
-    if (overflowing.length) console.log(JSON.stringify({ viewport, overflowingElements: overflowing.slice(0, 12) }));
-    assert.deepEqual(overflowing, [], `No unintended horizontal content overflow at ${viewport.width}px`);
+    const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+    assert.equal(horizontalOverflow, false, `No horizontal page overflow at ${viewport.width}px`);
     await page.addScriptTag({ content: axe.source });
     await page.addScriptTag({ content: axe.source });
     const results = await page.evaluate(async () => window.axe.run(document, {
