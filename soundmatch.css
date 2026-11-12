@@ -65,3 +65,5 @@
 @media(prefers-reduced-motion:reduce){.sm-progress span{transition:none}}
 
 .sm-unverified{display:block;flex:0 0 auto;font:8px var(--mono);letter-spacing:.6px;color:#9a4526;background:#f2d8c9;padding:4px 5px}
+
+.sm-item-qty{width:52px;min-width:52px;min-height:32px;border:1px solid #aab0a4;background:#fff;color:#171916;padding:4px 6px;font-size:10px}
