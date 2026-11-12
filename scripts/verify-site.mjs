@@ -42,6 +42,7 @@ assert.ok(js.includes("const restoreFocus = isMobileNav()"), "Navigation focus r
 assert.ok(js.includes("menuButton.focus({ preventScroll: true })"), "Closing the mobile menu must restore focus without overriding the anchor scroll position");
 assert.ok(js.includes("textContent = brief"), "User-provided project data must be rendered as text");
 assert.ok(config.includes("inquiryEmail"), "Inquiry recipient must be configurable");
+assert.ok(html.includes('action="mailto:" method="post" enctype="text/plain"'), "The contact form must have a non-JavaScript mailto fallback");
 assert.ok(html.includes('src="soundmatch.js"'), "SoundMatch behavior must be loaded");
 assert.equal([...html.matchAll(/class="sm-step"/g)].length, 6, "SoundMatch must have six guided stages");
 for (const field of ["venue", "audience", "environment", "application", "coverage", "zones", "inputCount", "mixer", "stageIO", "speakerApproach", "subCount", "monitorCount", "infrastructure", "expansion", "existing", "scope", "budget", "timeline", "notes"]) {
