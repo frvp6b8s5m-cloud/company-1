@@ -49,3 +49,8 @@
 - Documents are currently reference links and notes, not uploaded binary file storage.
 - The browser workspace is a functional local-first planning and service-record tool; it is not the dedicated-device operating system, Windows/macOS desktop application or touchscreen controller.
 
+
+
+## SystemOS engineering modules addendum — 2026-11-12
+
+The local workspace now supports structured asset specifications, patchbay maps, network endpoint records and commissioning evidence. All records remain in localStorage and in user-exported JSON backups. These modules do not execute network probes, discover devices, transmit console commands, measure SPL/frequency response/latency, validate electrical safety or certify work. Commissioning outcomes are user-entered records. IP/MAC/network data are stored as documentation and are not transmitted to a service. Imported records remain untrusted input and are rendered with textContent.
