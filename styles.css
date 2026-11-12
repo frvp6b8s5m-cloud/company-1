@@ -32,3 +32,18 @@
   .os-image{background-image:url("https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=1100")}
   .console-detail{background-image:url("https://images.pexels.com/photos/34612567/pexels-photo-34612567.jpeg?auto=compress&cs=tinysrgb&w=900")}
 }
+
+
+/* WCAG AA contrast refinements: preserve the olive palette with darker text accents. */
+:root{--muted:#4e544b}
+.nav{color:#4e544b}
+.section-meta{color:#4e544b}
+.section-meta span:first-child{color:#56651f}
+.intro h2 em,.section-heading h2 em,.equipment-heading h2 em,.connection-grid h2 em,.contact-intro h2 em{color:#56651f}
+.intro-copy p:not(.large-copy),.section-heading>p,.equipment-heading>p,.service-body p,.equip-no,.equip-detail,.quote-note,.review-heading p,.connection-copy,.compatibility-note>span,.compatibility-note p,.family-grid small,.matrix-caveat,.contact-intro>p,.contact-promise,.form-note{color:#4e544b}
+.card-index{color:#4e544b}
+.wizard-status,.status-pill,.form-status{color:#505a25}
+.wizard-back{color:#4e544b}
+.form-grid label{color:#42483d}
+.contact-mark{color:#56651f}
+.site-footer>p,.footer-copy,.back-top,.os-platforms small{color:#c2c7bb}
