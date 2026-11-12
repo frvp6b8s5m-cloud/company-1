@@ -102,6 +102,11 @@
       </div>
       <div class="sm-panel">
         <div class="sm-panel-head"><div><span class="sm-kicker">SOUNDMATCH / PROJECT BUILDER</span><h3>Start with the system.</h3></div><div class="sm-progress-wrap"><span id="sm-count">01 / 06</span><div class="sm-progress"><span id="sm-progress-bar"></span></div></div></div>
+        <div class="sm-restore-row">
+          <label>Saved system drafts<select id="sm-saved-select"><option value="">No saved designs</option></select></label>
+          <button class="button button-outline" id="sm-load" type="button">Load saved design</button>
+          <button class="sm-back" id="sm-delete" type="button">Delete saved</button>
+        </div>
         <form id="soundmatch-form" novalidate>
           <fieldset class="sm-step" data-step="0">
             <legend>01 — The venue</legend>
@@ -190,9 +195,6 @@
           <div class="sm-save-row">
             <label>Save this design<input id="sm-design-name" maxlength="60" placeholder="e.g. Main auditorium system"></label>
             <button class="button button-outline" id="sm-save" type="button">Save design</button>
-            <label>Saved designs<select id="sm-saved-select"><option value="">No saved designs</option></select></label>
-            <button class="button button-outline" id="sm-load" type="button">Load</button>
-            <button class="sm-back" id="sm-delete" type="button">Delete saved</button>
           </div>
           <p class="sm-privacy">Saved designs stay in this browser on this device. They are not uploaded to BZaudio or synced between devices.</p>
         </div>
