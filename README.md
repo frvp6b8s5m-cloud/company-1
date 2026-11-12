@@ -56,7 +56,7 @@ See [docs/assets.md](docs/assets.md) for image sources, licensing notes and prod
 
 ### BZaudio application ecosystem
 
-The approved direction is a GitHub-managed application ecosystem with independently developed products for the company site, SystemOS, System Builder, Compatibility Center and Show Workspace. See [docs/subdomain-architecture.md](docs/subdomain-architecture.md) for the repository layout, shared contracts, hosting constraints and staged subdomain release plan. The hostnames listed there are proposed; DNS and separate hosting targets must be configured before they are live. The existing company site and its GitHub Pages workflow remain unchanged during application development.
+The approved direction is a GitHub-managed application ecosystem with independently developed products for the company site, SystemOS, System Builder, Compatibility Center and Show Workspace. See [docs/bzaudio-ecosystem-architecture.md](docs/subdomain-architecture.md) for the repository layout, shared contracts, hosting constraints and staged subdomain release plan. The hostnames listed there are proposed; DNS and separate hosting targets must be configured before they are live. The existing company site and its GitHub Pages workflow remain unchanged during application development.
 
 ### GitHub Pages deployment
 
