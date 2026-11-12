@@ -11,7 +11,8 @@ const mime = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=u
 const server = createServer(async (request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
-    const relative = pathname === "/" ? "index.html" : pathname.slice(1);
+    let relative = pathname === "/" ? "index.html" : pathname.slice(1);
+    if (relative.endsWith("/")) relative += "index.html";
     const file = resolve(root, relative);
     if (file !== root && !file.startsWith(root + sep)) throw new Error("Invalid path");
     response.writeHead(200, { "content-type": mime[extname(file)] || "application/octet-stream" });
