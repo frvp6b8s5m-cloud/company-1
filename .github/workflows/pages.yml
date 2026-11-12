@@ -1,7 +1,9 @@
 name: Deploy BZaudio site to GitHub Pages
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - feat/bzaudio-company-site
   workflow_dispatch:
 permissions:
   contents: read
