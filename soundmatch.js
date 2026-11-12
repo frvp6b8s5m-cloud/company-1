@@ -116,6 +116,9 @@
         const row = document.createElement("li");
         const detail = document.createElement("span");
         detail.textContent = item.quantity + " × " + item.category + " — " + item.name;
+        const verification = document.createElement("small");
+        verification.className = "sm-unverified";
+        verification.textContent = "UNVERIFIED / REVIEW REQUIRED";
         const remove = document.createElement("button");
         remove.type = "button";
         remove.className = "sm-remove";
@@ -126,7 +129,7 @@
           renderItems();
           briefOutput.textContent = buildBrief();
         });
-        row.append(detail, remove);
+        row.append(detail, verification, remove);
         list.append(row);
       });
     }
