@@ -6,7 +6,9 @@ const appMap = [
   ["apps/systemos/README.md", "os.bzaudio.com"],
   ["apps/system-builder/README.md", "build.bzaudio.com"],
   ["apps/compatibility-center/README.md", "compat.bzaudio.com"],
-  ["apps/show-workspace/README.md", "shows.bzaudio.com"],\n  ["apps/fx-lab/README.md", "fx.bzaudio.com"],\n  ["apps/bzaudio-id/README.md", "id.bzaudio.com"],
+  ["apps/show-workspace/README.md", "shows.bzaudio.com"],
+  ["apps/fx-lab/README.md", "fx.bzaudio.com"],
+  ["apps/bzaudio-id/README.md", "id.bzaudio.com"],
 ];
 for (const [path, host] of appMap) {
   assert.ok(existsSync(path), `Missing app boundary: ${path}`);
