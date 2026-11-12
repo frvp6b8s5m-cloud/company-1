@@ -103,8 +103,11 @@
               <legend>02 — How it needs to sound</legend>
               <div class="form-grid">
                 <label>Primary use<select name="use" required><option value="">Choose the main use</option><option>Speech and presentation</option><option>Live music</option><option>Worship services</option><option>DJ / playback</option><option>Sports / announcements</option><option>Mixed use</option></select></label>
+                <label>Audience layout<select name="audienceLayout" required><option value="">Choose a layout</option><option>Seated</option><option>Standing</option><option>Mixed seating and standing</option><option>Multiple rooms / zones</option></select></label>
+                <label>Preferred speaker approach<select name="speakerApproach" required><option value="">Choose an approach</option><option>Main left / right system</option><option>Distributed speakers</option><option>Portable / mobile PA</option><option>Line array system</option><option>Not sure — recommend an approach</option></select></label>
                 <label>Coverage priority<select name="coverage" required><option value="">Choose a priority</option><option>Even coverage throughout the room</option><option>High impact for live music</option><option>Speech intelligibility</option><option>Flexible zones / multiple areas</option><option>Portable and fast setup</option></select></label>
                 <label class="full-field">What sources need to connect?<textarea name="sources" rows="3" placeholder="For example: 4 wireless mics, 2 handhelds, laptop playback, band inputs..."></textarea></label>
+                <label class="full-field">Additional zones or areas<textarea name="zones" rows="2" placeholder="For example: balcony, lobby, overflow room, patio..."></textarea></label>
                 <label class="full-field">Any known room challenges?<textarea name="challenges" rows="3" placeholder="Balcony, low ceiling, reflective surfaces, columns, outdoor weather, limited rigging..."></textarea></label>
               </div>
             </fieldset>
@@ -112,7 +115,9 @@
               <legend>03 — The project</legend>
               <div class="form-grid">
                 <label>Existing equipment<select name="existing" required><option value="">Choose one</option><option>Starting from scratch</option><option>Upgrading an existing system</option><option>Replacing specific components</option><option>Adding another zone / room</option><option>Not sure yet</option></select></label>
+                <label>Project scope<select name="scope" required><option value="">Choose a scope</option><option>Design and equipment specification</option><option>Equipment supply</option><option>Design, supply and installation</option><option>Upgrade / expansion</option><option>Consultation / troubleshooting</option></select></label>
                 <label>Budget range<select name="budget" required><option value="">Choose a range</option><option>Under $5,000</option><option>$5,000–$15,000</option><option>$15,000–$35,000</option><option>$35,000–$75,000</option><option>$75,000+</option><option>Need help establishing a budget</option></select></label>
+                <label class="full-field">Preferred brands or equipment<textarea name="brands" rows="2" placeholder="Optional — brands, models or equipment you already own..."></textarea></label>
                 <label class="full-field">Anything else we should know?<textarea name="notes" rows="4" placeholder="Timeline, preferred brands, installation needs, current equipment, must-have features..."></textarea></label>
               </div>
             </fieldset>
@@ -146,7 +151,7 @@
       <div class="section-meta"><span>07</span><span>LET'S TALK ABOUT YOUR PROJECT</span></div>
       <div class="contact-grid">
         <div class="contact-intro"><h2>Let's make<br>it <em>sound right.</em></h2><p>Tell us what you're working on. Equipment quote, new PA, installation, upgrade or technical support—we'll start with the details.</p><div class="contact-promise"><span class="contact-mark">BZ·</span><span>Thoughtful systems.<br>Clear communication.</span></div></div>
-        <form class="contact-form" id="project-form">
+        <form class="contact-form" id="project-form" method="post">
           <div class="form-grid">
             <label>Your name<input name="name" autocomplete="name" required placeholder="Name"></label>
             <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
@@ -162,6 +167,7 @@
     </section>
   </main>
 
+  <noscript><p class="noscript-note">Interactive project tools and email-draft preparation require JavaScript. This site does not collect or send your information automatically.</p></noscript>
   <footer class="site-footer">
     <a class="brand footer-brand" href="#top"><span class="brand-symbol">BZ<span>·</span></span><span class="brand-word">audio</span></a>
     <p>Sound, engineered.</p><span class="footer-copy">© <span id="year"></span> BZAUDIO</span><a href="#top" class="back-top">BACK TO TOP ↑</a>
