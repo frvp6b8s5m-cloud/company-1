@@ -15,6 +15,7 @@
   const briefOutput = document.querySelector("#sm-brief");
   const status = document.querySelector("#sm-status");
   const storageKey = "bzaudio.soundmatch.drafts.v1";
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let current = 0;
   let items = [];
 
@@ -224,7 +225,7 @@
     const service = document.querySelector('#project-form [name="service"]');
     if (message) message.value = buildBrief();
     if (service) service.value = "Equipment quote";
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector("#contact")?.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
     message?.focus({ preventScroll: true });
   });
 
@@ -318,5 +319,6 @@
     }
   });
 
+  renderSaved();
   renderStep();
 })();
