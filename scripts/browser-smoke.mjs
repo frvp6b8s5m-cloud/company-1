@@ -138,6 +138,7 @@ try {
   await page.locator("#sm-item-name").fill("Digital mixing console");
   await page.locator("#sm-add-item").click();
   assert.ok((await page.locator("#sm-items-recommended").innerText()).includes("Digital mixing console"), "Equipment can be added to a comparison tier");
+  assert.ok((await page.locator("#sm-items-recommended").innerText()).includes("UNVERIFIED / REVIEW REQUIRED"), "Unverified component status is explicit");
   await page.locator("#sm-design-name").fill("Auditorium system");
   await page.locator("#sm-save").click();
   assert.equal(await page.locator("#sm-saved-select option").count(), 1, "SoundMatch saves multiple local designs");
@@ -155,7 +156,7 @@ try {
   assert.equal(await nav.getAttribute("aria-hidden"), "false", "Desktop navigation is exposed");
   assert.equal(await nav.evaluate((element) => element.inert), false, "Desktop navigation is not inert");
   assert.deepEqual(pageErrors, [], "No uncaught browser JavaScript errors");
-  console.log("BZaudio browser smoke tests passed: responsive navigation, keyboard focus, PA Designer validation, brief generation, quote handoff and desktop state.");
+  console.log("BZaudio browser smoke tests passed: responsive navigation, keyboard focus, PA Designer and SoundMatch flows, local draft persistence, quote handoff and desktop state.");
 } finally {
   await browser.close();
   await new Promise((resolveClose, rejectClose) => server.close((error) => error ? rejectClose(error) : resolveClose()));
