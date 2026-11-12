@@ -137,6 +137,7 @@ try {
   assert.ok((await page.locator("#sm-brief").innerText()).includes("BZAUDIO SOUNDMATCH"), "SoundMatch brief identifies the tool");
   assert.ok((await page.locator("#sm-brief").innerText()).includes("32"), "SoundMatch brief includes mixer input requirements");
   await page.locator("#sm-copy").click();
+  await page.waitForTimeout(100);
   const copiedSoundMatch = await page.evaluate(() => navigator.clipboard.readText());
   assert.ok(copiedSoundMatch.includes("BZAUDIO SOUNDMATCH"), "SoundMatch copies the generated system brief");
   await page.locator("#sm-tier").selectOption("recommended");
