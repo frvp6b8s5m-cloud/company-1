@@ -10,6 +10,7 @@ const experience = read("../experience.css");
 const config = read("../site-config.js");
 const assets = read("../docs/assets.md");
 const favicon = read("../favicon.svg");
+const pagesWorkflow = read("../.github/workflows/pages.yml");
 
 const ids = [...html.matchAll(/\bid=["']([^"']+)["']/g)].map((match) => match[1]);
 assert.equal(new Set(ids).size, ids.length, "HTML IDs must be unique");
@@ -70,6 +71,8 @@ for (const photoUrl of photoUrls) {
 }
 
 assert.ok(html.includes('rel="icon" href="favicon.svg" type="image/svg+xml"'), "A scalable BZaudio favicon must be linked");
+assert.ok(pagesWorkflow.includes("branches:\n      - main") && !pagesWorkflow.includes("feat/bzaudio-company-site"), "Pages must not deploy feature branch pushes");
+assert.ok(pagesWorkflow.includes("if: github.ref == \'refs/heads/main\'"), "Manual Pages dispatch must be guarded to main");
 assert.ok(html.includes('name="twitter:card" content="summary_large_image"'), "Social sharing should use the large-image card");
 assert.ok(html.includes('property="og:image"'), "Open Graph image metadata is required");
 assert.ok(html.includes("SystemOS") && html.includes("QR-linked system record") && html.includes("CONCEPT ROADMAP"), "SystemOS must be presented as a roadmap, not a live service");
