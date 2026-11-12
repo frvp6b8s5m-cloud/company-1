@@ -51,6 +51,7 @@ for (const field of ["venue", "audience", "environment", "application", "coverag
 }
 assert.ok(soundmatch.includes("bzaudio.soundmatch.drafts.v1"), "SoundMatch drafts must use a versioned local storage key");
 assert.ok(soundmatch.includes("textContent"), "SoundMatch user content must be rendered as text");
+assert.ok(soundmatch.includes('form.addEventListener("submit", (event) => event.preventDefault())'), "SoundMatch must not accidentally submit/reload its planning form");
 assert.ok(soundmatch.includes("UNVERIFIED / REVIEW REQUIRED"), "SoundMatch must flag unverified equipment compatibility");
 assert.ok(soundmatch.includes("sm-item-qty"), "SoundMatch equipment quantities must be editable after adding items");
 assert.ok(html.includes('id="sm-quantity" type="number" min="1" max="100" value="1" required'), "SoundMatch new equipment quantities must be required");
