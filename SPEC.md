@@ -130,3 +130,10 @@ Existing deployment workflow remains until its replacement is tested.
 - Whether PA Designer is initially a guided project brief or a validated acoustic calculation tool.
 - Which Allen & Heath mixer models and protocols can be physically tested; no universal compatibility claim is permitted.
 - Local companion-app architecture and supported operating systems for Connection Lab hardware networking.
+
+
+## Approved clarifications — 2026-11-12
+- Equipment sales begin with **quote requests**; no online checkout or payment flow in this release.
+- Source authentic, commercially licensed professional photography. Keep provenance and license records in the project documentation; do not show public source labels unless a license requires attribution.
+- PA Designer **is included**. Start with a guided PA-planning wizard and clear project summary. Do not promise perfect results or acoustic predictions. Validated acoustic calculations are a later engineering milestone requiring verified speaker data, documented methods and test evidence.
+- Contact/project inquiry functionality is included. Keep the recipient email configurable; until an approved address or delivery backend is supplied, provide a reviewable email-draft flow and never claim that an inquiry was sent.
