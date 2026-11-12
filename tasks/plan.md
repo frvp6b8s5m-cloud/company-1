@@ -1,6 +1,6 @@
 # Implementation Plan — BZaudio Website Replacement
 
-**Status:** Draft for human approval  
+**Status:** Approved for implementation on 2026-11-12  
 **Spec:** [SPEC.md](../SPEC.md)  
 **Branch:** `feat/bzaudio-company-site`  
 **Task list:** [todo.md](todo.md)
@@ -53,11 +53,11 @@ Connection Lab has an additional dependency: `verified protocol/model matrix + s
 - Provide quote/contact paths; no checkout or invented prices/stock.
 - Verify empty states, filters, product detail links and keyboard use.
 
-### Phase 4 — PA Designer experience
-- Build a guided project brief and system-planning intake.
-- Clearly label outputs as preliminary planning, not acoustic prediction.
-- Gate any numerical coverage/SPL/prediction or recommendations on validated methods and verified product data.
-- Verify step navigation, validation, summary and reset.
+### Phase 4 — PA Designer experience (included)
+- Build an advanced, guided project-planning wizard with venue/application, dimensions, audience/use, coverage goals, system priorities, constraints and budget inputs.
+- Provide a useful, editable project summary and equipment/quote brief from user inputs; clearly label this as preliminary planning, not acoustic prediction.
+- Gate any numerical coverage/SPL/prediction or automated equipment recommendations on validated methods, verified product data and engineering review.
+- Verify step navigation, validation, conditional questions, back/next, save/export behavior if implemented, summary and reset.
 
 ### Phase 5 — Free Connection Lab
 - Build free entry point and verified model/capability status presentation.
@@ -98,13 +98,19 @@ Tasks are deliberately split into small feature slices (usually 1–5 files per 
 - Roll back by reverting the feature-branch commit(s) or restoring the previous Pages artifact; verify the published page and Actions status.
 - Production cutover/default-branch merge is a separate approval.
 
-## Open questions
-1. Which email address should receive inquiries?
-2. Is the initial equipment catalog a curated set of selected products, or should we wait for a supplier/product feed?
-3. Do you have company-owned or licensed photography, or should the plan include sourcing stock photography?
-4. Should checkout be deferred in favor of quote requests until payment and fulfillment are configured?
-5. Confirm PA Designer starts as a guided brief rather than claiming acoustic prediction.
-6. Which Allen & Heath models can be tested physically, and is a local companion app acceptable for Connection Lab networking?
+## Confirmed decisions and remaining dependencies
+- Equipment sales begin with quote requests; checkout is deferred.
+- Source licensed real-world photography. Track provenance and rights internally; do not show source labels publicly unless the license requires it.
+- PA Designer is included as a guided PA-planning wizard and project summary. Validated acoustic calculations are a later engineering milestone, not a launch promise.
+- Contact inquiry recipient email remains configurable. Until an address or delivery backend is provided, generate a reviewable email draft; never claim delivery.
+- Remaining dependencies: verified product catalog/source, approved contact recipient, physical Allen & Heath test models, and the Connection Lab companion/network architecture.
 
 ## Task list
 See [todo.md](todo.md) for ordered tasks and checkpoints.
+
+
+## User-approved clarifications (2026-11-12)
+- Quote requests initially; no checkout.
+- Licensed authentic photography; provenance stored in project docs, no visible source labels unless required by license.
+- PA Designer included as a guided planning wizard first. Validated acoustic calculations remain a separately verified milestone.
+- Contact recipient is configurable; email draft until a real delivery address/service is approved.
