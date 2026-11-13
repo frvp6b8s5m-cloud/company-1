@@ -158,7 +158,7 @@ The technical plan must use the repository's real scripts and existing GitHub Ac
 - Performance review for image weight, layout shift, animation cost, and Core Web Vitals.
 - Existing independent app checks remain green; changes to the public website must not silently regress app workspaces.
 - GitHub Actions quality workflow must pass on the feature branch.
-- Production deployment and merge to `main\) remain separate release gates.
+- Production deployment and merge to `main` remain separate release gates.
 
 ## 12. Boundaries
 
