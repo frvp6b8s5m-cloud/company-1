@@ -71,6 +71,7 @@ Input Channel,VSC Source no.,VSC Source Type
  assert.equal(exported.items[1].quantity,4,"System Builder export preserves edited quantities");
  exported.items[0].name="Imported console";
  await page.locator("#import-file").setInputFiles({name:"system-plan.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(exported))});
+ await page.waitForFunction(()=>document.querySelector(".item")?.textContent.includes("Imported console"),null,{timeout:4000});
  assert.ok((await page.locator(".item").first().innerText()).includes("Imported console"),"System Builder validates and imports plan files");
  await page.locator("#clear-plan").click();
  assert.equal(await page.locator(".item").count(),0,"System Builder clears local plan");
@@ -94,6 +95,7 @@ Input Channel,VSC Source no.,VSC Source Type
  assert.equal(sheet.inputs[0].source,"Lead vocal","Show Workspace export preserves input details");
  sheet.inputs[0].source="Imported lead vocal";
  await page.locator("#import-file").setInputFiles({name:"show-sheet.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(sheet))});
+ await page.waitForFunction(()=>document.querySelector(".item")?.textContent.includes("Imported lead vocal"),null,{timeout:4000});
  assert.ok((await page.locator(".item").first().innerText()).includes("Imported lead vocal"),"Show Workspace validates and imports show sheets");
  await page.locator("#clear-show").click();
  assert.equal(await page.locator(".item").count(),0,"Show Workspace clears local data");
