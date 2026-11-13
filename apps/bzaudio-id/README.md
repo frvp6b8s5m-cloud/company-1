@@ -6,6 +6,7 @@ BZaudio ID currently provides an ecosystem landing page and an optional local pr
 
 ## Current behavior
 - Save and restore a display name, optional email and role in this browser's local storage.
+- Clear the local profile from the current browser.
 - Navigate to BZaudio product apps.
 - No passwords or authentication credentials are collected.
 
