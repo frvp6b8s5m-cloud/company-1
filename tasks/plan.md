@@ -1,157 +1,194 @@
-# Implementation Plan — BZaudio Website Replacement
+# Technical Implementation Plan — BZaudio Public Website
 
-**Status:** Approved for implementation on 2026-11-12  
-**Spec:** [SPEC.md](../SPEC.md)  
-**Branch:** `feat/bzaudio-company-site`  
+**Status:** Prepared for owner review — implementation is not authorized yet.  
+**Specification:** [SPEC.md](../SPEC.md), version 2.0  
+**Strategic direction:** [BZaudio Vision](https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/blob/main/VISION.md) · [BZaudio Roadmap](https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/blob/main/ROADMAP.md)  
+**Repository:** \`frvp6b8s5m-cloud/company-1\`  
+**Working branch:** \`feat/bzaudio-company-site\`  
 **Task list:** [todo.md](todo.md)
 
-## Overview
-Replace the current single-page HTML/CSS/JS starter in independently testable vertical slices. Keep GitHub Pages and the static stack unless repository inspection or a verified requirement justifies a change. Do not deploy to the default branch during implementation.
+## 1. Overview
 
-## Repository findings
-- Current branch contains `index.html`, `styles.css`, `script.js`, `README.md`, and `.github/workflows/pages.yml`.
-- Existing page is a static single-page site; no `package.json`, test runner, backend, catalog, product data, or real contact recipient was found at the root.
-- Current visual system uses CSS-generated abstract graphics; this is to be replaced by licensed real-world photography and editorial architecture.
-- Existing workflow is GitHub Pages; inspect it before changing deployment behavior.
-- `tasks/` did not exist at the inspected branch root, so no pre-existing plan/task checklist was overwritten.
+Re-align the existing BZaudio public website with the newly approved company vision. Preserve its architectural, cinematic identity and rich, carefully choreographed animation while making the experience substantially clearer and less overwhelming.
 
-## Architecture decisions
-1. **Static-first:** retain HTML/CSS/vanilla JS and GitHub Pages initially; this minimizes migration risk and suits a content-led site. Revisit only if real commerce/backend requirements are approved.
-2. **Progressive enhancement:** semantic HTML is usable without animation; JS adds menu, filtering and guided flows.
-3. **Feature-scoped source:** organize CSS and JS by concern while keeping deployment simple; avoid premature framework/dependency additions.
-4. **Content/data separation:** store verified product and compatibility metadata in structured local data; unknown fields remain absent, never fabricated.
-5. **Safe integrations:** quote/contact flows first. No payment, customer storage, network scanning or mixer control until providers, permissions, protocols and test hardware are approved.
-6. **Photography governance:** every production image must have documented source, license/permission and responsive optimized variants.
+The website release is a focused company and customer-entry experience: Home, Products, Solutions, About, and Contact/Request a Quote. It is not the BZaudio Technology platform, an OS, or a directory of experimental applications. Future company capabilities may be introduced honestly and sparingly, but must not be represented as available products.
 
-## Dependency graph
-`brand tokens + semantic shell → verified product data boundaries → equipment discovery and SoundMatch → PA Designer/contact → Connection Lab feasibility → SystemOS/OS roadmap → integrated accessibility/performance review → Pages staging verification → release`.
+This plan replaces the earlier OS- and tool-heavy website implementation plan. The previous task list contained 63 unchecked items from the older scope. Those items are **superseded, not completed**; this re-plan preserves Git history and records only the new approved website scope below.
 
-Connection Lab has an additional dependency: `verified protocol/model matrix + safe test plan + real hardware`. Without those, only an honest informational/roadmap experience may be shipped.
+## 2. Repository inspection and baseline findings
 
-## Vertical-slice phases
+Inspected the active feature branch and current repository content:
 
-### Phase 0 — Repository and release baseline
-- Capture current branch head and inspect the Pages workflow.
-- Record baseline behavior and preserve a rollback point.
-- Define asset source/rights ledger and validation commands.
+- The active website work is in \`company-1\`, branch \`feat/bzaudio-company-site\`. The separate \`BZAUDIO-this-is-it1\` repository contains the approved strategic \`VISION.md\`, \`ROADMAP.md\`, and strategy-level \`SPEC.md\`.
+- The active branch contains a static HTML/CSS/vanilla JavaScript website, including \`index.html\`, \`styles.css\`, \`experience.css\`, \`script.js\), \`site-config.js\`, and existing feature styles/scripts.
+- A root \`package.json\` exists. It defines existing quality scripts including \`npm run verify:site\`, \`npm run test:systemos\`, \`npm run check:systemos-app\`, \`npm run check:ecosystem-apps\`, \`npm run build:apps\`, and \`npm run check:all-apps\`.
+- \`.github/workflows/quality.yml\` runs static checks, browser smoke scripts, accessibility/performance checks, and app-workspace checks on the feature branch and pull requests.
+- \`.github/workflows/pages.yml\` deploys the \`main\` branch only. Feature-branch checks do not publish the production site.
+- Existing content and navigation still refer to BZaudio OS/SystemOS, SoundMatch, and experimental app destinations. Those references do not match the newly approved website specification and must not remain in the public website after implementation.
+- Existing app workspaces and their tests are outside this website re-scope. They must not be deleted, rewritten, or silently migrated as part of the public website work.
+- The current branch has an incomplete prior plan/task list. This plan and task list replace that earlier scope in place; prior commits remain available in Git history.
 
-### Phase 1 — Brand experience
-- Replace starter visuals with approved cinematic architectural art direction.
-- Build responsive header, navigation, hero, typography, section rhythm and footer.
-- Use real licensed images only; optimize loading and provide fallbacks.
-- Verify mobile menu, keyboard operation, reduced motion and layout.
+## 3. Architecture decisions
 
-### Phase 2 — Services and customer inquiry
-- Create coherent PA design, installation, tuning and support content.
-- Build accessible guided project brief.
-- Keep submission behavior transparent; email-draft until a real delivery service is approved.
-- Verify required fields, email validation and no false sent confirmation.
+1. **Keep the existing static-first stack.** Continue with semantic HTML, CSS, and vanilla JavaScript on GitHub Pages. Do not migrate to React, Next.js, another framework, or a server platform without a new approved requirement.
+2. **Keep the website independent from the app workspaces.** The public site is the company/customer entry point. Experimental browser apps and the future BZaudio Technology platform are not embedded into the website.
+3. **Use a small, customer-led information architecture.** Keep the primary destinations to Home, Products, Solutions, About, and Contact/Quote. Prefer concise page/section structures over a large dashboard or tool directory. Decide anchor sections versus separate static pages after reviewing current markup and content volume; do not introduce client-side routing.
+4. **Use progressive enhancement.** Core navigation and content must work without animation or nonessential JavaScript. JavaScript enhances navigation and approved interactions; it does not gate access to content.
+5. **Create a coherent design and motion system.** Use shared CSS custom properties for typography, spacing, surfaces, color, grid, image treatment, easing, and duration. Keep the architectural/cinematic art direction, but use motion selectively so practical tasks remain calm.
+6. **Keep product data evidence-based.** Show category-level information where model-level data is not verified. Never invent SKUs, specifications, pricing, stock, compatibility, or reviews.
+7. **Keep inquiry delivery honest.** Preserve the configurable recipient and user-reviewed email-draft behavior until a real recipient and approved delivery service exist. No false “sent” confirmation.
+8. **Protect deployment.** Work only on the feature branch. Do not change the Pages production workflow, merge to \`main\`, or deploy production without separate approval.
+9. **Avoid scope creep.** No OS, SoundMatch, PA Designer quiz, Connection Lab, customer portal, checkout, authentication, backend, or app-subdomain launch in this website milestone.
 
-### Phase 3 — Equipment discovery
-- Add category navigation and search/filter interactions over verified catalog records.
-- Create product detail presentation with specifications only from reliable source data.
-- Provide quote/contact paths; no checkout or invented prices/stock.
-- Verify empty states, filters, product detail links and keyboard use.
+## 4. Intended information architecture
 
-### Phase 3B — SoundMatch system configurator (restored approved scope)
-- Build a six-stage guided system configurator for venue, audience/zones, application/sound goals, mixer/I/O/sources/connectivity, mounting/electrical/expansion, and existing gear/budget/installation.
-- Keep a useful Basic free experience. Present advanced Pro capabilities as planned until real account/entitlement enforcement exists.
-- Support configurable equipment categories, user-entered items and quantities, add/remove/edit controls, and Essential / Recommended / Professional comparison views.
-- Save/reload multiple browser-local drafts and produce a detailed copyable quote brief.
-- Explain decisions and show compatibility/fit warnings only where backed by verified model-specific data. Unverified combinations must be visibly marked.
-- Do not fabricate SKUs, specifications, availability, prices, manufacturer relationships or acoustic results. Until catalog sources are approved, SoundMatch is a system-planning/quote tool, not an automated product recommender.
+- **Home:** concise promise, cinematic hero, clear introduction, selected customer pathways, one primary call to action.
+- **Products:** category-led discovery, only verified details, quote actions.
+- **Solutions:** customer applications and system approaches; clear limitations around engineering/design claims.
+- **About:** mission, company approach, trust standards, brand belief.
+- **Contact / Request a Quote:** simple inquiry with transparent email-draft or approved delivery behavior.
 
-### Phase 4 — PA Designer experience (included)
-- Build an advanced, guided project-planning wizard with venue/application, dimensions, audience/use, coverage goals, system priorities, constraints and budget inputs.
-- Provide a useful, editable project summary and equipment/quote brief from user inputs; clearly label this as preliminary planning, not acoustic prediction.
-- Gate any numerical coverage/SPL/prediction or automated equipment recommendations on validated methods, verified product data and engineering review.
-- Verify step navigation, validation, conditional questions, back/next, save/export behavior if implemented, summary and reset.
+Keep the main navigation short. Avoid putting future initiatives or experimental tools in the primary nav. If a future capability is mentioned, use a concise, clearly labeled “in development” or “future direction” treatment and only where it helps explain the company.
 
-### Phase 5 — Free Connection Lab
-- Build free entry point and verified model/capability status presentation.
-- Separate discovery, monitoring and control permissions.
-- Only implement browser/local companion connectivity after protocol research, permission design, recovery behavior and physical hardware tests.
-- No simulated live devices or unsupported family-wide claims.
+## 5. Visual and motion implementation direction
 
-### Phase 6 — BZaudio OS and ecosystem
-- Present dedicated device OS, Windows/macOS software and touchscreen controller.
-- Distinguish planned, prototype and available capabilities.
-- Verify links, roadmap labels and mobile layout.
+### Preserve the architectural/cinematic identity
 
-### Phase 7 — Integrated QA and release candidate
-- Run automated static checks, unit tests and browser smoke tests.
-- Audit accessibility, reduced motion, responsive behavior, image licensing, performance and security.
-- Test GitHub Pages build/deploy on feature branch or preview.
-- Prepare release notes and rollback instructions. Do not merge to `main` or publish a production cutover without explicit approval.
+- Keep strong architectural geometry, asymmetric editorial composition, generous negative space, material contrast, confident typography, and authentic audio/venue photography.
+- Build a distinctive visual rhythm: cinematic hero, quieter information sections, purposeful image-led moments, and restrained technical details.
+- Do not replace the current direction with a generic SaaS template, a plain corporate layout, or a dense grid of cards.
+- Use real, licensed/company-owned imagery. Track creator/source/license/permission and intended use in \`docs/assets.md\`.
 
-## Task sizing and checkpoints
-Tasks are deliberately split into small feature slices (usually 1–5 files per task). Each task in `todo.md` includes acceptance criteria, verification, dependencies and likely files. Stop at each checkpoint for test results and human review before moving to the next high-risk phase.
+### Build a consistent animation language
 
-## Risks and mitigations
+- Hero: staged but quick entrance for typography and imagery.
+- Sections: restrained scroll reveals with content visible if motion is disabled or JavaScript is unavailable.
+- Imagery: limited parallax/depth treatment where it adds atmosphere and remains smooth on mobile.
+- Controls: precise hover, focus, active, and press feedback; touch interactions must have equivalent feedback.
+- Navigation: clear, short transitions; no delayed access to links.
+- Signal details: small, restrained animated line/frequency motifs where they reinforce audio identity.
+- Avoid scroll hijacking, long intro gates, excessive looping movement, and animation on every element.
+
+### Motion and performance gates
+
+- Honor \`prefers-reduced-motion\` with reduced or static alternatives.
+- Avoid layout-affecting animation; prefer transform/opacity for motion.
+- Lazy-load below-the-fold imagery, set image dimensions/aspect ratios, and keep hero imagery prioritized.
+- Verify at narrow mobile, tablet, and desktop widths.
+- Target good Core Web Vitals; treat LCP under 2.5 seconds, CLS under 0.1, and INP under 200 ms as targets where field measurement is available. Lab checks are diagnostic, not a substitute for field data.
+
+## 6. Dependency graph and build order
+
+\`\`\`
+Approved scope + content inventory
+            |
+            v
+Navigation / information architecture
+            |
+            v
+Shared design tokens + motion/accessibility foundations
+            |
+            v
+Home + Products + Solutions + About content
+            |
+            v
+Contact / quote flow
+            |
+            v
+Responsive, accessibility, motion and performance review
+            |
+            v
+Feature-branch QA + owner review
+            |
+            v
+Separate production-release approval
+\`\`\`
+
+Product content depends on verified category/model data. Contact form behavior depends on the configured recipient and the approved delivery mechanism. Cinematic media depends on documented rights and responsive assets. These dependencies must be resolved before their related tasks are considered complete.
+
+## 7. Implementation phases and tasks
+
+Detailed acceptance criteria, verification, dependencies, and likely files are recorded in [todo.md](todo.md).
+
+### Phase 0 — Scope and baseline reconciliation
+- Confirm the active branch, current markup, package scripts, workflows, and known-good rollback commit.
+- Reconcile the existing public navigation and content against the approved no-OS, no-tool-directory website scope.
+- Keep the separate app workspaces untouched.
+
+### Phase 1 — Information architecture and design foundations
+- Simplify navigation and content hierarchy.
+- Establish shared architectural design tokens and responsive layout rules.
+- Define motion tokens and reusable reduced-motion-aware reveal/interaction patterns.
+
+### Phase 2 — Core brand experience
+- Refine the cinematic homepage while preserving the existing architectural direction.
+- Build the concise company story and clear paths into Products, Solutions, About, and Contact.
+- Keep visual moments rich but avoid content overload.
+
+### Phase 3 — Products and solutions
+- Present verified product categories and customer applications.
+- Keep specifications and compatibility claims evidence-based.
+- Route product and solution interest to a quote/contact path.
+
+### Phase 4 — About and inquiry
+- Present the mission, trust standards, and brand belief.
+- Simplify the inquiry flow and explain the email-draft behavior accurately.
+- Keep the contact destination configurable.
+
+### Phase 5 — Integrated quality review
+- Run existing static, browser, accessibility, performance, and workflow checks.
+- Review mobile/desktop layouts, reduced motion, keyboard access, content accuracy, image rights, and navigation.
+- Fix regressions without modifying unrelated apps.
+
+### Phase 6 — Owner review and release readiness
+- Present a verified feature-branch result and remaining release dependencies.
+- Do not merge to \`main\` or deploy production until separately approved.
+
+## 8. Verification commands and quality gates
+
+Use the existing repository commands rather than inventing a new stack:
+
+- \`npm run verify:site\` — website static verification.
+- \`npm run test:systemos\`, \`npm run check:systemos-app\`, \`npm run check:ecosystem-apps\`, \`npm run build:apps\`, and \`npm run check:all-apps\` — preserve existing app checks when changes could affect shared repository tooling.
+- Run the full \`BZaudio site quality checks\` GitHub Actions workflow on the feature branch.
+- Use the existing Playwright/browser smoke scripts and accessibility/performance scripts in CI.
+- Run a manual keyboard/focus review, reduced-motion review, and VoiceOver/NVDA spot check.
+- Inspect responsive screenshots at phone, tablet, and desktop sizes.
+- Verify every visible image against \`docs/assets.md\`; no image is production-ready based only on its URL.
+- Confirm all links, quote paths, and contact states behave truthfully.
+- Record actual command output and workflow run links in the task list; do not claim unrun checks passed.
+
+## 9. Risks and mitigations
+
 | Risk | Impact | Mitigation |
 |---|---|---|
-| No licensed photo library provided | High visual-quality / legal risk | Source approved licensed assets and track provenance; don't ship unlicensed images |
-| No product catalog or pricing feed | High accuracy risk | Build data-driven UI with verified data only; quote path instead of fabricated pricing |
-| Checkout requirements unspecified | High integration/security risk | Keep checkout out of scope until provider and fulfillment are approved |
-| Browser local-network restrictions | High Connection Lab risk | Companion-app architecture; no fake browser scanning |
-| Allen & Heath protocols vary by model | High hardware safety risk | Model-by-model capability matrix and real-hardware tests; monitoring/control separated |
-| PA acoustic calculations need validated inputs | High safety/reliability risk | Start with intake/planning; don't present unvalidated predictions |
-| Static site may not support future dynamic features | Medium architecture risk | Keep boundaries modular; reassess only with an approved backend requirement |
-| Heavy cinematic media/animation | Medium performance/accessibility risk | Responsive images, lazy loading, reduced-motion mode, performance budgets |
+| Old site content promotes OS/tools that conflict with strategy | High brand/scope risk | Remove OS/tool promotion from public website scope; keep experimental app code untouched |
+| Over-simplification erases the distinctive cinematic identity | High brand risk | Preserve architectural composition, real photography, typography, and a rich but coherent motion system |
+| Excessive animation harms usability/performance | High UX/accessibility risk | Shared motion tokens, reduced-motion alternatives, mobile checks, performance budgets |
+| Product data is incomplete | High trust risk | Category-level copy only until reliable model data is available |
+| Contact recipient is not configured | Medium conversion risk | Keep configuration explicit; use a user-reviewed email draft and never claim delivery |
+| Public photography rights are unclear | High legal/brand risk | Use only verified licensed/company-owned assets and maintain provenance |
+| Static hosting limits future platform features | Medium future architecture risk | Keep the website focused; design BZaudio Technology separately when its own spec is approved |
+| Feature branch is not production deployment target | High release risk | Keep Pages workflow unchanged; require separate owner approval for merge/deploy |
 
-## Release / rollback
-- Keep work on `feat/bzaudio-company-site`.
-- Use GitHub Pages preview/branch deployment if configured; inspect workflow before changing it.
-- Record the known-good commit before replacement.
-- Roll back by reverting the feature-branch commit(s) or restoring the previous Pages artifact; verify the published page and Actions status.
-- Production cutover/default-branch merge is a separate approval.
+## 10. Release and rollback
 
-## Confirmed decisions and remaining dependencies
-- Equipment sales begin with quote requests; checkout is deferred.
-- Source licensed real-world photography. Track provenance and rights internally; do not show source labels publicly unless the license requires it.
-- PA Designer is included as a guided PA-planning wizard and project summary. Validated acoustic calculations are a later engineering milestone, not a launch promise.
-- Contact inquiry recipient email remains configurable. Until an address or delivery backend is provided, generate a reviewable email draft; never claim delivery.
-- Remaining dependencies: verified product catalog/source, approved contact recipient, physical Allen & Heath test models, and the Connection Lab companion/network architecture.
+- Work only on \`feat/bzaudio-company-site\`.
+- Preserve the current \`main\` branch and production Pages deployment.
+- Capture the branch head before implementation begins.
+- Keep changes small and reviewable; do not rewrite Git history.
+- Confirm feature-branch quality checks before presenting a release candidate.
+- Production merge/deployment is a separate approval gate.
+- If a feature-branch change regresses the site, revert the specific commit or restore the last known-good feature-branch state, then rerun checks.
 
-## Task list
-See [todo.md](todo.md) for ordered tasks and checkpoints.
+## 11. Open questions and external dependencies
 
+- Exact initial product categories and which product data sources are approved.
+- Approved inquiry recipient and whether email-draft handoff remains the launch behavior.
+- Final approved photography set and any manufacturer/product image permissions.
+- Whether any future Technology/Experience/Care initiative should be mentioned on the initial site; default is to keep such mentions brief and non-promotional.
+- Final decision on anchor sections versus separate static pages after a code/content review.
 
-## User-approved clarifications (2026-11-12)
-- Quote requests initially; no checkout.
-- Licensed authentic photography; provenance stored in project docs, no visible source labels unless required by license.
-- PA Designer included as a guided planning wizard first. Validated acoustic calculations remain a separately verified milestone.
-- Contact recipient is configurable; email draft until a real delivery address/service is approved.
+## 12. Approval gate
 
-
-## Authorization and execution update — 2026-11-12
-The project owner has authorized continued implementation, verification, review, repository integration and launch work going forward. This supersedes the earlier requirement to stop for a separate approval before each ordinary project step. Safety and factual gates remain: do not invent contact details, product data, compatibility, measured acoustic results or external credentials; do not enable mixer write/control without model-specific hardware verification; do not incur paid-service costs without a real configured account and budget authority.
-
-The current implementation remains static-first and quote-request-led. The site has no product data feed, confirmed contact recipient, backend delivery service or validated acoustic engine. These are explicit capability boundaries, not defects to conceal. Work may proceed to a production release only after the release checklist, contact handoff decision, image-rights inspection and deployment verification are complete.
-
-
-## Approved scope revision — 2026-11-12
-
-This revision supersedes the earlier separate PA Designer quiz and SystemOS roadmap tasks:
-
-- SoundMatch is the only customer-facing guided configurator.
-- The separate PA Designer wizard and duplicate navigation entry have been removed. PA design remains an ordinary quote/service request, not a second quiz.
-- The old SystemOS concept card is replaced by a functional browser-local workspace: system records, equipment inventory, signal-flow documentation, reference links/notes, maintenance logs, local persistence and JSON backup/restore.
-- Public feature copy must not advertise unfinished roadmap or subscription capabilities as live. Hardware control, cloud accounts, QR provisioning, acoustic prediction and device integrations remain outside the verified browser workspace.
-- Architectural visual direction: industrial/editorial composition, hard geometry, typographic hierarchy, authentic audio photography and motion that respects reduced-motion settings.
-- Release acceptance requires static verification, browser interaction tests, strict WCAG checks, performance/CDN checks, and manual keyboard/screen-reader/device review. A green CI run does not replace the manual checks.
-
-
-
-## SystemOS technical engineering expansion — 2026-11-12
-
-Extend the local-first workspace with structured equipment specifications, channel-level patchbay documentation, network endpoint records, commissioning evidence and expanded engineering metrics. Keep all records browser-local and compatible with version-1 JSON backups. Clearly distinguish manually entered records from live hardware/network/acoustic functionality. Acceptance requires automated static, browser, accessibility and performance checks plus manual device review.
-
-
-## Approved product-direction revision — Universal SystemOS (2026-11-12)
-
-The owner has clarified that SystemOS must become a universal professional mixing platform, not remain a local equipment/documentation workspace. The approved target architecture is [docs/systemos-universal-architecture.md](../docs/systemos-universal-architecture.md). This revision supersedes the earlier SystemOS roadmap and local-workspace-only product definition while preserving the useful existing engineering register as a subsystem.
-
-Implementation is incremental and evidence-gated: neutral show schema and versioned show package first; adapter contract and capability registry next; Transfer Studio and transparent translation reports; then exact model/file adapters with permitted fixtures and semantic round-trip tests. Yamaha and Allen & Heath are priority ecosystems, but no family/model is declared supported until its exact formats, firmware range and hardware import/export path are verified. Bidirectional translation must be tested separately in each direction.
-
-The browser remains the first delivery surface. File processing should remain local where practical. Live network discovery, meters and console write/control are separate later phases; no simulated data or fake connection state may be presented as real hardware operation. Do not discard source files, silently drop unsupported parameters, or claim perfect conversion where destination capabilities differ.
+This document is a proposed technical plan. **No implementation, refactor, content removal, feature deletion, deployment workflow change, merge, or production release is authorized until the owner reviews and approves this plan.**
