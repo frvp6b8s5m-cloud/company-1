@@ -5,9 +5,10 @@ for (const path of appFiles) assert.ok(existsSync(path), "Missing application fi
 const builder = readFileSync("apps/system-builder/app.js","utf8");
 const compat = readFileSync("apps/compatibility-center/app.js","utf8");
 const workspace = readFileSync("apps/show-workspace/app.js","utf8");
-assert.ok(builder.includes("bzaudio-system-plan") && builder.includes("planning-only"));
-assert.ok(compat.includes("Unverified") && compat.includes("support.allen-heath.com"));
-assert.ok(workspace.includes("bzaudio-show-sheet") && workspace.includes("inputs"));
+assert.ok(builder.includes("bzaudio-system-plan") && builder.includes("planning-only") && builder.includes("localStorage") && builder.includes("import-file"),"System Builder must persist and validate local plans");
+assert.ok(compat.includes("unverified") && compat.includes("support.allen-heath.com") && compat.includes("qleditor_en_om_f0.pdf"));
+assert.ok(readFileSync("apps/compatibility-center/index.html","utf8").includes("status-filter"),"Compatibility Center must expose evidence filtering");
+assert.ok(workspace.includes("bzaudio-show-sheet") && workspace.includes("inputs") && workspace.includes("localStorage") && workspace.includes("import-file"),"Show Workspace must persist and validate local show sheets");
 const fx = readFileSync("apps/fx-lab/fx-engine.js","utf8");
 const fxUi = readFileSync("apps/fx-lab/app.js","utf8");
 const identity = readFileSync("apps/bzaudio-id/app.js","utf8");
