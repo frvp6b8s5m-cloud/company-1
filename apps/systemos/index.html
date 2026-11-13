@@ -35,6 +35,14 @@
       <div class="section-head"><div><p class="eyebrow">IMPORT → VALIDATE → MAP → EXPORT</p><h2>Transfer Studio</h2></div><span class="pill">FOUNDATION PHASE</span></div>
       <p class="section-intro">A safe transfer workflow starts with understanding exactly what a source file contains and what the destination can accept. A first read-only Avantis CSV adapter is available for documented channel, output-patch and Virtual Soundcheck fields. Full show translation and native writers are not enabled.</p>
       <div class="pipeline"><div><b>01</b><strong>Identify</strong><span>Recognize file and model</span></div><div><b>02</b><strong>Normalize</strong><span>Map to neutral show data</span></div><div><b>03</b><strong>Validate</strong><span>Check every field</span></div><div><b>04</b><strong>Export</strong><span>Only supported targets</span></div></div>
+      <div class="transfer-destination"><span>AVAILABLE DESTINATION</span><strong>BZaudio neutral show package</strong><small>Validated JSON export · vendor-native writers are not enabled</small></div>
+      <section class="transfer-report" id="transfer-report" hidden aria-labelledby="transfer-report-title">
+        <div class="section-head"><div><p class="eyebrow">FIELD-BY-FIELD RESULT</p><h3 id="transfer-report-title">Transfer report</h3></div><button class="secondary" id="export-report" type="button">Export report JSON</button></div>
+        <p id="transfer-report-summary" role="status" aria-live="polite"></p>
+        <div class="transfer-counts" id="transfer-counts"></div>
+        <div class="transfer-details" id="transfer-details"></div>
+        <p class="transfer-warning">A successful neutral-package import is not a Yamaha or Avantis native console export. Unsupported data remains identified; no destination file is generated unless a verified writer exists.</p>
+      </section>
     </section>
     <section class="section" id="devices">
       <div class="section-head"><div><p class="eyebrow">MODEL-BY-MODEL SUPPORT</p><h2>Device ecosystem</h2></div><span class="pill muted">ADAPTERS IN DEVELOPMENT</span></div>
