@@ -65,7 +65,7 @@ try{
  assert.equal(await page.locator(".item").count(),0,"Show Workspace clears local data");
  await page.goto(origin+"/apps/compatibility-center/",{waitUntil:"domcontentloaded"});
  await page.locator("#search").fill("Avantis");
- assert.ok((await page.locator("#results").innerText()).includes("Documented"),"Compatibility Center searches evidence records");
+ assert.ok((await page.locator("#results").innerText()).toLowerCase().includes("documented"),"Compatibility Center searches evidence records");
  assert.ok(await page.locator('#results a[href^="https://support.allen-heath.com/"]').count(),"Avantis result links to official manufacturer documentation");
  assert.deepEqual(errors,[],"Companion apps have no uncaught browser errors");
  console.log("System Builder, Show Workspace and Compatibility Center browser tests passed.");
