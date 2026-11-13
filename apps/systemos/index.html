@@ -28,6 +28,16 @@
     <section class="section" id="shows">
       <div class="section-head"><div><p class="eyebrow">YOUR PRODUCTION DATA</p><h2>Show workspace</h2></div><button class="primary" id="new-show" type="button">＋ New show</button></div>
       <div class="show-card"><div class="show-icon">S</div><div class="show-copy"><strong id="show-name">Untitled show</strong><span id="show-meta">No venue assigned · Neutral BZaudio show package</span></div><span class="state">LOCAL DRAFT</span></div>
+      <div class="channel-editor">
+        <div class="channel-editor-head"><div><p class="eyebrow">SHOW INPUTS</p><h3>Channel list</h3></div><span id="channel-count">0 CHANNELS</span></div>
+        <form id="channel-form" class="channel-form">
+          <label>Channel name<input id="channel-label" maxlength="100" required placeholder="e.g. Lead vocal"></label>
+          <label>Channel type<select id="channel-type"><option>Input</option><option>Group</option><option>Stereo Group</option><option>Aux</option><option>Main</option><option>Matrix</option><option>FX</option><option>Other</option></select></label>
+          <label>Source / notes<input id="channel-source" maxlength="160" placeholder="e.g. Stagebox 1 / input 01"></label>
+          <button class="primary" type="submit">Add channel +</button>
+        </form>
+        <div id="channel-list" class="channel-list" aria-live="polite"><p class="empty">No channels yet. Add a channel or import a supported show file.</p></div>
+      </div>
       <div class="actions"><button class="secondary" id="export-show" type="button">Export show package ↗</button><label class="secondary file-button">Import BZaudio show or Avantis CSV<input id="import-show" type="file" accept=".json,.csv,application/json,text/csv"></label></div>
       <p class="feedback" id="feedback" role="status" aria-live="polite">Your work stays in this browser until you export a file.</p>
     </section>
