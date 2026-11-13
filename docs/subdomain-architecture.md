@@ -17,6 +17,8 @@ The customer-facing ecosystem is composed of independently deployable applicatio
 | System Builder | `build.bzaudio.com` | Guided complete-system design and equipment selection |
 | Compatibility Center | `compat.bzaudio.com` | Evidence-based equipment, model, firmware and connection compatibility |
 | Show Workspace | `shows.bzaudio.com` | Venue, show, stage plot, input list and project organization |
+| FX Lab | `fx.bzaudio.com` | Browser-local EQ, dynamics, saturation, modulation, delay and reverb |
+| BZaudio ID | `id.bzaudio.com` | Local profile preview and future shared identity entry point |
 
 These are proposed hostnames, not claims that DNS or hosting has been configured.
 
