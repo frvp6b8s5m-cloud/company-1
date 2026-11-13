@@ -20,7 +20,7 @@ This plan replaces the earlier OS- and tool-heavy website implementation plan. T
 Inspected the active feature branch and current repository content:
 
 - The active website work is in `company-1`, branch `feat/bzaudio-company-site`. The separate `BZAUDIO-this-is-it1` repository contains the approved strategic `VISION.md`, `ROADMAP.md`, and strategy-level `SPEC.md`.
-- The active branch contains a static HTML/CSS/vanilla JavaScript website, including `index.html`, `styles.css`, `experience.css`, `script.js\), `site-config.js`, and existing feature styles/scripts.
+- The active branch contains a static HTML/CSS/vanilla JavaScript website, including `index.html`, `styles.css`, `experience.css`, `script.js`, `site-config.js`, and existing feature styles/scripts.
 - A root `package.json` exists. It defines existing quality scripts including `npm run verify:site`, `npm run test:systemos`, `npm run check:systemos-app`, `npm run check:ecosystem-apps`, `npm run build:apps`, and `npm run check:all-apps`.
 - `.github/workflows/quality.yml` runs static checks, browser smoke scripts, accessibility/performance checks, and app-workspace checks on the feature branch and pull requests.
 - `.github/workflows/pages.yml` deploys the `main` branch only. Feature-branch checks do not publish the production site.
