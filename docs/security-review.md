@@ -74,3 +74,11 @@ The local workspace now supports structured asset specifications, patchbay maps,
 ### Cross-app navigation and release
 - Preview navigation uses same-repository app paths; standalone build outputs rewrite sibling links to their proposed hostnames.
 - Proposed hostnames are not live until DNS, hosting custom-domain configuration and HTTPS are verified. No secrets or DNS records are created by the static build.
+
+
+
+## System Builder and Show Workspace local data addendum — 2026-11-13
+
+- System Builder stores a named equipment plan in browser localStorage under `bzaudio.system-builder.plan.v1`. Plan import is limited to 256 KB and 100 line items; categories, names and integer quantities are validated against the app's allowed values and bounds. Users can export a portable JSON file or clear the local plan.
+- Show Workspace stores production details, up to 100 input-list rows and production notes in browser localStorage under `bzaudio.show-workspace.sheet.v1`. Import is limited to 256 KB and validates text lengths, date format, row count and required source names. Users can export a portable JSON file or clear local data.
+- These apps do not upload project data, share it between browsers or provide multi-user collaboration. Browser storage is not encrypted application storage; users should not put passwords, private personal data or confidential venue security details into local notes.
