@@ -61,4 +61,4 @@ The approved direction is a GitHub-managed application ecosystem with independen
 
 ### GitHub Pages deployment
 
-The GitHub Pages workflow deploys `main` only. Feature-branch pushes run quality checks and upload visual-review artifacts; the successful preview builds are available at the repository Pages path while custom subdomains remain unconfigured. This repository has one Pages site address, so a separate preview environment must be configured before public preview deployment. Do not merge to `main` until the configured inquiry recipient and release checklist are complete.
+The GitHub Pages workflow deploys `main` only. Feature-branch pushes run quality checks and upload visual-review artifacts/build bundles; they do not publish a public preview. The Pages workflow deploys `main` only. Custom subdomains require separate hosting targets and DNS configuration. Do not merge to `main` until the configured inquiry recipient and release checklist are complete.
