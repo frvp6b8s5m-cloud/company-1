@@ -12,6 +12,7 @@
     "verify:site": "node scripts/verify-site.mjs",
     "check:systemos-app": "node --check apps/systemos/app.js && node --check adapters/allen-heath/avantis-csv.js && node scripts/systemos-app-smoke.mjs && node scripts/avantis-csv-smoke.mjs",
     "check:ecosystem-apps": "node --check apps/system-builder/app.js && node --check apps/compatibility-center/app.js && node --check apps/show-workspace/app.js && node scripts/ecosystem-app-smoke.mjs",
-    "build:apps": "node scripts/build-app-previews.mjs && node scripts/app-build-smoke.mjs"
+    "build:apps": "node scripts/build-app-previews.mjs && node scripts/app-build-smoke.mjs",
+    "check:all-apps": "node --check apps/system-builder/app.js && node --check apps/compatibility-center/app.js && node --check apps/show-workspace/app.js && node --check apps/fx-lab/app.js && node --check apps/fx-lab/fx-engine.js && node --check apps/bzaudio-id/app.js && node scripts/ecosystem-app-smoke.mjs && node scripts/apps-browser-smoke.mjs && node scripts/fx-browser-smoke.mjs"
   }
 }
