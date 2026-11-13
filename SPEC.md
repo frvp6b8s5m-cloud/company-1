@@ -1,8 +1,8 @@
 # BZaudio Public Website Specification
 
 **Version:** 2.0 — approved by owner 2026-11-12  
-**Repository:** \`frvp6b8s5m-cloud/company-1\`  
-**Working branch:** \`feat/bzaudio-company-site\`  
+**Repository:** `frvp6b8s5m-cloud/company-1`  
+**Working branch:** `feat/bzaudio-company-site`  
 **Strategic source:** [BZaudio Vision](https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/blob/main/VISION.md) · [BZaudio Roadmap](https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/blob/main/ROADMAP.md)  
 **Status:** Requirements approved. Technical plan is prepared separately for owner review. **No implementation may begin until that plan is approved.**
 
@@ -76,7 +76,7 @@ Approved motion vocabulary may include:
 
 Motion requirements:
 - Animation must never delay navigation, block reading, or make controls difficult to use.
-- Respect \`prefers-reduced-motion\` with meaningful reduced or static alternatives.
+- Respect `prefers-reduced-motion` with meaningful reduced or static alternatives.
 - Provide keyboard-visible focus and equivalent non-hover interactions.
 - Avoid continuous movement that adds no information, excessive simultaneous animation, and heavy effects on low-powered mobile devices.
 - Load large imagery responsibly; lazy-load below-the-fold media and reserve image dimensions to prevent layout shift.
@@ -125,14 +125,14 @@ Existing experimental app code in the repository is outside this website scope. 
 
 ## 9. Technical approach and repository facts
 
-The active website is in the \`company-1\` repository on \`feat/bzaudio-company-site\`. The repository already contains a static HTML/CSS/vanilla JavaScript site, a package manifest, app workspaces, scripts, and GitHub Actions quality and GitHub Pages workflows.
+The active website is in the `company-1` repository on `feat/bzaudio-company-site`. The repository already contains a static HTML/CSS/vanilla JavaScript site, a package manifest, app workspaces, scripts, and GitHub Actions quality and GitHub Pages workflows.
 
 - Preserve the existing static-first website and GitHub Pages deployment model unless the technical plan proves a requirement that needs a change.
 - Do not introduce a frontend framework, backend, database, authentication, payment provider, analytics service, or new production dependency without documented rationale and owner approval.
 - Keep the website boundary clear from the independent BZaudio Technology platform and experimental companion apps.
 - Keep content, product data, configuration, design tokens, and behavior organized and maintainable.
 - Preserve existing app workspace behavior and quality checks when those apps are outside the website scope.
-- The Pages workflow deploys \`main\`; feature-branch checks do not automatically publish a public preview. Do not merge or deploy to production as part of plan approval.
+- The Pages workflow deploys `main`; feature-branch checks do not automatically publish a public preview. Do not merge or deploy to production as part of plan approval.
 
 ## 10. Code and quality standards
 
@@ -150,7 +150,7 @@ The active website is in the \`company-1\` repository on \`feat/bzaudio-company-
 
 The technical plan must use the repository's real scripts and existing GitHub Actions workflow. Expected verification includes:
 
-- Website static validation using the existing \`npm run verify:site\` script.
+- Website static validation using the existing `npm run verify:site` script.
 - JavaScript syntax checks for every changed script.
 - Browser-level checks for navigation, quote/contact flow, responsive behavior, and important interactions.
 - Keyboard and focus review, accessibility automation, reduced-motion checks, and a manual screen-reader spot check.
@@ -158,7 +158,7 @@ The technical plan must use the repository's real scripts and existing GitHub Ac
 - Performance review for image weight, layout shift, animation cost, and Core Web Vitals.
 - Existing independent app checks remain green; changes to the public website must not silently regress app workspaces.
 - GitHub Actions quality workflow must pass on the feature branch.
-- Production deployment and merge to \`main\) remain separate release gates.
+- Production deployment and merge to `main\) remain separate release gates.
 
 ## 12. Boundaries
 
