@@ -11,6 +11,6 @@ This directory contains independently scoped applications in the BZaudio monorep
 | `fx-lab/` | Real-time browser-based audio effects and dynamics processing | `fx.bzaudio.com` |
 | `bzaudio-id/` | BZaudio ecosystem hub and local profile preview | `id.bzaudio.com` |
 
-These are application boundaries and development homes, not claims that all apps are already implemented or deployed. Each app must own its build, tests, configuration and release workflow. Shared contracts and design foundations belong in `packages/`.
+These are application boundaries and development homes. The companion apps now have tested browser-local workflows, but they are not all production-ready or independently deployed. Each app must own its build, tests, configuration and release workflow. Shared contracts and design foundations belong in `packages/`.
 
 The existing company website remains at the repository root. The existing SystemOS prototype also remains at the root until a tested migration is approved.
