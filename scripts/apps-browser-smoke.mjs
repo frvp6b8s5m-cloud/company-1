@@ -15,6 +15,40 @@ try{
  const origin="http://127.0.0.1:"+server.address().port;
  const context=await browser.newContext({viewport:{width:1280,height:900}});
  const page=await context.newPage(),errors=[];page.on("pageerror",error=>errors.push(error.message));
+ let response=await page.goto(origin+"/apps/systemos/",{waitUntil:"domcontentloaded"});
+ assert.equal(response.status(),200,"SystemOS Transfer Studio loads");
+ await page.locator("#new-show").click();
+ await page.locator("#input-name").fill("Festival Main Stage");
+ await page.locator("#input-venue").fill("River Park");
+ await page.locator("#create-show").click();
+ assert.equal(await page.locator("#show-name").innerText(),"Festival Main Stage","SystemOS creates a show");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#show-name").innerText(),"Festival Main Stage","SystemOS restores the local show after reload");
+ const avantisFixture=`[Version]
+2
+[Channels]
+Channel Type,Channel No.,Name,Colour,Socket Type,Socket No.,Source Side,Gain.,PAD,+48v
+Input,1,"Lead, Vocal",Green,Surface,1,Left,25,Off,On
+Group,1,Drums,Red,,,,,,
+[Outputs]
+Output Type,Channel No.,Source Type,Source Ch No.,Stereo
+Surface,1,Main,1,Left
+[Virtual Soundcheck]
+Input Channel,VSC Source no.,VSC Source Type
+1,1,USB
+`;
+ await page.locator("#import-show").setInputFiles({name:"sample-avantis.csv",mimeType:"text/csv",buffer:Buffer.from(avantisFixture)});
+ await page.waitForFunction(()=>!document.querySelector("#transfer-report")?.hidden);
+ assert.ok((await page.locator("#transfer-report-summary").innerText()).includes("Partial Avantis CSV import"),"SystemOS reports partial source import");
+ assert.equal(await page.locator(".transfer-counts article").count(),4,"SystemOS renders transfer status counts");
+ const systemExport=await readDownload(page,()=>page.locator("#export-show").click());
+ assert.equal(systemExport.format,"bzaudio-show","SystemOS exports the neutral show format");
+ assert.equal(systemExport.channels.length,2,"SystemOS preserves imported channel records");
+ const transferExport=await readDownload(page,()=>page.locator("#export-report").click());
+ assert.equal(transferExport.status,"partial-import","SystemOS exports an explicit partial-transfer report");
+ assert.equal(transferExport.counts.unsupported,2,"SystemOS marks scenes and processing as unsupported");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.ok((await page.locator("#show-meta").innerText()).includes("Allen & Heath Avantis"),"SystemOS restores imported console profile");
  let response=await page.goto(origin+"/apps/system-builder/",{waitUntil:"domcontentloaded"});
  assert.equal(response.status(),200,"System Builder loads");
  await page.locator("#plan-name").fill("Main Room Upgrade");
