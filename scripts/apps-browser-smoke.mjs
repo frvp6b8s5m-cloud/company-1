@@ -24,6 +24,16 @@ try{
  assert.equal(await page.locator("#show-name").innerText(),"Festival Main Stage","SystemOS creates a show");
  await page.reload({waitUntil:"domcontentloaded"});
  assert.equal(await page.locator("#show-name").innerText(),"Festival Main Stage","SystemOS restores the local show after reload");
+ await page.locator("#channel-label").fill("Host microphone");
+ await page.locator("#channel-type").selectOption({label:"Input"});
+ await page.locator("#channel-source").fill("Stagebox 1 / input 02");
+ await page.locator("#channel-form button[type=submit]").click();
+ assert.equal(await page.locator(".channel-row").count(),1,"SystemOS adds a neutral channel");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator(".channel-row").count(),1,"SystemOS persists channel edits");
+ await page.locator(".channel-row button").click();
+ assert.equal(await page.locator(".channel-row").count(),0,"SystemOS removes a channel");
+
  const avantisFixture=`[Version]
 2
 [Channels]
