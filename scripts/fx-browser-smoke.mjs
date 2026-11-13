@@ -35,6 +35,24 @@ try{
  await page.locator('[data-bypass="compressor"]').click();
  await page.locator('[data-preset="space"]').click();
  assert.equal(await page.locator("#decay-value").innerText(),"5.2 s","Preset updates reverb decay");
+ await page.locator("#custom-preset-name").fill("My test chain");
+ await page.locator("#save-preset").click();
+ assert.ok((await page.locator("#saved-presets").innerText()).includes("My test chain"),"Custom preset saves locally");
+ await page.locator('[data-param="delayTime"]').evaluate(el=>{el.value="100";el.dispatchEvent(new Event("input",{bubbles:true}));});
+ await page.locator("#load-preset").click();
+ assert.equal(await page.locator("#delay-time-value").innerText(),"520 ms","Saved preset restores all settings");
+ const [presetDownload]=await Promise.all([page.waitForEvent("download"),page.locator("#export-preset").click()]);
+ assert.ok(presetDownload.suggestedFilename().endsWith(".bzaudio-fx.json"),"Preset exports as a portable JSON file");
+ const presetStream=await presetDownload.createReadStream();let presetText="";
+ for await(const chunk of presetStream)presetText+=chunk.toString();
+ const exportedPreset=JSON.parse(presetText);
+ assert.equal(exportedPreset.format,"bzaudio-fx-preset","Preset export uses the documented format");
+ exportedPreset.params.delayTime=610;
+ await page.locator("#import-preset").setInputFiles({name:"imported.bzaudio-fx.json",mimeType:"application/json",buffer:Buffer.from(JSON.stringify(exportedPreset))});
+ await page.locator("#load-preset").click();
+ assert.equal(await page.locator("#delay-time-value").innerText(),"610 ms","Imported preset is validated and applied");
+ await page.locator("#delete-preset").click();
+ assert.ok(!(await page.locator("#saved-presets").innerText()).includes("My test chain"),"Custom preset can be deleted");
  await page.locator("#stop-audio").click();
  assert.ok((await page.locator("#source-status").innerText()).includes("Audio stopped"),"Stop control halts source");
  assert.deepEqual(errors,[],"FX Lab has no uncaught browser errors");
@@ -46,6 +64,10 @@ try{
  assert.ok((await page.locator("#profile-status").innerText()).includes("not an authenticated"),"ID preview clearly disclaims authentication");
  await page.reload({waitUntil:"domcontentloaded"});
  assert.equal(await page.locator("#display-name").inputValue(),"Studio Test","Local ID profile restores after reload");
+ await page.locator("#clear-profile").click();
+ assert.equal(await page.locator("#display-name").inputValue(),"","BZaudio ID can clear local profile data");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#display-name").inputValue(),"","Cleared BZaudio ID profile does not return after reload");
  assert.deepEqual(errors,[],"BZaudio ID has no uncaught browser errors");
  console.log("FX Lab audio engine and BZaudio ID profile browser smoke tests passed.");
 }finally{await browser.close();server.close();}
