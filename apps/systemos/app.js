@@ -13,6 +13,18 @@ function render(){
  const profile=activeShow.consoleProfiles[0];
  const origin=profile?" · "+profile.manufacturer+" "+profile.model:" · Neutral BZaudio show package";
  $("show-meta").textContent=venue+origin+" · "+activeShow.channels.length+" channels · "+activeShow.routing.length+" routes";
+ const channelList=$("channel-list");channelList.replaceChildren();$("channel-count").textContent=activeShow.channels.length+" CHANNELS";
+ if(!activeShow.channels.length){const empty=document.createElement("p");empty.className="empty";empty.textContent="No channels yet. Add a channel or import a supported show file.";channelList.append(empty);}
+ activeShow.channels.forEach(channel=>{
+  const row=document.createElement("article");row.className="channel-row";const copy=document.createElement("div"),title=document.createElement("strong"),meta=document.createElement("span");
+  title.textContent=channel.label||channel.name||"Unnamed channel";
+  const source=typeof channel.source==="string"?channel.source:channel.source?[(channel.source.socketType||""),channel.source.socketNumber?"socket "+channel.source.socketNumber:"",channel.source.sourceSide||""].filter(Boolean).join(" · "):"";
+  const preamp=channel.preamp&&Number.isFinite(channel.preamp.gainDb)?" · "+channel.preamp.gainDb+" dB gain":"";
+  meta.textContent=[channel.type||"Unknown type",source].filter(Boolean).join(" · ")+preamp;copy.append(title,meta);
+  const remove=document.createElement("button");remove.className="secondary";remove.type="button";remove.textContent="Remove";remove.setAttribute("aria-label","Remove "+title.textContent);
+  remove.addEventListener("click",()=>{activeShow.channels=activeShow.channels.filter(item=>item.id!==channel.id);persist();render();announce("Channel removed from this local show.");});
+  row.append(copy,remove);channelList.append(row);
+ });
 }
 function download(filename,content,type){
  const blob=new Blob([content],{type:type||"application/json"}),url=URL.createObjectURL(blob),anchor=document.createElement("a");
@@ -67,6 +79,13 @@ function validateShowSheet(payload){
  const inputs=payload.inputs.map(item=>{if(!item||typeof item!=="object")throw new Error("Invalid show input row.");const source=safeText(item.source,120).trim();if(!source)throw new Error("Every show input row needs a source name.");return{source,mic:safeText(item.mic,120),notes:safeText(item.notes,500)};});
  return{...payload,show:safeText(payload.show,120),venue:safeText(payload.venue,160),date,stage:safeText(payload.stage,100),notes:safeText(payload.notes,3000),inputs};
 }
+$("channel-form").addEventListener("submit",event=>{
+ event.preventDefault();const label=$("channel-label").value.trim(),type=$("channel-type").value,source=$("channel-source").value.trim();
+ if(!label){$("channel-label").focus();return;}
+ if(activeShow.channels.length>=1000){announce("Channel list limit reached (1,000 entries).",true);return;}
+ const channel={id:"channel-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8),label,type,source:source||null,extensions:{}};
+ activeShow.channels.push(channel);$("channel-form").reset();persist();render();announce("Channel added and saved locally.");
+});
 $("new-show").addEventListener("click",()=>{$("input-name").value="";$("input-venue").value="";$("show-dialog").showModal();$("input-name").focus();});
 $("show-form").addEventListener("submit",event=>{
  if(event.submitter&&event.submitter.id==="create-show"){event.preventDefault();const next=core.createShow({name:$("input-name").value,venue:$("input-venue").value});$("show-dialog").close();validateAndStore(next);announce("New show created and saved locally.");}
