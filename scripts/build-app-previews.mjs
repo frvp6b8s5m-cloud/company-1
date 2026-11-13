@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 const root = process.cwd();
 const out = join(root, "dist", "apps");
-const hosts = { systemos: "https://os.bzaudio.com/", "system-builder": "https://build.bzaudio.com/", "compatibility-center": "https://compat.bzaudio.com/", "show-workspace": "https://shows.bzaudio.com/", "fx-lab": "https://fx.bzaudio.com/", "bzaudio-id": "https://id.bzaudio.com/" };
+const hosts = { company: "https://www.bzaudio.com/", systemos: "https://os.bzaudio.com/", "system-builder": "https://build.bzaudio.com/", "compatibility-center": "https://compat.bzaudio.com/", "show-workspace": "https://shows.bzaudio.com/", "fx-lab": "https://fx.bzaudio.com/", "bzaudio-id": "https://id.bzaudio.com/" };
 await mkdir(out, { recursive: true });
 
 async function writeApp(name, sourceFiles, transform) {
@@ -42,8 +42,16 @@ for (const name of ["system-builder", "compatibility-center", "show-workspace"])
     return output;
   });
 }
-console.log("Built initial four independent BZaudio application bundles.");
+console.log("Built independent BZaudio application bundles.");
 
-await writeApp("fx-lab", ["apps/fx-lab/index.html", "apps/fx-lab/app.js", "apps/fx-lab/fx-engine.js", "apps/fx-lab/fx.css"], html => html.replace("../../packages/design-system/tokens.css", "tokens.css"));
-await writeApp("bzaudio-id", ["apps/bzaudio-id/index.html", "apps/bzaudio-id/app.js", "apps/bzaudio-id/id.css"], html => html.replace("../../packages/design-system/tokens.css", "tokens.css"));
+await writeApp("fx-lab", ["apps/fx-lab/index.html", "apps/fx-lab/app.js", "apps/fx-lab/fx-engine.js", "apps/fx-lab/fx.css"], html => {
+  let output = html.replace("../../packages/design-system/tokens.css", "tokens.css").replace("../../index.html", hosts.company || "https://www.bzaudio.com/");
+  for (const [app, host] of Object.entries(hosts)) output = output.replaceAll(`../${app}/`, host);
+  return output;
+});
+await writeApp("bzaudio-id", ["apps/bzaudio-id/index.html", "apps/bzaudio-id/app.js", "apps/bzaudio-id/id.css"], html => {
+  let output = html.replace("../../packages/design-system/tokens.css", "tokens.css").replace("../../index.html", hosts.company);
+  for (const [app, host] of Object.entries(hosts)) output = output.replaceAll(`../${app}/`, host);
+  return output;
+});
 console.log("Added FX Lab and BZaudio ID standalone bundles.");
