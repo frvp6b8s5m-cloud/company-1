@@ -30,14 +30,14 @@ await writeApp("systemos", [
   .replace("../../packages/design-system/tokens.css", "tokens.css")
   .replace("../../systemos-core.js", "systemos-core.js")
   .replace("../../adapters/allen-heath/avantis-csv.js", "avantis-csv.js")
-  .replace("../../index.html", "https://www.bzaudio.com/"));
+  .replaceAll("../../index.html", "https://www.bzaudio.com/"));
 
 for (const name of ["system-builder", "compatibility-center", "show-workspace"]) {
   await writeApp(name, [`apps/${name}/index.html`, `apps/${name}/app.js`], html => {
     let output = html
       .replace("../../packages/design-system/tokens.css", "tokens.css")
       .replace("../app.css", "app.css")
-      .replace("../../index.html", "https://www.bzaudio.com/");
+      .replaceAll("../../index.html", "https://www.bzaudio.com/");
     for (const [app, host] of Object.entries(hosts)) output = output.replaceAll(`../${app}/`, host);
     return output;
   });
