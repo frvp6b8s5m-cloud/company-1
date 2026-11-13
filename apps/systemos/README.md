@@ -10,6 +10,9 @@ Read [the universal architecture](../../docs/systemos-universal-architecture.md)
 ## Current working features
 
 - Create, validate, import and export neutral BZaudio show packages locally.
+- Add/remove neutral show channels and persist the active show in this browser.
+- Produce an explicit field-level transfer report for the partial Avantis CSV import, including unsupported scenes/processing and warnings.
+- Export the transfer report separately as JSON.
 - Import a documented subset of Allen & Heath Avantis sectioned CSV: channel records, output patch rows and Virtual Soundcheck rows.
 - Validate section names, columns and selected enumerated/range values.
 - Preserve the source Avantis CSV sections as vendor extensions in the neutral package.
