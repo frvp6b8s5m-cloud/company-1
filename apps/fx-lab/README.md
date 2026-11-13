@@ -11,12 +11,14 @@ FX Lab is a browser-local audio processor built on the Web Audio API.
 
 ## Processing chain
 - Three-band low/mid/high EQ
+- Save up to 20 custom presets in this browser, load/delete them, and import/export validated JSON preset files (64 KB import limit)
 - Dynamics compressor (threshold, ratio, attack, release, knee)
 - Parallel waveshaper saturation
 - LFO-modulated chorus
 - Feedback delay
 - Generated stereo convolution reverb
-- Compressor makeup gain and live gain-reduction meter\n- Final output safety limiter, master output and peak meter
+- Compressor makeup gain and live gain-reduction meter
+- Final output safety limiter, master output and peak meter
 
 All processing is client-side. Audio is not uploaded. Browser support, device latency, audio routing and CPU limits vary. Microphone access is opt-in and can be revoked by the browser. The app does not connect to a physical console or export console plugin settings.
 
