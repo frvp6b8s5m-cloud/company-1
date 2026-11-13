@@ -54,7 +54,9 @@ try {
     "/apps/systemos/",
     "/apps/system-builder/",
     "/apps/compatibility-center/",
-    "/apps/show-workspace/"
+    "/apps/show-workspace/",
+    "/apps/fx-lab/",
+    "/apps/bzaudio-id/"
   ];
   for (const path of appPaths) {
     for (const viewport of [{ width: 390, height: 844 }, { width: 768, height: 1024 }, { width: 1440, height: 900 }]) {
@@ -72,7 +74,7 @@ try {
     }
   }
 
-  console.log("BZaudio WCAG 2.2 AA checks passed for the company site and four applications at 390px, 768px and 1440px.");
+  console.log("BZaudio WCAG 2.2 AA checks passed for the company site and six applications at 390px, 768px and 1440px.");
 } finally {
   await browser.close();
   await new Promise((resolveClose, rejectClose) => server.close((error) => error ? rejectClose(error) : resolveClose()));
