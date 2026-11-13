@@ -50,6 +50,7 @@ jobs:
           node --check apps/bzaudio-id/app.js
           node --check scripts/ecosystem-app-smoke.mjs
           node --check scripts/fx-browser-smoke.mjs
+          node --check scripts/apps-browser-smoke.mjs
           node --check scripts/systemos-app-smoke.mjs
       - name: Verify site structure and requirements
         run: node scripts/verify-site.mjs
