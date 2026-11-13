@@ -5,8 +5,10 @@
 
 ## Current features
 
-- Search a small set of vendor-documented format/workflow records.
-- Distinguish manufacturer-documented facts from unverified cross-manufacturer conversion.
+- Search evidence-rich records by manufacturer, model, feature and limitation.
+- Filter manufacturer-documented records, BZaudio prototypes and unverified combinations.
+- See documented scope, source, review date and explicit limitations for each record.
+- Distinguish manufacturer-documented facts from BZaudio prototype capability and unverified cross-manufacturer conversion.
 - Open the cited vendor documentation.
 
 ## Data integrity rules
