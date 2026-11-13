@@ -82,6 +82,8 @@ jobs:
         run: node scripts/browser-smoke.mjs
       - name: Test FX Lab audio engine and BZaudio ID
         run: node scripts/fx-browser-smoke.mjs
+      - name: Test System Builder, Show Workspace and Compatibility Center
+        run: node scripts/apps-browser-smoke.mjs
       - name: Run WCAG accessibility audit
         run: node scripts/accessibility-smoke.mjs
       - name: Run performance and CDN checks
