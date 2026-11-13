@@ -15,11 +15,11 @@ BZaudio is a family of focused audio products, not a collection of unrelated web
 | Product | Proposed hostname | Responsibility | Initial status |
 |---|---|---|---|
 | Company website | `www.bzaudio.com` | Brand, equipment discovery, product information, support and quote requests | Existing root website; preserve |
-| SystemOS | `os.bzaudio.com` | Universal show workspace, show-file transfer, scenes, routing and model-specific console integrations | Existing browser prototype; evolve in place |
-| System Builder | `build.bzaudio.com` | Guided design of complete audio systems, equipment selection and quote-ready bill of materials | Scaffold only |
-| Compatibility Center | `compat.bzaudio.com` | Evidence-based model, firmware, accessory and feature compatibility | Scaffold only |
-| Show Workspace | `shows.bzaudio.com` | Venue/show projects, stage plots, input lists, equipment plans, revisions and documents | Scaffold only |
-| FX Lab | `fx.bzaudio.com` | Browser-based real-time EQ, compression, saturation, modulation, delay and reverb | Functional browser DSP prototype |
+| SystemOS | `os.bzaudio.com` | Universal show workspace, show-file transfer, scenes, routing and model-specific console integrations | Browser-local show editor, partial Avantis CSV reader and transfer report; no native writers |
+| System Builder | `build.bzaudio.com` | Guided design of complete audio systems, equipment selection and quote-ready bill of materials | Local plan editor with persistence, validated import/export and advisory checks |
+| Compatibility Center | `compat.bzaudio.com` | Evidence-based model, firmware, accessory and feature compatibility | Searchable evidence records with status filters, sources and limitations |
+| Show Workspace | `shows.bzaudio.com` | Venue/show projects, stage plots, input lists, equipment plans, revisions and documents | Local show-sheet editor with persistence, validated import/export and input lists |
+| FX Lab | `fx.bzaudio.com` | Browser-based real-time EQ, compression, saturation, modulation, delay and reverb | Browser DSP prototype with test/file/mic sources, custom local presets and JSON interchange |
 | BZaudio ID | `id.bzaudio.com` | Identity roadmap, profile and entry point to connected products | Local profile preview only; no authentication or cloud sync |
 
 Hostnames are proposed and require domain ownership, DNS and hosting configuration. Do not claim they are live until verified.
@@ -103,13 +103,13 @@ BZaudio ID currently provides a local-only profile preview and ecosystem navigat
 - [ ] Seed only facts with reliable sources; leave unknown values unknown.
 
 ### Milestone 3 — System Builder
-- [ ] Guided venue/use-case intake.
+- [x] Equipment list editor with editable quantities, local persistence and validated JSON import/export.\n- [ ] Guided venue/use-case intake.
 - [ ] Equipment selection and dependency checks.
 - [ ] Signal path, power/network and missing-component validation.
 - [ ] Save/export system design and generate quote-ready bill of materials.
 
 ### Milestone 4 — Show Workspace
-- [ ] Create and organize show/venue projects.
+- [x] Create and persist a local show sheet with venue details and input list; validate JSON import/export.\n- [ ] Create richer multi-project organization, stage plots, attachments and revisions.
 - [ ] Input lists, stage plots and equipment plans.
 - [ ] Attach files, notes, revisions and compatibility reports.
 - [ ] Connect to SystemOS through versioned packages.
@@ -124,7 +124,7 @@ BZaudio ID currently provides a local-only profile preview and ecosystem navigat
 - [x] Create BZaudio ID local profile preview and ecosystem hub; clearly label its non-authenticated state.
 - [x] Build browser-local Web Audio FX chain with EQ, compressor, saturation, chorus, delay and reverb controls.
 - [x] Add test tone, local audio-file playback and permission-based microphone input.
-- [ ] Add DSP unit/browser tests, clipping/latency review and accessible control refinements.
+- [x] Add custom preset save/load/delete and validated JSON import/export.\n- [x] Add browser smoke coverage for tone, microphone, file playback, compressor, effects presets and profile controls.\n- [ ] Complete broader listening tests, clipping/latency review and accessible control refinements.
 - [ ] Design and threat-model secure identity/backend architecture.
 - [ ] Implement authentication, authorization, account recovery and consent.
 - [ ] Configure and verify hosting, DNS and HTTPS per subdomain.
