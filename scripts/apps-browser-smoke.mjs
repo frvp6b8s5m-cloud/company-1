@@ -49,7 +49,7 @@ Input Channel,VSC Source no.,VSC Source Type
  assert.equal(transferExport.counts.unsupported,2,"SystemOS marks scenes and processing as unsupported");
  await page.reload({waitUntil:"domcontentloaded"});
  assert.ok((await page.locator("#show-meta").innerText()).includes("Allen & Heath Avantis"),"SystemOS restores imported console profile");
- let response=await page.goto(origin+"/apps/system-builder/",{waitUntil:"domcontentloaded"});
+ response=await page.goto(origin+"/apps/system-builder/",{waitUntil:"domcontentloaded"});
  assert.equal(response.status(),200,"System Builder loads");
  await page.locator("#plan-name").fill("Main Room Upgrade");
  await page.locator("#category").selectOption({label:"Mixing console"});
