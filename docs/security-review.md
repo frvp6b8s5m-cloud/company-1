@@ -82,3 +82,11 @@ The local workspace now supports structured asset specifications, patchbay maps,
 - System Builder stores a named equipment plan in browser localStorage under `bzaudio.system-builder.plan.v1`. Plan import is limited to 256 KB and 100 line items; categories, names and integer quantities are validated against the app's allowed values and bounds. Users can export a portable JSON file or clear the local plan.
 - Show Workspace stores production details, up to 100 input-list rows and production notes in browser localStorage under `bzaudio.show-workspace.sheet.v1`. Import is limited to 256 KB and validates text lengths, date format, row count and required source names. Users can export a portable JSON file or clear local data.
 - These apps do not upload project data, share it between browsers or provide multi-user collaboration. Browser storage is not encrypted application storage; users should not put passwords, private personal data or confidential venue security details into local notes.
+
+
+
+## SystemOS Transfer Studio addendum — 2026-11-13
+
+- The standalone SystemOS app stores the current validated neutral show package in browser localStorage under `bzaudio.systemos.show.v1`. Channel additions/removals and supported imports update this local record. Users should export a backup before clearing browser data or switching devices.
+- Transfer reports are generated locally from parser output and can be exported as JSON. They describe only the currently implemented parser subset; report status does not imply native destination export or a completed console transfer.
+- CSV/JSON imports are size-limited and validated before replacing the active show. Unsupported data is not synthesized into the neutral package; recognized source sections are preserved as vendor extensions.
