@@ -3,8 +3,8 @@
 **Status:** Prepared for owner review — implementation is not authorized yet.  
 **Specification:** [SPEC.md](../SPEC.md), version 2.0  
 **Strategic direction:** [BZaudio Vision](https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/blob/main/VISION.md) · [BZaudio Roadmap](https://github.com/frvp6b8s5m-cloud/BZAUDIO-this-is-it1/blob/main/ROADMAP.md)  
-**Repository:** \`frvp6b8s5m-cloud/company-1\`  
-**Working branch:** \`feat/bzaudio-company-site\`  
+**Repository:** `frvp6b8s5m-cloud/company-1`  
+**Working branch:** `feat/bzaudio-company-site`  
 **Task list:** [todo.md](todo.md)
 
 ## 1. Overview
@@ -19,11 +19,11 @@ This plan replaces the earlier OS- and tool-heavy website implementation plan. T
 
 Inspected the active feature branch and current repository content:
 
-- The active website work is in \`company-1\`, branch \`feat/bzaudio-company-site\`. The separate \`BZAUDIO-this-is-it1\` repository contains the approved strategic \`VISION.md\`, \`ROADMAP.md\`, and strategy-level \`SPEC.md\`.
-- The active branch contains a static HTML/CSS/vanilla JavaScript website, including \`index.html\`, \`styles.css\`, \`experience.css\`, \`script.js\), \`site-config.js\`, and existing feature styles/scripts.
-- A root \`package.json\` exists. It defines existing quality scripts including \`npm run verify:site\`, \`npm run test:systemos\`, \`npm run check:systemos-app\`, \`npm run check:ecosystem-apps\`, \`npm run build:apps\`, and \`npm run check:all-apps\`.
-- \`.github/workflows/quality.yml\` runs static checks, browser smoke scripts, accessibility/performance checks, and app-workspace checks on the feature branch and pull requests.
-- \`.github/workflows/pages.yml\` deploys the \`main\` branch only. Feature-branch checks do not publish the production site.
+- The active website work is in `company-1`, branch `feat/bzaudio-company-site`. The separate `BZAUDIO-this-is-it1` repository contains the approved strategic `VISION.md`, `ROADMAP.md`, and strategy-level `SPEC.md`.
+- The active branch contains a static HTML/CSS/vanilla JavaScript website, including `index.html`, `styles.css`, `experience.css`, `script.js\), `site-config.js`, and existing feature styles/scripts.
+- A root `package.json` exists. It defines existing quality scripts including `npm run verify:site`, `npm run test:systemos`, `npm run check:systemos-app`, `npm run check:ecosystem-apps`, `npm run build:apps`, and `npm run check:all-apps`.
+- `.github/workflows/quality.yml` runs static checks, browser smoke scripts, accessibility/performance checks, and app-workspace checks on the feature branch and pull requests.
+- `.github/workflows/pages.yml` deploys the `main` branch only. Feature-branch checks do not publish the production site.
 - Existing content and navigation still refer to BZaudio OS/SystemOS, SoundMatch, and experimental app destinations. Those references do not match the newly approved website specification and must not remain in the public website after implementation.
 - Existing app workspaces and their tests are outside this website re-scope. They must not be deleted, rewritten, or silently migrated as part of the public website work.
 - The current branch has an incomplete prior plan/task list. This plan and task list replace that earlier scope in place; prior commits remain available in Git history.
@@ -37,7 +37,7 @@ Inspected the active feature branch and current repository content:
 5. **Create a coherent design and motion system.** Use shared CSS custom properties for typography, spacing, surfaces, color, grid, image treatment, easing, and duration. Keep the architectural/cinematic art direction, but use motion selectively so practical tasks remain calm.
 6. **Keep product data evidence-based.** Show category-level information where model-level data is not verified. Never invent SKUs, specifications, pricing, stock, compatibility, or reviews.
 7. **Keep inquiry delivery honest.** Preserve the configurable recipient and user-reviewed email-draft behavior until a real recipient and approved delivery service exist. No false “sent” confirmation.
-8. **Protect deployment.** Work only on the feature branch. Do not change the Pages production workflow, merge to \`main\`, or deploy production without separate approval.
+8. **Protect deployment.** Work only on the feature branch. Do not change the Pages production workflow, merge to `main`, or deploy production without separate approval.
 9. **Avoid scope creep.** No OS, SoundMatch, PA Designer quiz, Connection Lab, customer portal, checkout, authentication, backend, or app-subdomain launch in this website milestone.
 
 ## 4. Intended information architecture
@@ -57,7 +57,7 @@ Keep the main navigation short. Avoid putting future initiatives or experimental
 - Keep strong architectural geometry, asymmetric editorial composition, generous negative space, material contrast, confident typography, and authentic audio/venue photography.
 - Build a distinctive visual rhythm: cinematic hero, quieter information sections, purposeful image-led moments, and restrained technical details.
 - Do not replace the current direction with a generic SaaS template, a plain corporate layout, or a dense grid of cards.
-- Use real, licensed/company-owned imagery. Track creator/source/license/permission and intended use in \`docs/assets.md\`.
+- Use real, licensed/company-owned imagery. Track creator/source/license/permission and intended use in `docs/assets.md`.
 
 ### Build a consistent animation language
 
@@ -71,7 +71,7 @@ Keep the main navigation short. Avoid putting future initiatives or experimental
 
 ### Motion and performance gates
 
-- Honor \`prefers-reduced-motion\` with reduced or static alternatives.
+- Honor `prefers-reduced-motion` with reduced or static alternatives.
 - Avoid layout-affecting animation; prefer transform/opacity for motion.
 - Lazy-load below-the-fold imagery, set image dimensions/aspect ratios, and keep hero imagery prioritized.
 - Verify at narrow mobile, tablet, and desktop widths.
@@ -79,7 +79,7 @@ Keep the main navigation short. Avoid putting future initiatives or experimental
 
 ## 6. Dependency graph and build order
 
-\`\`\`
+```
 Approved scope + content inventory
             |
             v
@@ -102,7 +102,7 @@ Feature-branch QA + owner review
             |
             v
 Separate production-release approval
-\`\`\`
+```
 
 Product content depends on verified category/model data. Contact form behavior depends on the configured recipient and the approved delivery mechanism. Cinematic media depends on documented rights and responsive assets. These dependencies must be resolved before their related tasks are considered complete.
 
@@ -142,19 +142,19 @@ Detailed acceptance criteria, verification, dependencies, and likely files are r
 
 ### Phase 6 — Owner review and release readiness
 - Present a verified feature-branch result and remaining release dependencies.
-- Do not merge to \`main\` or deploy production until separately approved.
+- Do not merge to `main` or deploy production until separately approved.
 
 ## 8. Verification commands and quality gates
 
 Use the existing repository commands rather than inventing a new stack:
 
-- \`npm run verify:site\` — website static verification.
-- \`npm run test:systemos\`, \`npm run check:systemos-app\`, \`npm run check:ecosystem-apps\`, \`npm run build:apps\`, and \`npm run check:all-apps\` — preserve existing app checks when changes could affect shared repository tooling.
-- Run the full \`BZaudio site quality checks\` GitHub Actions workflow on the feature branch.
+- `npm run verify:site` — website static verification.
+- `npm run test:systemos`, `npm run check:systemos-app`, `npm run check:ecosystem-apps`, `npm run build:apps`, and `npm run check:all-apps` — preserve existing app checks when changes could affect shared repository tooling.
+- Run the full `BZaudio site quality checks` GitHub Actions workflow on the feature branch.
 - Use the existing Playwright/browser smoke scripts and accessibility/performance scripts in CI.
 - Run a manual keyboard/focus review, reduced-motion review, and VoiceOver/NVDA spot check.
 - Inspect responsive screenshots at phone, tablet, and desktop sizes.
-- Verify every visible image against \`docs/assets.md\`; no image is production-ready based only on its URL.
+- Verify every visible image against `docs/assets.md`; no image is production-ready based only on its URL.
 - Confirm all links, quote paths, and contact states behave truthfully.
 - Record actual command output and workflow run links in the task list; do not claim unrun checks passed.
 
@@ -173,8 +173,8 @@ Use the existing repository commands rather than inventing a new stack:
 
 ## 10. Release and rollback
 
-- Work only on \`feat/bzaudio-company-site\`.
-- Preserve the current \`main\` branch and production Pages deployment.
+- Work only on `feat/bzaudio-company-site`.
+- Preserve the current `main` branch and production Pages deployment.
 - Capture the branch head before implementation begins.
 - Keep changes small and reviewable; do not rewrite Git history.
 - Confirm feature-branch quality checks before presenting a release candidate.
